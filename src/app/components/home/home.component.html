@@ -1,0 +1,47 @@
+<section>
+    <div class="header-green">
+        <div class="container hero">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>Welcome to Agora Vote</h1>
+                    <p>Agora vote is a voting platform where users can create elections and invite friends to cast their votes.</p>
+                    <p>It supports a wide range of voting algorithms some of whcih are Majority, Egalitarian, Australian STV just to name a few</p>
+                    <button class="btn btn-light btn-lg action-button" type="button">Learn More</button>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-clean">
+                        <form method="post">
+                            <h2 class="sr-only">Signup Form</h2>
+                            <div class="logo">
+                                <img src="assets/agora.png" class="form-logo">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="user_name" placeholder="User name">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="first_name" placeholder="First name">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="last_name" placeholder="Last name">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="email" name="email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="password" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+                            </div>
+                            <div class="have-account">
+                                Already have an account?
+                                <a routerLink="/signin" class="signin">Sign In</a>
+                            </div>
+                        </form>
+                    </div>
+                    <app-social-login></app-social-login>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
