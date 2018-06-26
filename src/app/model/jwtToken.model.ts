@@ -1,8 +1,8 @@
 import { Deserializable } from "./deserializable.model";
 
-export class Voter implements Deserializable{
-    name: string;
-    email: string;
+export class JwtToken implements Deserializable {
+    token: string;
+    expiresOn: Date;
 
     deserialize(input: any): this {
         Object.assign(this, input);

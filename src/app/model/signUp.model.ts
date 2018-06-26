@@ -1,8 +1,14 @@
-export class SignUp {
-    constructor(private _identifier: string, private _password: string, private _email: string, private _firstName: string, private _lastName: string){}
-    get identifier() {return this._identifier}
-    get password() {return this._password}
-    get email() {return this._email}
-    get firstName() {return this._firstName}
-    get lastName() {return this._lastName}
+import { Deserializable } from "./deserializable.model";
+
+export class SignUp implements Deserializable {
+    identifier: string;
+    password: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+
+    deserialize(input: any): this {
+        Object.assign(this, input);
+        return this;
+    }
 }
