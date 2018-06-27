@@ -1,0 +1,19 @@
+<section *ngIf="isActivationError" class="header-green section_padding_50_50">
+  <div class="container">
+    <div class="form-clean">
+      <form #activationForm="ngForm" method="post" (ngSubmit)="OnSubmit(UserName.value)">
+        <h2 class="sr-only">Login Form</h2>
+        <div class="logo">
+          <img src="assets/agora.png" class="form-logo">
+        </div>
+        <h2>Account activation error. Please enter user name to receive new link</h2>
+        <div class="form-group">
+          <input class="form-control" type="text" #UserName ngModel name="user_name" placeholder="User name">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" type="submit">Send link</button>
+        </div>
+      </form>
+    </div>
+</div>
+</section>

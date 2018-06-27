@@ -15,16 +15,24 @@ import { JwtToken } from '../model/jwtToken.model';
   providedIn: 'root'
 })
 export class UserService {
-  readonly rootUrl = 'http://localhost:9000/api/v1';
-  public readonly authTokenName = 'X-Auth-Token';
-  
-  readonly headerDict = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': 'true'
-  };
+  readonly rootUrl = 'http://agora-rest-api.herokuapp.com/api/v1';
+
+  getheadersNoAuth() {
+    let headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'No-Auth': 'True'
+    };
+    return headerDict;
+  }
+
+  getheadersWithAuth() {
+    let headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    };
+    return headerDict;
+  }
 
   private currentUserSubject = new BehaviorSubject<User>({} as User);
   public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
@@ -35,17 +43,145 @@ export class UserService {
   constructor(private http: HttpClient,
     private jwtService: JwtService) { }
 
+  //Unauthenticated user actions
+  registerUser(user: SignUp) {
+    console.log(user);
+    let body = JSON.stringify(user);
+    let reqHeaders = { headers: new HttpHeaders(this.getheadersNoAuth()) };
+    return this.http.post(this.rootUrl + '/auth/signup', body, reqHeaders);
+  }
+
+  login(credentials: Credentials) {
+    let body = JSON.stringify(credentials)
+    let reqHeaders = { headers: new HttpHeaders(this.getheadersNoAuth()) };
+    return this.http.post(this.rootUrl + '/auth/login', body, reqHeaders)
+      .pipe(map(
+        data => {
+          console.log(data)
+          let jwtToken = new JwtToken().deserialize(data);
+          // Save JWT sent from server in localstorage
+          this.jwtService.saveToken(jwtToken.token);
+          // Set isAuthenticated to true
+          this.isAuthenticatedSubject.next(true);
+
+          return jwtToken.token
+        })
+      );
+  }
+
+  socialLogin(provider: string, token: string) {
+    let reqHeaders = { headers: new HttpHeaders(this.getheadersNoAuth()) };
+    return this.http.get(this.rootUrl + '/auth/authenticate/' + provider, reqHeaders)
+      .pipe(map(
+        data => {
+          console.log(data)
+          let jwtToken = new JwtToken().deserialize(data);
+          // Save JWT sent from server in localstorage
+          this.jwtService.saveToken(jwtToken.token);
+          // Set isAuthenticated to true
+          this.isAuthenticatedSubject.next(true);
+
+          return jwtToken.token;
+        })
+      );
+  }
+
+  forgotPassword(userName: string) {
+    let reqHeaders = { headers: new HttpHeaders(this.getheadersNoAuth()) };
+    return this.http.post(this.rootUrl + '/auth/forgotPassword/send/' + userName, {}, reqHeaders)
+  }
+
+  resetPassword(password: PasswordData, resetToken: string) {
+    let body = JSON.stringify(password)
+    let reqHeaders = { headers: new HttpHeaders(this.getheadersNoAuth()) };
+    return this.http.post(this.rootUrl + '/auth/forgotPassword/reset/' + resetToken, body, reqHeaders)
+  }
+
+  resendActivationLink(userName: string) {
+    let reqHeaders = { headers: new HttpHeaders(this.getheadersNoAuth()) };
+    return this.http.get(this.rootUrl + '/account/email/' + userName, reqHeaders)
+  }
+
+  activateAccount(token: string) {
+    let reqHeaders = { headers: new HttpHeaders(this.getheadersNoAuth()) };
+    return this.http.get(this.rootUrl + '/account/activate/' + token, reqHeaders)
+      .pipe(map(
+        data => {
+          console.log(data)
+          let jwtToken = new JwtToken().deserialize(data);
+          // Save JWT sent from server in localstorage
+          this.jwtService.saveToken(jwtToken.token);
+          // Set isAuthenticated to true
+          this.isAuthenticatedSubject.next(true);
+
+          return jwtToken.token
+        })
+      );
+  }
+
+  //Authenticated user actions
+
+  logout() {
+    let reqHeaders = { headers: new HttpHeaders(this.getheadersWithAuth()) };
+    return this.http.get(this.rootUrl + '/user/logout', reqHeaders)
+      .pipe(map(
+        data => {
+          this.purgeAuth();
+        }));
+  }
+
+  getUser(): Observable<User> {
+    let token = this.jwtService.getToken();
+    if (token) {
+      let reqHeaders = {
+        headers: new HttpHeaders(this.getheadersWithAuth())
+      };
+      return this.http.get(this.rootUrl + '/user', reqHeaders)
+        .pipe(map(
+          data => {
+            let user = new User().deserialize(data);
+            // Set current user data into observable
+            this.currentUserSubject.next(user);
+            console.log(user);
+            return user;
+          }));
+    }
+  }
+
+  updateUser(user: User): Observable<User> {
+    let body = JSON.stringify(user);
+    let reqHeaders = { headers: new HttpHeaders(this.getheadersWithAuth()) };
+    return this.http.post(this.rootUrl + '/user/update', body, reqHeaders)
+      .pipe(map(
+        data => {
+          // Set current user data into observable
+          this.currentUserSubject.next(user);
+          console.log(user);
+          return user;
+        }));
+  }
+
+  changePassword(password: PasswordData){
+    let body = JSON.stringify(password);
+    let reqHeaders = { headers: new HttpHeaders(this.getheadersWithAuth()) };
+    return this.http.post(this.rootUrl + '/user/update', body, reqHeaders);
+  }
+
+
+
+  //Utility methods
+
   // Verify JWT in localstorage with server & load user's info.
   // This runs once on application startup.
   populate() {
     // If JWT detected, attempt to get & store user's info
     let token = this.jwtService.getToken();
     if (token) {
-      this.getUser(token)
+      this.getUser()
         .subscribe(
           (res: User) => {
             this.setAuth(res, token),
-          err => this.purgeAuth()
+              err => this.purgeAuth()
           });
     } else {
       // Remove any potential remnants of previous auth states
@@ -53,59 +189,7 @@ export class UserService {
     }
   }
 
-  registerUser(user: SignUp) {
-    let body = JSON.stringify(user);
-    let reqHeaders = {headers: new HttpHeaders(this.headerDict)};
-    return this.http.post(this.rootUrl + '/auth/signup', body, reqHeaders);
-  }
-
-  login(credentials: Credentials): Observable<string> {
-    let body = JSON.stringify(credentials)
-    let reqHeaders = {headers: new HttpHeaders(this.headerDict)};
-    return this.http.post(this.rootUrl + '/auth/login', body, reqHeaders)
-      .pipe(map(
-        (data: Response) => {
-          let token = data.json().map((token: JwtToken) => new JwtToken().deserialize(token))
-          console.log(token)
-          // Save JWT sent from server in localstorage
-          this.jwtService.saveToken(token);
-          // Set isAuthenticated to true
-          this.isAuthenticatedSubject.next(true);
-          return token;
-        })
-      );
-  }
-
-  socialLogin(provider: string, token: string) {
-    let reqHeaders = {headers: new HttpHeaders(this.headerDict)};
-    return this.http.get(this.rootUrl + '/auth/authenticate/' + provider, reqHeaders)
-  }
-
-  forgotPassword(userName: string) {
-    let reqHeaders = {headers: new HttpHeaders(this.headerDict)};
-    return this.http.post(this.rootUrl + '/auth/forgotPassword/send/' + userName, {}, reqHeaders)
-  }
-
-  fogotPasword(password: PasswordData, resetToken: string) {
-    let body = JSON.stringify(password)
-    let reqHeaders = {headers: new HttpHeaders(this.headerDict)};
-    return this.http.post(this.rootUrl + '/auth/forgotPassword/reset/' + resetToken, body, reqHeaders)
-  }
-
-  //Authenticated user actions
-
-  logout() {
-    let reqHeaders = {headers: new HttpHeaders(this.headerDict)};
-    return this.http.get(this.rootUrl + '/user/logout', reqHeaders)
-  }
-
-  getUser(token: string) : Observable<User>{
-    let reqHeaders = {headers: new HttpHeaders(this.headerDict)};
-    return this.http.get(this.rootUrl + '/user', reqHeaders)
-    .pipe(map((res: Response) => res.json().map((user: User) => new User().deserialize(user))));
-  }
-
-  private setAuth(user: User, token: string) {
+  private setAuth(user: User, token: String) {
     // Save JWT sent from server in localstorage
     this.jwtService.saveToken(token);
     // Set current user data into observable
@@ -114,7 +198,7 @@ export class UserService {
     this.isAuthenticatedSubject.next(true);
   }
 
-  private purgeAuth() {
+  purgeAuth() {
     // Remove JWT from localstorage
     this.jwtService.destroyToken();
     // Set current user to an empty object

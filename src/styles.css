@@ -357,6 +357,12 @@ p {
     color:#FFCD00;
   }
 
+  .form-clean form .error {
+    opacity:1;
+    color:red;
+    text-decoration:none;
+  }
+
   /* Green header */
   .header-green {
     background:linear-gradient(135deg, #49ee96, #00843D);

@@ -4,11 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class JwtService {
-  getToken(): string {
+  getToken(): String {
     return window.localStorage['jwtToken'];
   }
 
-  saveToken(token: string) {
+  saveToken(token: String) {
     window.localStorage['jwtToken'] = token;
   }
 

@@ -1,6 +1,7 @@
 import { Deserializable } from "./deserializable.model";
 
 export class SignUp implements Deserializable {
+
     identifier: string;
     password: string;
     email: string;

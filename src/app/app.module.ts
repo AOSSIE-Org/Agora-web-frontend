@@ -1,3 +1,7 @@
+import { AuthGuard } from './auth/auth.guard';
+import { ElectionService } from './services/election.service';
+import { JwtService } from './services/jwt.service';
+import { UserService } from './services/user.service';
 import { SocialLoginComponent } from './components/shared/social-login/social-login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -9,7 +13,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { LoginFormComponent } from './components/shared/login-form/login-form.component';
 import { RegisterFormComponent } from './components/shared/register-form/register-form.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +31,17 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    UserService,
+    JwtService,
+    ElectionService,
+    AuthGuard
+    ,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
