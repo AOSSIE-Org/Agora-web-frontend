@@ -14,12 +14,23 @@
     box-shadow:1px 1px 5px rgba(0,0,0,0.1);
   }
 
+  .social-login-container .social-login .error p{
+    opacity:1;
+    color:red;
+    text-align: center;
+    text-decoration:none;
+  }
+
   .social-login-container .social-login .fa {
     padding-right: 10px;
     font-size: 30px;
     width: 30px;
     text-align: center;
     text-decoration: none;
+}
+
+.social-login-container .social-login .fa:disabled, .social-login-container .social-login .fa[disabled] {
+  cursor: not-allowed;
 }
 
   .social-login-container .social-login .fa-facebook{

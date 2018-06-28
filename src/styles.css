@@ -312,7 +312,7 @@ p {
     height:42px;
   }
   
-  .form-clean form .btn-primary {
+  .form-clean form .btn-primary, .form-clean form .btn-primary:hover, .form-clean form .btn-primary:active {
     background:#FFCD00;
     border-color: #FFCD00;
     color: #00843D;
@@ -322,11 +322,6 @@ p {
     margin-top:26px;
     text-shadow:none;
     outline:none !important;
-  }
-  
-  .form-clean form .btn-primary:hover, .form-clean form .btn-primary:active {
-    background:inherit;
-    color: #00843D
   }
   
   .form-clean form .btn-primary:active {
@@ -361,7 +356,7 @@ p {
     color:#FFCD00;
   }
 
-  .form-clean form .error {
+  .form-clean form .error{
     opacity:1;
     color:red;
     text-align: center;

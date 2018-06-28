@@ -15,7 +15,7 @@ export class RegisterFormComponent implements OnInit {
   error: boolean = false;
   success: boolean = false;
   signup: SignUp;
-  isLoading: boolean = true;
+  isLoading: boolean = false;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   constructor(private userService: UserService, ) { }
 
