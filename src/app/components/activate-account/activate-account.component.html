@@ -1,19 +1,34 @@
-<section *ngIf="isActivationError" class="header-green section_padding_50_50">
+<section class="header-green section_padding_50_50">
   <div class="container">
-    <div class="form-clean">
-      <form #activationForm="ngForm" method="post" (ngSubmit)="OnSubmit(UserName.value)">
+    <div class="form-clean" *ngIf="!isActivationError">
+      <form >
         <h2 class="sr-only">Login Form</h2>
         <div class="logo">
           <img src="assets/agora.png" class="form-logo">
         </div>
-        <h2>Account activation error. Please enter user name to receive new link</h2>
+        <p class="msg-activate-account">Checking activation link, please wait....</p>
+      </form>
+    </div>
+    <div class="form-clean" *ngIf="isActivationError">
+      <form #activationForm="ngForm" method="post" (ngSubmit)="OnSubmit(userName.value)">
+        <h2 class="sr-only">Login Form</h2>
+        <div class="logo">
+          <img src="assets/agora.png" class="form-logo">
+        </div>
+        <p class="error-activate-account">Account activation error. Please enter user name to receive new link</p>
         <div class="form-group">
-          <input class="form-control" type="text" #UserName ngModel name="user_name" placeholder="User name">
+          <input class="form-control" type="text" #userName ngModel name="user_name" placeholder="User name" required>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary btn-block" type="submit">Send link</button>
+          <button class="btn btn-primary btn-block" [disabled]="!activationForm.valid || isLoading" type="submit">Send link</button>
+        </div>
+        <div *ngIf="error" class="error">
+          An error occured! Please check the user name entered and try again.
+        </div>
+        <div *ngIf="success" class="success">
+          An activation link has been sent to your email. Follow it to activate your account.
         </div>
       </form>
     </div>
-</div>
+  </div>
 </section>

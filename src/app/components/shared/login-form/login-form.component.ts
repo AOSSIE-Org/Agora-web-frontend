@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../model/user.model';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { Credentials } from '../../../model/credentials.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -11,14 +11,28 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-  isLoginError: boolean = false;
-
+  error: boolean = false;
+  isLoading: boolean = false;
+  credentials: Credentials;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    this.resetForm();
+  }
+
+  resetForm(form?: NgForm) {
+    if (form != null)
+      form.reset();
+    this.credentials = new Credentials();
+    this.credentials.identifier = "";
+    this.credentials.password = "";
+    
+
   }
 
   OnSubmit(userName, password) {
+    this.isLoading = true;
+    this.error = false;
     let credentials = new Credentials();
     credentials.identifier = userName;
     credentials.password = password;
@@ -27,12 +41,14 @@ export class LoginFormComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       },
         (err: HttpErrorResponse) => {
-          this.isLoginError = true;
+          this.isLoading = false;
+          this.error = true;
           this.userService.purgeAuth();
         });
     },
       (err: HttpErrorResponse) => {
-        this.isLoginError = true;
+        this.isLoading = false;
+        this.error = true;
       });
   }
 }

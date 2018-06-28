@@ -313,7 +313,7 @@ p {
   }
   
   .form-clean form .btn-primary {
-    background:inherit;
+    background:#FFCD00;
     border-color: #FFCD00;
     color: #00843D;
     border-radius: 24px 24px 24px 0px;
@@ -325,12 +325,16 @@ p {
   }
   
   .form-clean form .btn-primary:hover, .form-clean form .btn-primary:active {
-    background:#FFCD00;
+    background:inherit;
     color: #00843D
   }
   
   .form-clean form .btn-primary:active {
     transform:translateY(1px);
+  }
+
+  .form-clean form .btn-primary:disabled, .form-clean form .btn-primary[disabled] {
+    cursor: not-allowed;
   }
   
   .form-clean form .forgot, .form-clean form .have-account, .form-clean form .social-container{
@@ -360,7 +364,22 @@ p {
   .form-clean form .error {
     opacity:1;
     color:red;
+    text-align: center;
     text-decoration:none;
+  }
+
+  .form-clean form .success, .form-clean form .error-activate-account, .form-clean form .msg-activate-account {
+    opacity:1;
+    text-align: center;
+    text-decoration:none;
+  }
+
+  .form-clean form .success {
+    color:green;
+  }
+
+  .form-clean form .error-activate-account {
+    color:red;
   }
 
   /* Green header */

@@ -35,8 +35,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     UserService,
     JwtService,
     ElectionService,
-    AuthGuard
-    ,
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

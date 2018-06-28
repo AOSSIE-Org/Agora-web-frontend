@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { PasswordData } from './../model/password.model';
 import { SignUp } from './../model/signUp.model';
 import { Injectable } from '@angular/core';
@@ -15,12 +16,15 @@ import { JwtToken } from '../model/jwtToken.model';
   providedIn: 'root'
 })
 export class UserService {
-  readonly rootUrl = 'http://agora-rest-api.herokuapp.com/api/v1';
+  private rootUrl = environment.API_URL;
 
   getheadersNoAuth() {
     let headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': 'true',
       'No-Auth': 'True'
     };
     return headerDict;
@@ -29,7 +33,10 @@ export class UserService {
   getheadersWithAuth() {
     let headerDict = {
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': 'true',
     };
     return headerDict;
   }

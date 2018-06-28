@@ -11,10 +11,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ActivateAccountComponent implements OnInit {
 
   isActivationError: boolean = false;
+  error: boolean = false;
+  success: boolean = false;
+  isLoading: boolean = false;
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params => this.userService.activateAccount(params['token'])
     .subscribe((data: any) => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/dashboard']);
     },
     (err: HttpErrorResponse) => {
       this.isActivationError = true;
@@ -25,17 +28,22 @@ export class ActivateAccountComponent implements OnInit {
   }
 
   OnSubmit(userName) {
+    this.isLoading = true;
+    this.error = false;
+    this.success = false;
     this.userService.resendActivationLink(userName).subscribe((data: any) => {
       this.userService.getUser().subscribe((data: any) => {
-        this.router.navigate(['/']);
+        this.success = true;
       },
         (err: HttpErrorResponse) => {
-          this.isActivationError = true;
+          this.isLoading = false;
+          this.error = true;
           this.userService.purgeAuth();
         });
     },
       (err: HttpErrorResponse) => {
-        this.isActivationError = true;
+        this.isLoading = false;
+        this.error = true;
       });
   }
 }

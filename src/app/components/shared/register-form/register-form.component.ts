@@ -12,8 +12,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class RegisterFormComponent implements OnInit {
 
-  isSignupError: boolean = false;
+  error: boolean = false;
+  success: boolean = false;
   signup: SignUp;
+  isLoading: boolean = true;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   constructor(private userService: UserService, ) { }
 
@@ -34,13 +36,18 @@ export class RegisterFormComponent implements OnInit {
   }
 
   OnSubmit(form: NgForm) {
+    this.isLoading = true;
+    this.success = false;
+    this.error = false;
     this.userService.registerUser(this.signup)
       .subscribe((data: any) => {
         this.resetForm(form);
-        this.isSignupError = false;
+        this.success = true;
+        this.isLoading = false;
       },
         (err: HttpErrorResponse) => {
-          this.isSignupError = true;
+          this.error = true;
+          this.isLoading = false;
         });
   }
 }
