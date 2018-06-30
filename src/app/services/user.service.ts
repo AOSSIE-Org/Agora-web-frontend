@@ -25,6 +25,7 @@ export class UserService {
       'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
+      'Access-Token' : '',
       'No-Auth': 'True'
     };
     return headerDict;
@@ -77,7 +78,9 @@ export class UserService {
   }
 
   socialLogin(provider: string, token: string) {
-    let reqHeaders = { headers: new HttpHeaders(this.getheadersNoAuth()) };
+    let allHeaders = this.getheadersNoAuth();
+    allHeaders["Access-Token"] = token;
+    let reqHeaders = { headers:  allHeaders};
     return this.http.get(this.rootUrl + '/auth/authenticate/' + provider, reqHeaders)
       .pipe(map(
         data => {

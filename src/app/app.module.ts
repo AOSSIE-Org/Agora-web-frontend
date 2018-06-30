@@ -22,15 +22,15 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
+    provider: new GoogleLoginProvider("53324259536-tjj2hfhtpfqojfobmfv118d3d0kuavpn.apps.googleusercontent.com")
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("Facebook-App-Id")
+    provider: new FacebookLoginProvider("209457566270746")
   },
   {
     id: LinkedInLoginProvider.PROVIDER_ID,
-    provider: new LinkedInLoginProvider("LinkedIn-client-Id", false, 'en_US')
+    provider: new LinkedInLoginProvider("777u0iwmnmhzah")
   }
 ]);
 

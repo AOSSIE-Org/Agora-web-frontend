@@ -14,39 +14,53 @@ export class SocialLoginComponent implements OnInit {
 
   private user: SocialUser;
   error: boolean = false;
+  isLoading: boolean = false;
 
   constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
 
-  ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.userService.socialLogin(user.provider, user.idToken).subscribe((data: any) => {
-        this.router.navigate(['/dashboard']);
-      },
-        (err: HttpErrorResponse) => {
-          this.error = true;
-          this.userService.purgeAuth();
-        })
-    },
-    (err: HttpErrorResponse) => {
-      this.error = true;
-      this.userService.purgeAuth();
-    });
-  }
+  ngOnInit() {}
 
   signInWithGoogle(): void {
     this.error = false;
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.isLoading = true;
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
   }
 
   signInWithFB(): void {
     this.error = false;
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.isLoading = true;
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
   }
-  
+
   signInWithLinkedIn(): void {
     this.error = false;
-    this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID);
-  }  
+    this.isLoading = true;
+    this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
+  }
+
+  authProcessSuccess = (socialUser: SocialUser) => {
+    let token = socialUser.provider.toLowerCase() === 'google' ? socialUser.idToken : socialUser.authToken;
+    this.userService.socialLogin(socialUser.provider.toLowerCase(), token).subscribe((data: any) => {
+      this.userService.getUser().subscribe((data: any) => {
+        this.router.navigate(['/dashboard']);
+      },
+        (err: HttpErrorResponse) => {
+          this.isLoading = false;
+          this.error = true;
+          this.userService.purgeAuth();
+        });
+    },
+      (err: HttpErrorResponse) => {
+        this.isLoading = false;
+        this.error = true;
+        this.userService.purgeAuth();
+      })
+  }
+  
+  authProcessError = (reason: any) => {
+    this.isLoading = false;
+    this.error = true;
+    this.userService.purgeAuth();
+  }
 
 }
