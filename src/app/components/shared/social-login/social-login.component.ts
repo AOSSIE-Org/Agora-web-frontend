@@ -18,24 +18,30 @@ export class SocialLoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   signInWithGoogle(): void {
-    this.error = false;
-    this.isLoading = true;
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
+    if (!this.isLoading) {
+      this.error = false;
+      this.isLoading = true;
+      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
+    }
   }
 
   signInWithFB(): void {
-    this.error = false;
-    this.isLoading = true;
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
+    if (!this.isLoading) {
+      this.error = false;
+      this.isLoading = true;
+      this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
+    }
   }
 
   signInWithLinkedIn(): void {
-    this.error = false;
-    this.isLoading = true;
-    this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
+    if (!this.isLoading) {
+      this.error = false;
+      this.isLoading = true;
+      this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
+    }
   }
 
   authProcessSuccess = (socialUser: SocialUser) => {
@@ -56,7 +62,7 @@ export class SocialLoginComponent implements OnInit {
         this.userService.purgeAuth();
       })
   }
-  
+
   authProcessError = (reason: any) => {
     this.isLoading = false;
     this.error = true;

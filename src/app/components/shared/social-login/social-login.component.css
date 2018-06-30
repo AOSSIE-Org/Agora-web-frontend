@@ -14,8 +14,8 @@
     box-shadow:1px 1px 5px rgba(0,0,0,0.1);
   }
 
-  .social-login-container .social-login .error p{
-    opacity:1;
+  .social-login-container .social-login .error a{
+    padding: 5px;
     color:red;
     text-align: center;
     text-decoration:none;
@@ -48,3 +48,15 @@
   .social-login-container .social-login .fa:hover {
     opacity: 0.7;
   }
+
+  .social-login-container .social-login .load {
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+
+.social-login-container .social-login .load .fa {
+    margin-left: -12px;
+    margin-right: 8px;
+    color: #FFCD00;
+}

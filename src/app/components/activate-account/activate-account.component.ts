@@ -14,6 +14,7 @@ export class ActivateAccountComponent implements OnInit {
   error: boolean = false;
   success: boolean = false;
   isLoading: boolean = false;
+  message: string = "Send Link";
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params => this.userService.activateAccount(params['token'])
     .subscribe((data: any) => {
@@ -28,6 +29,7 @@ export class ActivateAccountComponent implements OnInit {
   }
 
   OnSubmit(userName) {
+    this.message = "Loading....";
     this.isLoading = true;
     this.error = false;
     this.success = false;
@@ -36,12 +38,14 @@ export class ActivateAccountComponent implements OnInit {
         this.success = true;
       },
         (err: HttpErrorResponse) => {
+          this.message = "Send Link";
           this.isLoading = false;
           this.error = true;
           this.userService.purgeAuth();
         });
     },
       (err: HttpErrorResponse) => {
+        this.message = "Send Link";
         this.isLoading = false;
         this.error = true;
       });

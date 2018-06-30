@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginFormComponent implements OnInit {
   error: boolean = false;
+  message: string = "Log In";
   isLoading: boolean = false;
   credentials: Credentials;
   constructor(private userService: UserService, private router: Router) { }
@@ -31,6 +32,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   OnSubmit(userName, password) {
+    this.message = "Loading....";
     this.isLoading = true;
     this.error = false;
     let credentials = new Credentials();
@@ -41,12 +43,14 @@ export class LoginFormComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       },
         (err: HttpErrorResponse) => {
+          this.message = "Log In";
           this.isLoading = false;
           this.error = true;
           this.userService.purgeAuth();
         });
     },
       (err: HttpErrorResponse) => {
+        this.message = "Log In";
         this.isLoading = false;
         this.error = true;
       });

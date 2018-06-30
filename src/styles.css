@@ -268,11 +268,19 @@ p {
     border-color: #FFCD00;
     color: #00843D;
     border-radius: 24px 24px 24px 0px;
-    padding:11px;
+    padding:10px;
     box-shadow:none;
     margin-top:26px;
     text-shadow:none;
     outline:none !important;
+  }
+
+  .form-clean form .btn-primary .fa{
+    margin-left: -80px;
+    margin-right: 70px;
+    margin-top: 2px;
+    color: #f7f9fc;
+    font-size: 20px; /* Set a font-size */
   }
   
   .form-clean form .btn-primary:active {

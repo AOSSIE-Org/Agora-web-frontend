@@ -20,7 +20,7 @@
       <input class="form-control" type="password" name="password" #password="ngModel" [(ngModel)]="signup.password" placeholder="Password" required>
     </div>
     <div class="form-group">
-      <button class="btn btn-primary btn-block" [disabled]="!userRegistrationForm.valid || isLoading" type="submit">Sign Up</button>
+      <button class="btn btn-primary btn-block" [disabled]="!userRegistrationForm.valid || isLoading" type="submit"><i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>{{message}}</button>
     </div>
     <div class="have-account">
       Already have an account? <a routerLink="/signin" class="signin">Sign In</a>

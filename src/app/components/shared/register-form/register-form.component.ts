@@ -16,7 +16,7 @@ export class RegisterFormComponent implements OnInit {
   success: boolean = false;
   signup: SignUp;
   isLoading: boolean = false;
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  message: string = "Sign Up";
   constructor(private userService: UserService, ) { }
 
   ngOnInit() {
@@ -36,6 +36,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   OnSubmit(form: NgForm) {
+    this.message = "Loading....";
     this.isLoading = true;
     this.success = false;
     this.error = false;
@@ -43,10 +44,12 @@ export class RegisterFormComponent implements OnInit {
       .subscribe((data: any) => {
         this.resetForm(form);
         this.success = true;
+        this.message = "Sign Up";
         this.isLoading = false;
       },
         (err: HttpErrorResponse) => {
           this.error = true;
+          this.message = "Sign Up";
           this.isLoading = false;
         });
   }
