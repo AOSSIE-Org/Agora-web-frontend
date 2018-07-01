@@ -45,7 +45,8 @@ export class SocialLoginComponent implements OnInit {
   }
 
   authProcessSuccess = (socialUser: SocialUser) => {
-    let token = socialUser.provider.toLowerCase() === 'google' ? socialUser.idToken : socialUser.authToken;
+    let token = socialUser.authToken;
+    console.log(socialUser);
     this.userService.socialLogin(socialUser.provider.toLowerCase(), token).subscribe((data: any) => {
       this.userService.getUser().subscribe((data: any) => {
         this.router.navigate(['/dashboard']);
