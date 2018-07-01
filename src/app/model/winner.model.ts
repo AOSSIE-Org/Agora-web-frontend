@@ -1,7 +1,14 @@
 import { Score } from './score.model';
 import { Candidate } from './candidate.model';
-export class Winner {
-    constructor(private _candidate: Candidate, private _score: Score){}
-    get candidate() {return this._candidate}
-    get score() {return this._score}
+import { Deserializable } from './deserializable.model';
+export class Winner implements Deserializable{
+    candidate: Candidate;
+    score: Score;
+
+    deserialize(input: any): this {
+        Object.assign(this, input);
+        this.candidate = new Candidate().deserialize(input.candidate)
+        this.score = new Score().deserialize(input.score)
+        return this;
+    }
 }

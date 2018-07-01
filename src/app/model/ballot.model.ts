@@ -1,7 +1,12 @@
-export class Ballot {
-    constructor(private _voteBallot: string, private _voterEmail: string){}
+import { Deserializable } from "./deserializable.model";
 
-    get voteBallot() {return this._voteBallot}
-    get voterEmail() {return this._voterEmail}
+export class Ballot implements Deserializable {
 
+    voteBallot: string;
+    voterEmail: string;
+
+    deserialize(input: any): this {
+        Object.assign(this, input);
+        return this;
+    }
 }

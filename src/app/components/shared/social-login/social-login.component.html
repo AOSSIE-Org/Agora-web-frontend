@@ -2,9 +2,13 @@
   <div class="social-login">
     <p>Sign in with</p>
     <div class="social-icons">
-      <a href="#" class="fa fa-facebook"></a>
-      <a href="#" class="fa fa-google"></a>
-      <a href="#" class="fa fa-linkedin"></a>
+      <a (click)="signInWithFB()" class="fa fa-facebook"></a>
+      <a (click)="signInWithGoogle()" class="fa fa-google"></a>
+      <a (click)="signInWithLinkedIn()" class="fa fa-linkedin"></a>
+    </div>
+    <a class="load" *ngIf="isLoading"><i class="fa fa-spinner fa-spin"></i><a>Loading....</a></a>
+    <div *ngIf="error" class="error">
+      <a>An error occured please try again.</a>
     </div>
   </div>
 </div>
