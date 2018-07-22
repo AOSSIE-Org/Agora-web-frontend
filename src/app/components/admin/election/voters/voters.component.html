@@ -1,0 +1,63 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-election">
+            <form #ngvoter="ngForm" (ngSubmit)="add()">
+              <div class="logo">
+                <img src="assets/agora.png" class="form-logo">
+              </div>
+              <mat-form-field>
+                <input matInput type="text" [(ngModel)]="voter.name" name="voters_name" placeholder="Voters name" required>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput type="email" [(ngModel)]="voter.email" name="voters_email" placeholder="Voters email" required>
+              </mat-form-field>
+              <div class="text-center mt-10">
+                <span class="pr-20">
+                  <button class="btn btn-round btn-gold" [disabled]="!ngvoter.valid" type="submit">Add Voter</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <br>
+          <div class="card pt-20">
+            <div class="card-header card-header-gold">
+              <h4 class="card-title">Voters</h4>
+              <p class="card-category">Fill the form to add more Voters</p>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <tbody>
+                  <tr *ngFor="let voter of voters; let ind = index">
+                    <td class="text-black">{{ind + 1}}</td>
+                    <td class="text-black">{{voter.name}}</td>
+                    <td class="text-black">{{voter.email}}</td>
+                    <td class="td-actions text-right">
+                      <button mat-raised-button type="button" (click)="delete(ind)" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-right">
+          <span class="pr-20">
+            <button class="btn btn-round btn-gold" (click)="cancel()">Cancel</button>
+          </span>
+          <span class="pr-20 text-right">
+            <button class="btn btn-round btn-gold" [disabled]="!hasVoters() || isLoading" (click)="submit()">{{buttonText}}</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

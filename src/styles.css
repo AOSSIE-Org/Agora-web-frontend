@@ -150,6 +150,42 @@ img {
     margin-left: 100px;
 }
 
+.pl-20 {
+    padding-left: 20px
+}
+
+.pl-10 {
+    padding-left: 10px
+}
+
+.pl-50 {
+    padding-left: 50px
+}
+
+.pr-20 {
+    padding-right: 20px
+}
+
+.pr-10 {
+    padding-right: 10px
+}
+
+.pr-50 {
+    padding-right: 50px
+}
+
+.pb-10 {
+    padding-bottom: 10px
+}
+
+.pb-20 {
+    padding-bottom: 20px
+}
+
+.pb-50 {
+    padding-bottom: 50px
+}
+
 ul,
 ol {
     margin: 0;
@@ -220,12 +256,41 @@ p {
     display: table-cell;
     vertical-align: middle;
 }
+.bg-green {
+    background:linear-gradient(135deg, #49ee96, #00843D);
+    background-color:#00843D;
+    color: #ffff}
 
+.gold {
+    color: #FFCD00;
+}
+
+.green {
+    color: #00843D;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.nav-item.gold >a:focus, .nav-item.gold >a:hover {
+    color: #fff !important;
+}
+
+.dropdown-menu a.dropdown-item.gold:hover {
+    background: #FFCD00 !important;
+}
+
+.navbar-toggler{
+    background: inherit !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
 /*
  * Credential forms 
  */
 
- .form-clean {
+ .form-clean, .form-election {
     padding-top: 50px;
     padding-bottom: 20px;
   }
@@ -240,18 +305,27 @@ p {
     color:#505e6c;
     box-shadow:1px 1px 5px rgba(0,0,0,0.1);
   }
-  
-  .form-clean .logo {
+  .form-election {
+    max-width:460px;
+    width:90%;
+    margin:0 auto;
+    background-color:#ffffff;
+    padding:20px;
+    border-radius:4px;
+    color:#505e6c;
+    box-shadow:1px 1px 5px rgba(0,0,0,0.1);
+  }
+  .form-clean .logo, .form-election .logo{
     text-align:center;
     padding:0 0 20px;
   }
 
-  .form-clean .logo img {
+  .form-clean .logo img, .form-election .logo img {
       height: 100px;
       width: 100px;
   }
   
-  .form-clean form .form-control {
+  .form-clean form .form-control, .form-election form .form-control {
     background:#f7f9fc;
     border:none;
     border-bottom:1px solid #dfe7f1;
@@ -264,9 +338,9 @@ p {
   }
   
   .form-clean form .btn-primary, .form-clean form .btn-primary:hover, .form-clean form .btn-primary:active {
-    background:#FFCD00;
-    border-color: #FFCD00;
-    color: #00843D;
+    background:#FFCD00 !important;
+    border-color: #FFCD00 !important;
+    color: #00843D !important;
     border-radius: 24px 24px 24px 0px;
     padding:10px;
     box-shadow:none;
@@ -340,6 +414,63 @@ p {
   .header-green {
     background:linear-gradient(135deg, #49ee96, #00843D);
     background-color:#00843D;
-    padding-top:100px;
     color: #ffff
   }
+
+  /* User section styles go here */
+
+   /* Custom radio button to enable data binding */
+ .radio-label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    color: black;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .radio-label input {
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  .radio-label:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  .radio-label input:checked ~ .checkmark {
+    background-color: #FFCD00;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .radio-label input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .radio-label .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+  } 

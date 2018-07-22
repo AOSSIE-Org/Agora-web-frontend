@@ -1,19 +1,19 @@
 import { Deserializable } from "./deserializable.model";
 
-//Model used to collect data when creatin and editing elections
+//Model used to collect data when creating and editing elections
 export class ElectionData implements Deserializable {
 
     name: string;
     description: string;
-    candidates: string[];
+    candidates: string[] = new Array();
     ballotVisibility: string;
     voterListVisibility: boolean;
-    startingDate: Date;
-    endingDate: Date;
+    startingDate: string;
+    endingDate: string;
     isInvite: boolean;
     isRealTime: boolean;
     votingAlgo: string;
-    noVacancies: number;
+    noVacancies: number = 0;
 
     deserialize(input: any): this {
         Object.assign(this, input);

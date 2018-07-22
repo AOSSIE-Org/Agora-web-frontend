@@ -4,14 +4,14 @@
     <div class="logo">
       <img src="assets/agora.png" class="form-logo">
     </div>
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" #UserName ngModel name="user_name" placeholder="User name" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput type="password" #Password ngModel name="password" placeholder="Password" required>
+    </mat-form-field>
     <div class="form-group">
-      <input class="form-control" type="text" #UserName ngModel name="user_name" placeholder="User name" required>
-    </div>
-    <div class="form-group">
-      <input class="form-control" type="password" #Password ngModel name="password" placeholder="Password" required>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-primary btn-block" [disabled]="!loginForm.valid || isLoading" type="submit"><i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>{{message}}</button>
+      <button class="btn btn-primary btn-block btn-round" [disabled]="!loginForm.valid || isLoading" type="submit"><i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>{{message}}</button>
     </div>
     <a routerLink="/home" class="forgot">Forgot your user name or password?</a>
     <div *ngIf="error" class="error">

@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-4 mt-10 text-left">
+            <span class="pl-20">
+              <a class="btn btn-round pr-10 btn-gold">1/5</a>
+            </span>
+          </div>
+        </div>
+    <div class="form-election">
+      <form #ngform1="ngForm">
+        <div class="logo">
+          <img src="assets/agora.png" class="form-logo">
+        </div>
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="form1.name" name="election_name" placeholder="Election Name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput type="text" [(ngModel)]="form1.description" name="election_description" placeholder="Election Description" required> </textarea>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="row pb-20">
+        <div class="col text-right">
+          <span class="pr-20 text-right">
+            <button class="btn btn-round btn-gold" [disabled]="!ngform1.valid" (click)="next()">Next</button>
+          </span>
+        </div>
+      </div>
+  </div>
+
+</div>

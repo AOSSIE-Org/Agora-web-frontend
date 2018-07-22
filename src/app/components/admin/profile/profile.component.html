@@ -1,0 +1,70 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-gold">
+                        <h4 class="card-title">Edit Profile</h4>
+                        <p class="card-category">Complete your profile</p>
+                    </div>
+                    <div class="card-body">
+                        <form #ngProfileForm="ngForm" (ngSubmit)="updateProfile()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Username" name="username" [(ngModel)]="user.username" readonly>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Email address" name="email" [(ngModel)]="user.email" type="email">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Fist Name" name="firstName" type="text" [(ngModel)]="user.firstName">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Last Name" name="lastName" type="text" [(ngModel)]="user.lastName">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" [disabled]="!ngProfileForm.valid" class="btn btn-gold pull-right">Update Profile</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="">
+                            <img *ngIf="!user.avatarURL" class="img" src="../../../../assets/agora.png" />
+                        </a>
+                        <a href="">
+                            <img *ngIf="user.avatarURL" class="img" src="{{user.avatarURL}}" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Full name: {{user.fullName()}}</h4>
+                        <h6 class="card-category text-gray">Username: {{user.username}}</h6>
+                        <h6 class="card-category text-gray">email: {{user.email}}</h6>
+                        <p class="card-description text-black">
+                            Change Password
+                        </p>
+                        <form #ngFormPassword="ngForm" (ngSubmit)="changePassword()">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="New Password" type="password" name="password" [(ngModel)]="newPassword.password">
+                            </mat-form-field>
+                            <button mat-raised-button type="submit" [disabled]="!ngFormPassword.valid" class="btn btn-gold pull-right">Change</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,17 +1,16 @@
-<section>
-    <div class="header-green">
-        <div class="container hero">
-            <div class="row">
-                <div class="col-lg-8">
-                    <h1>Welcome to Agora Vote</h1>
-                    <p>Agora vote is a voting platform where users can create elections and invite friends to cast their votes.</p>
-                    <p>It supports a wide range of voting algorithms some of whcih are Majority, Egalitarian, Australian STV just to name a few</p>
-                    <button class="btn btn-light btn-lg action-button" type="button">Learn More</button>
-                </div>
-                <div class="col-lg-4">
-                    <app-register-form></app-register-form>
-                    <app-social-login></app-social-login>
-                </div>
+<section class="section_padding_50">
+    <div class="container hero">
+        <div class="row">
+            <div class="{{isUserAuthenticated ? 'col' : 'col-lg-8'}}">
+                <h1>Welcome to Agora Vote</h1>
+                <p>Agora vote is a voting platform where users can create elections and invite friends to cast their votes.</p>
+                <p>It supports a wide range of voting algorithms some of whcih are Majority, Egalitarian, Australian STV just
+                    to name a few</p>
+                <button class="btn btn-gold btn-round" type="button">Learn More</button>
+            </div>
+            <div *ngIf="!isUserAuthenticated" class="col-lg-4">
+                <app-register-form></app-register-form>
+                <app-social-login></app-social-login>
             </div>
         </div>
     </div>

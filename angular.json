@@ -8,7 +8,11 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -25,11 +29,19 @@
             "styles": [
               "src/styles.css",
               "node_modules/font-awesome/css/font-awesome.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "src/assets/scss/dashboard.scss",
+              "src/assets/scss/app-theme.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.min.js",
+              "node_modules/arrive/src/arrive.js",
+              "node_modules/moment/moment.js",
+              "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js",
+              "node_modules/chartist/dist/chartist.js"
             ]
           },
           "configurations": {
@@ -79,11 +91,19 @@
             "styles": [
               "styles.css",
               "node_modules/font-awesome/css/font-awesome.css",
-              "node_modules/bootstrap/dist/js/bootstrap.min.css"
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "src/assets/scss/dashboard.scss",
+              "src/assets/scss/app-theme.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.min.js",
+              "node_modules/arrive/src/arrive.js",
+              "node_modules/moment/moment.js",
+              "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js",
+              "node_modules/chartist/dist/chartist.js"
             ],
             "assets": [
               "src/favicon.ico",
