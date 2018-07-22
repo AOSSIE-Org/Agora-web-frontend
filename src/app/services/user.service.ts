@@ -25,8 +25,9 @@ export class UserService {
       'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
-      'Access-Token' : '',
-      'No-Auth': 'True'
+      'Access-Token': '',
+      'No-Auth': 'True',
+      'observe': 'response'
     };
     return headerDict;
   }
@@ -38,6 +39,7 @@ export class UserService {
       'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
+      'observe': 'response'
     };
     return headerDict;
   }
@@ -80,7 +82,7 @@ export class UserService {
   socialLogin(provider: string, token: string) {
     let allHeaders = this.getheadersNoAuth();
     allHeaders["Access-Token"] = token;
-    let reqHeaders = { headers:  allHeaders};
+    let reqHeaders = { headers: allHeaders };
     return this.http.get(this.rootUrl + '/auth/authenticate/' + provider, reqHeaders)
       .pipe(map(
         data => {
@@ -135,7 +137,7 @@ export class UserService {
     let reqHeaders = { headers: new HttpHeaders(this.getheadersWithAuth()) };
     return this.http.get(this.rootUrl + '/user/logout', reqHeaders)
       .pipe(map(
-        data => {
+        (data: any) => {
           this.purgeAuth();
         }));
   }
@@ -146,7 +148,7 @@ export class UserService {
       let reqHeaders = {
         headers: new HttpHeaders(this.getheadersWithAuth())
       };
-      return this.http.get(this.rootUrl + '/user', reqHeaders)
+      return this.http.get<User>(this.rootUrl + '/user', reqHeaders)
         .pipe(map(
           data => {
             let user = new User().deserialize(data);
@@ -171,10 +173,10 @@ export class UserService {
         }));
   }
 
-  changePassword(password: PasswordData){
+  changePassword(password: PasswordData) {
     let body = JSON.stringify(password);
     let reqHeaders = { headers: new HttpHeaders(this.getheadersWithAuth()) };
-    return this.http.post(this.rootUrl + '/user/update', body, reqHeaders);
+    return this.http.post(this.rootUrl + '/user/changePassword', body, reqHeaders);
   }
 
 
@@ -190,9 +192,10 @@ export class UserService {
       this.getUser()
         .subscribe(
           (res: User) => {
-            this.setAuth(res, token),
-              err => this.purgeAuth()
-          });
+            this.setAuth(res, token)
+          },
+          err => this.purgeAuth()
+        );
     } else {
       // Remove any potential remnants of previous auth states
       this.purgeAuth();

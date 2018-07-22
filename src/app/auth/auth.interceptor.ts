@@ -4,11 +4,12 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { tap } from 'rxjs/operators';
+import { UserService } from '../services/user.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router, private jwtService: JwtService) { }
+    constructor(private router: Router, private jwtService: JwtService, private userService: UserService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (req.headers.get('No-Auth') == "True")
@@ -22,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 tap(
                 succ => { },
                 err => {
-                    if (err.status === 401)
+                    if (err.status == 401)
                         this.router.navigateByUrl('/signin');
                 }
                 ));

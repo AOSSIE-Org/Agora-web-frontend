@@ -1,14 +1,14 @@
-.header-green .hero {
+.hero {
     text-align:center;
   }
   
   @media (min-width:768px) {
-    .header-green .hero {
+    .hero {
       text-align:center;
     }
   }
   
-  .header-green .hero h1 {
+  .hero h1 {
     color:#fff;
     font-size:40px;
     margin-top:0;
@@ -18,21 +18,21 @@
   }
   
   @media (min-width:992px) {
-    .header-green .hero h1 {
+    .hero h1 {
       margin-top:190px;
       margin-bottom:24px;
       line-height:1.2;
     }
   }
   
-  .header-green .hero p {
+  .hero p {
     color:rgba(255,255,255,0.8);
     font-size:20px;
     margin-bottom:30px;
     font-weight:300;
   }
   
-  .header-green .action-button {
+  .action-button {
     background:inherit;
     border-color: #FFCD00;
     color: #ffff;
@@ -44,10 +44,10 @@
     outline:none !important;
   }
   
-  .header-green .action-button:hover, .header-green .action-button:active {
+  .action-button:hover, .header-green .action-button:active {
     background:#FFCD00;
   }
   
-  .header-green .action-button:active {
+  .action-button:active {
     transform:translateY(1px);
   }
