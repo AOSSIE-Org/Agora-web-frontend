@@ -9,11 +9,13 @@ import {
   MatInputModule,
   MatRippleModule,
   MatTooltipModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSliderModule
 } from '@angular/material';
 import { AdminLayoutRoutes, routingComponents } from './admin-layout.routing';
 import { SharedModule } from '../../components/shared/shared.module';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { DragulaModule } from '../../../../node_modules/ng2-dragula';
 
 @NgModule({
   imports: [
@@ -26,9 +28,11 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     MatInputModule,
     MatTooltipModule,
     MatCheckboxModule,
+    MatSliderModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
     SweetAlert2Module,
+    DragulaModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   declarations: [

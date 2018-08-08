@@ -70,34 +70,62 @@
                     </ul>
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-1">
-                      <h4 class="green">Candidates</h4>
-                      <ul>
-                        <li *ngFor="let candidate of election.candidates">
-                          <p>{{candidate}}</p>
-                        </li>
-                      </ul>
-                    </div>
+                    <h4 class="green">Candidates</h4>
+                    <ul>
+                      <li *ngFor="let candidate of election.candidates">
+                        <p>{{candidate}}</p>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <!-- Tab content voters -->
               <div class="tab-pane" id="voters">
-                  <table class="table">
-                      <tbody>
-                        <tr *ngFor="let voter of election.voters; let ind = index">
-                          <div class="row">
-                            <div class="col-lg-2 col-md-2 col-sm text-center">{{ind + 1}}</div>
-                            <div class="col-lg-5 col-md-5 col-sm text-left">{{voter.name}}</div>
-                            <div class="col-lg-5 col-md-5 col-sm text-left">{{voter.email}}</div>
-                          </div>
-                        </tr>
-                      </tbody>
-                    </table>
+                <table class="table">
+                  <tbody>
+                    <tr *ngFor="let voter of election.voters; let ind = index">
+                      <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm text-center">{{ind + 1}}</div>
+                        <div class="col-lg-5 col-md-5 col-sm text-left">{{voter.name}}</div>
+                        <div class="col-lg-5 col-md-5 col-sm text-left">{{voter.email}}</div>
+                        <div class="col-12 text-center">
+                          <button [disabled]="isFinished()" class="btn btn-round btn-gold" (click)="addVoters()">Add voters</button>
+                        </div>
+                      </div>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               <!-- Tab content Ballots -->
               <div class="tab-pane" id="ballots">
+                <div class="row" *ngFor="let ballot of election.ballots; let ind = index">
+                  <div class="col-lg-2 col-md-2 col-sm text-center">{{ind + 1}}</div>
+                  <div class="col-lg-5 col-md-5 col-sm text-left">{{ballot.voterEmail}}</div>
+                  <div class="col-lg-5 col-md-5 col-sm text-left">{{ballot.voteBallot}}</div>
+                </div>
               </div>
               <!-- Tab content results -->
               <div class="tab-pane" id="results">
+                <div class="row">
+                  <div class="col-8 text-center">
+                    <h4 class="green">Candidates</h4>
+                    <ul>
+                      <li *ngFor="let candidate of election.candidates">
+                        <p>{{candidate}}</p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-4 text-center">
+                    <h4>Winner(s)</h4>
+                    <ul>
+                      <li *ngFor="let winner of election.winners; let i =index;">
+                        <p>{{winner.candidate.name}}</p>
+                        <span>{{winner.score.numerator}}/{{winner.score.denominator}}</span>
+                        <hr *ngIf="i < election.winners.length-1">
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -65,6 +65,7 @@ export class ElectionFormFiveComponent implements OnInit {
               confirmButtonText: 'Add Voters',
               cancelButtonText: 'Dashboard'
             }).then((result) => {
+              this.electionDataService.purge()
               if (result.value) {
                 this.router.navigate(["election/" + this.electionDataService.getId() + "/voters"])
               } else {
@@ -78,11 +79,13 @@ export class ElectionFormFiveComponent implements OnInit {
     } else if (this.electionDataService.getStatus() === "create") {
       this.electionService.create(this.electionDataService.buildElectionData()).subscribe((data: any) => {
         this.showNotification('success', "Your new election has succesfully been created")
+        this.electionDataService.purge()
         this.router.navigate(["dashboard"]);
       }
         , (err: HttpErrorResponse) => {
           if (err.status == 200) {
             this.showNotification('success', "Your new election has succesfully been created")
+            this.electionDataService.purge()
             this.router.navigate(["dashboard"]);
           } else {
             this.isLoading = false;
@@ -92,6 +95,7 @@ export class ElectionFormFiveComponent implements OnInit {
         })
     } else {
       this.showNotification('danger', "Something went wrong")
+      this.electionDataService.purge()
       this.router.navigate(["dashboard"]);
     }
   }

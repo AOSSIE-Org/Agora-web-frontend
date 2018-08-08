@@ -9,6 +9,7 @@ import { ElectionData } from '../model/electionData.model';
 import { Voter } from '../model/voter.model';
 import { Ballot } from '../model/ballot.model';
 import { Winner } from '../model/winner.model';
+import { BallotData } from '../model/ballotData.model';
 
 @Injectable({
   providedIn: 'root'
@@ -105,10 +106,18 @@ export class ElectionService {
     return this.http.get<Ballot>(this.rootUrl + '/election/' + id + '/ballots', reqHeaders);
   }
 
-  vote(id: string, ballot: Ballot) {
+  vote(id: string, ballot: BallotData) {
     let reqHeaders = { headers: new HttpHeaders(this.getheadersNoAuth())};
     let body = JSON.stringify(ballot);
     return this.http.post(this.rootUrl + '/vote/' + id, body, reqHeaders);
+  }
+
+  verifyVoter(id: string, pass: string): Observable<ElectionData> {
+    let reqHeaders = { headers: new HttpHeaders(this.getheadersNoAuth())};
+    return this.http.get<ElectionData>(this.rootUrl + '/voter/verify/' + encodeURIComponent(id) + "/" + encodeURIComponent(pass),
+     reqHeaders).pipe(map(data => {
+       return new ElectionData().deserialize(data);
+     }));
   }
 
   getResults(id: string) {

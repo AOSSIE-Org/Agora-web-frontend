@@ -10,3 +10,10 @@ export class Ballot implements Deserializable {
         return this;
     }
 }
+
+export enum BallotType {
+    RankBallot = "RankBallot",
+    ApprovalBallot = "ApprovalBallot",
+    ScoreBallot = "ScoreBallot",
+    PreferenceBallot = "PreferenceBallot"
+}

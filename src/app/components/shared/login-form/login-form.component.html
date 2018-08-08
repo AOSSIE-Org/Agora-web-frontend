@@ -11,11 +11,14 @@
       <input matInput type="password" #Password ngModel name="password" placeholder="Password" required>
     </mat-form-field>
     <div class="form-group">
-      <button class="btn btn-primary btn-block btn-round" [disabled]="!loginForm.valid || isLoading" type="submit"><i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>{{message}}</button>
-    </div>
-    <a routerLink="/home" class="forgot">Forgot your user name or password?</a>
-    <div *ngIf="error" class="error">
-      An error occured please try again.
+      <button class="btn btn-primary btn-block btn-round" [disabled]="!loginForm.valid || isLoading" type="submit">
+        <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>{{message}}</button>
     </div>
   </form>
+  <a routerLink="/home" class="forgot">Forgot your password?</a>
+  <a class="forgot">OR</a>
+  <app-social-login></app-social-login>
+  <div *ngIf="error" class="error">
+    An error occured please try again.
+  </div>
 </div>

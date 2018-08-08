@@ -1,7 +1,7 @@
-<section class="section_padding_50">
-    <div class="container hero">
+<div class="main-content">
+        <div class="container hero">
         <div class="row">
-            <div class="{{isUserAuthenticated ? 'col' : 'col-lg-8'}}">
+            <div class="{{isUserAuthenticated ? 'col-12' : 'col-lg-8'}}">
                 <h1>Welcome to Agora Vote</h1>
                 <p>Agora vote is a voting platform where users can create elections and invite friends to cast their votes.</p>
                 <p>It supports a wide range of voting algorithms some of whcih are Majority, Egalitarian, Australian STV just
@@ -10,8 +10,7 @@
             </div>
             <div *ngIf="!isUserAuthenticated" class="col-lg-4">
                 <app-register-form></app-register-form>
-                <app-social-login></app-social-login>
             </div>
         </div>
     </div>
-</section>
+</div>

@@ -1,4 +1,4 @@
-import { JwtService } from './../services/jwt.service';
+import { JwtService } from '../services/jwt.service';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpUserEvent, HttpEvent } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
