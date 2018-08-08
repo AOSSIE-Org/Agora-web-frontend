@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
-import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider } from "angularx-social-login";
+import { FacebookLoginProvider } from "angularx-social-login";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,20 +17,14 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { SharedModule } from './components/shared/shared.module';
 import { ElectionDataService } from './services/election-data.service';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { DragulaModule } from 'ng2-dragula';
+import { VotingService } from './services/voting.service';
 
 let config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("53324259536-tjj2hfhtpfqojfobmfv118d3d0kuavpn.apps.googleusercontent.com")
-  },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
     provider: new FacebookLoginProvider("209457566270746")
   },
-  {
-    id: LinkedInLoginProvider.PROVIDER_ID,
-    provider: new LinkedInLoginProvider("777u0iwmnmhzah")
-  }
 ]);
 
 export function provideConfig() {
@@ -40,7 +34,7 @@ export function provideConfig() {
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -55,7 +49,8 @@ export function provideConfig() {
       customClass: 'modal-content',
       confirmButtonClass: 'btn btn-primary btn-gold',
       cancelButtonClass: 'btn'
-    })
+    }),
+    DragulaModule.forRoot()
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
@@ -63,6 +58,7 @@ export function provideConfig() {
     JwtService,
     ElectionService,
     ElectionDataService,
+    VotingService,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,

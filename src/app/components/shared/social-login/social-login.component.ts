@@ -5,6 +5,8 @@ import { UserService } from '../../../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+declare var $: any;
+
 @Component({
   selector: 'app-social-login',
   templateUrl: './social-login.component.html',
@@ -13,34 +15,16 @@ import { Router } from '@angular/router';
 export class SocialLoginComponent implements OnInit {
 
   private user: SocialUser;
-  error: boolean = false;
   isLoading: boolean = false;
 
   constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
 
   ngOnInit() { }
 
-  signInWithGoogle(): void {
-    if (!this.isLoading) {
-      this.error = false;
-      this.isLoading = true;
-      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
-    }
-  }
-
   signInWithFB(): void {
     if (!this.isLoading) {
-      this.error = false;
       this.isLoading = true;
       this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
-    }
-  }
-
-  signInWithLinkedIn(): void {
-    if (!this.isLoading) {
-      this.error = false;
-      this.isLoading = true;
-      this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
     }
   }
 
@@ -53,21 +37,46 @@ export class SocialLoginComponent implements OnInit {
       },
         (err: HttpErrorResponse) => {
           this.isLoading = false;
-          this.error = true;
+          this.showNotification("danger", "Facebook login failed. Please try again later")
           this.userService.purgeAuth();
         });
     },
       (err: HttpErrorResponse) => {
         this.isLoading = false;
-        this.error = true;
+        this.showNotification("danger", "Facebook login failed. Please try again later")
         this.userService.purgeAuth();
       })
   }
 
   authProcessError = (reason: any) => {
     this.isLoading = false;
-    this.error = true;
+    this.showNotification("danger", "Facebook login failed. Please try again later")
     this.userService.purgeAuth();
+  }
+
+  showNotification(notifType, message) {
+    $.notify({
+      icon: notifType === 'success' ? "done" : "notifications",
+      message: message
+
+    }, {
+        type: notifType,
+        timer: 4000,
+        placement: {
+          from: 'bottom',
+          align: 'right'
+        },
+        template: '<div data-notify="container" class="col-xl-4 col-lg-4 col-11 col-sm-4 col-md-4 alert alert-{0} alert-with-icon" role="alert">' +
+          '<button mat-button  type="button" aria-hidden="true" class="close mat-button" data-notify="dismiss">  <i class="material-icons">close</i></button>' +
+          '<i class="material-icons" data-notify="icon">notifications</i> ' +
+          '<span data-notify="title">{1}</span> ' +
+          '<span data-notify="message">{2}</span>' +
+          '<div class="progress" data-notify="progressbar">' +
+          '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+          '</div>' +
+          '<a href="{3}" target="{4}" data-notify="url"></a>' +
+          '</div>'
+      });
   }
 
 }

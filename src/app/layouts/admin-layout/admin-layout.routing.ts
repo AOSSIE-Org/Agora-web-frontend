@@ -17,6 +17,11 @@ import { CreateElectionComponent } from '../../components/admin/election/create-
 import { EditElectionComponent } from '../../components/admin/election/edit-election/edit-election.component';
 import { VotersComponent } from '../../components/admin/election/voters/voters.component';
 import { ElectionComponent } from '../../components/admin/election/election/election.component';
+import { VoteComponent } from '../../components/admin/election/vote/vote.component';
+import { PreferencialBallotComponent } from '../../components/admin/election/vote/preferencial-ballot/preferencial-ballot.component';
+import { RankBallotComponent } from '../../components/admin/election/vote/rank-ballot/rank-ballot.component';
+import { ApprovalBallotComponent } from '../../components/admin/election/vote/approval-ballot/approval-ballot.component';
+import { ScoreBallotComponent } from '../../components/admin/election/vote/score-ballot/score-ballot.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -24,6 +29,13 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'help', component: HelpComponent },
     { path: 'signin', component: SigninComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'vote/:id/:pass', component: VoteComponent, 
+        children: [
+        { path: 'preference', component: PreferencialBallotComponent},
+        { path: 'rank', component: RankBallotComponent},
+        { path: 'score', component: ScoreBallotComponent},
+        { path: 'approval', component: ApprovalBallotComponent},
+    ]},
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: 'election/:id/voters', component: VotersComponent, canActivate: [AuthGuard] },
@@ -63,6 +75,11 @@ export const routingComponents = [
     ElectionFormFourComponent,
     ElectionFormFiveComponent,
     VotersComponent,
-    ElectionComponent
+    ElectionComponent,
+    VoteComponent,
+    PreferencialBallotComponent,
+    RankBallotComponent,
+    ApprovalBallotComponent,
+    ScoreBallotComponent
 ]
 

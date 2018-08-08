@@ -1,6 +1,6 @@
-import { environment } from './../../environments/environment';
-import { PasswordData } from './../model/password.model';
-import { SignUp } from './../model/signUp.model';
+import { environment } from '../../environments/environment';
+import { PasswordData } from '../model/password.model';
+import { SignUp } from '../model/signUp.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Response, RequestOptions } from "@angular/http";
@@ -68,13 +68,15 @@ export class UserService {
       .pipe(map(
         data => {
           console.log(data)
-          let jwtToken = new JwtToken().deserialize(data);
+          let user = new User().deserialize(data);
           // Save JWT sent from server in localstorage
-          this.jwtService.saveToken(jwtToken.token);
+          this.jwtService.saveToken(user.token.token);
           // Set isAuthenticated to true
           this.isAuthenticatedSubject.next(true);
 
-          return jwtToken.token
+          this.currentUserSubject.next(user);
+
+          return user
         })
       );
   }
@@ -120,13 +122,13 @@ export class UserService {
       .pipe(map(
         data => {
           console.log(data)
-          let jwtToken = new JwtToken().deserialize(data);
+          let user = new User().deserialize(data);
           // Save JWT sent from server in localstorage
-          this.jwtService.saveToken(jwtToken.token);
+          this.jwtService.saveToken(user.token.token);
           // Set isAuthenticated to true
           this.isAuthenticatedSubject.next(true);
-
-          return jwtToken.token
+          
+          this.currentUserSubject.next(user);
         })
       );
   }

@@ -291,11 +291,11 @@ p {
  */
 
  .form-clean, .form-election {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
   }
   
-  .form-clean form {
+  .form-clean{
     max-width:320px;
     width:90%;
     margin:0 auto;
@@ -341,7 +341,6 @@ p {
     background:#FFCD00 !important;
     border-color: #FFCD00 !important;
     color: #00843D !important;
-    border-radius: 24px 24px 24px 0px;
     padding:10px;
     box-shadow:none;
     margin-top:26px;
@@ -356,6 +355,17 @@ p {
     color: #f7f9fc;
     font-size: 20px; /* Set a font-size */
   }
+
+  .btn-facebook {
+    background-color: #3B5998 !important;
+}
+
+.btn-facebook>.fa{
+    margin-left: -10px;
+    margin-right: 20px;
+    margin-top: 2px;
+    color: #f7f9fc;
+}
   
   .form-clean form .btn-primary:active {
     transform:translateY(1px);
@@ -365,7 +375,7 @@ p {
     cursor: not-allowed;
   }
   
-  .form-clean form .forgot, .form-clean form .have-account, .form-clean form .social-container{
+  .form-clean .forgot, .form-clean .have-account, .form-clean .social-container{
     display:block;
     text-align:center;
     font-size:12px;
@@ -373,40 +383,40 @@ p {
     text-decoration:none;
   }
 
-  .form-clean form .forgot:hover, .form-clean form .forgot:active {
+  .form-clean .forgot:hover, .form-clean .forgot:active {
     opacity:1;
     color:#FFCD00;
     text-decoration:none;
   }
 
-  .form-clean form .forgot, .form-clean form .have-account > a{
+  .form-clean .forgot, .form-clean .have-account > a{
     opacity:1;
     color:#00843D;
     text-decoration:none;
   }
 
-  .form-clean form .have-account > a:hover {
+  .form-clean .have-account > a:hover {
     color:#FFCD00;
   }
 
-  .form-clean form .error{
+  .form-clean .error{
     opacity:1;
     color:red;
     text-align: center;
     text-decoration:none;
   }
 
-  .form-clean form .success, .form-clean form .error-activate-account, .form-clean form .msg-activate-account {
+  .form-clean .success, .form-clean .error-activate-account, .form-clean .msg-activate-account {
     opacity:1;
     text-align: center;
     text-decoration:none;
   }
 
-  .form-clean form .success {
+  .form-clean .success {
     color:green;
   }
 
-  .form-clean form .error-activate-account {
+  .form-clean .error-activate-account {
     color:red;
   }
 

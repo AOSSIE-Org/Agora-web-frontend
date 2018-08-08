@@ -91,7 +91,7 @@ export class ElectionDataService {
     return this.statusSource;
   }
 
-  purge(){
+  purge() {
     this.form1 = new ElectionFormOne();
     this.form2 = new ElectionFormTwo();
     this.form3 = new ElectionFormThree();
@@ -110,15 +110,14 @@ export class ElectionDataService {
     let election = new ElectionData();
     election.name = f1.name;
     election.description = f1.description;
-    election.startingDate = f2.startDate.toISOString();
-    election.endingDate = f2.endDate.toISOString();
+    election.startingDate = this.getDate(new Date(f2.startDate.toISOString()))
+    election.endingDate = this.getDate(new Date(f2.endDate.toISOString()))
     election.candidates = f3.candidates;
     election.votingAlgo = f4.votingAlgo;
     election.ballotVisibility = f5.ballotVisibility;
     election.voterListVisibility = f5.voterListVisibility === "true" ? true : false;
     election.isInvite = f5.isVoterInvite;
     election.isRealTime = f5.isRealtimeResult;
-
     return election;
 
   }
@@ -156,8 +155,25 @@ export class ElectionDataService {
     this.setForm3(form3);
     this.setForm4(form4);
     this.setForm5(form5);
-    
+
   }
 
   constructor() { }
+
+  getDate(d: Date) {
+    //Fist convert the date time to GMT 0
+    let date = new Date(d.valueOf() + d.getTimezoneOffset() * 60000)
+    let year = date.getFullYear(),
+      month = (date.getMonth() + 1).toString(),
+      formatedMonth = (month.length === 1) ? ("0" + month) : month,
+      day = date.getDate().toString(),
+      formatedDay = (day.length === 1) ? ("0" + day) : day,
+      hour = date.getHours().toString(),
+      formatedHour = (hour.length === 1) ? ("0" + hour) : hour,
+      minute = date.getMinutes().toString(),
+      formatedMinute = (minute.length === 1) ? ("0" + minute) : minute,
+      second = date.getSeconds().toString(),
+      formatedSecond = (second.length === 1) ? ("0" + second) : second;
+    return year + "-" + formatedMonth + "-" + formatedDay + "T" + formatedHour + ':' + formatedMinute + ':' + formatedSecond+"Z";
+  }
 }

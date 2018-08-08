@@ -28,14 +28,18 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.electionService.getElections().subscribe(data => {
       this.elections = data;
+      this.elections.forEach(e => {
+        e.start = new Date(e.start).toLocaleString()
+        e.end = new Date(e.end).toLocaleString();
+      })
       this.doStats(this.elections);
     });
   }
 
   getStatus(election: Election): string {
     let now = new Date().getTime();
-    let start = new Date(election.start).getTime();
-    let end = new Date(election.end).getTime();
+    let start = new Date(new Date(election.start).toLocaleString()).getTime();
+    let end = new Date(new Date(election.end).toLocaleString()).getTime();
     if (now < start)
       return "Pending";
     else if (now > start && now < end)
@@ -87,24 +91,20 @@ export class DashboardComponent implements OnInit {
         }
       })
     } else {
-      this.showNotification('danger', "Active elections can'\t be deleted")
+      this.showNotification('danger', "Active elections can't be deleted")
     }
   }
 
   doStats(data: Election[]) {
     let now = new Date();
-    this.pendingElections = data.filter(data => {
-      let start = new Date(data.start).getTime();
-      return (start > now.getTime());
-    });
-    this.activeElections = data.filter(data => {
-      let start = new Date(data.start).getTime();
-      let end = new Date(data.end).getTime();
-      return ((start < now.getTime()) && end > now.getTime());
-    });
-    this.finishedElections = data.filter(data => {
-      let end = new Date(data.end).getTime();
-      return (end < now.getTime());
+    data.filter(data => {
+      let status = this.getStatus(data)
+      if (status === "Active")
+        this.activeElections.push(data)
+      else if (status === "Pending")
+        this.pendingElections.push(data)
+      else
+        this.finishedElections.push(data)
     });
   }
 
@@ -136,9 +136,20 @@ export class DashboardComponent implements OnInit {
           this.router.navigate(["election/" + id + "/voters"])
         }
       })
-    } else if(isFinishedElection) {
-      //TODO show sweetalert with option to view election results
-      this.showNotification('danger', "Finished elections can'\t be modified. You can however view its results")
+    } else if (isFinishedElection) {
+      Swal({
+        title: 'Forbidden',
+        text: "Finished elections can't be modified. You can however view its results",
+        type: 'error',
+        confirmButtonColor: '#FFCD00',
+        showCancelButton: true,
+        confirmButtonText: 'Results',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.value) {
+          this.router.navigate(["election/" + id])
+        }
+      })
     } else
       this.router.navigate(["election/edit/" + id]);
   }

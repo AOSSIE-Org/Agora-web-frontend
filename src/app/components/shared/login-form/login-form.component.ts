@@ -39,15 +39,7 @@ export class LoginFormComponent implements OnInit {
     credentials.identifier = userName;
     credentials.password = password;
     this.userService.login(credentials).subscribe((data: any) => {
-      this.userService.getUser().subscribe((data: any) => {
-        this.router.navigate(['/dashboard']);
-      },
-        (err: HttpErrorResponse) => {
-          this.message = "Log In";
-          this.isLoading = false;
-          this.error = true;
-          this.userService.purgeAuth();
-        });
+      this.router.navigate(['/dashboard']);
     },
       (err: HttpErrorResponse) => {
         this.message = "Log In";

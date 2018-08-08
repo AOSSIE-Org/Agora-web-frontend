@@ -1,14 +1,9 @@
-<div class="container social-login-container">
-  <div class="social-login">
-    <p>Sign in with</p>
-    <div class="social-icons">
-      <a (click)="signInWithFB()" class="fa fa-facebook"></a>
-      <a (click)="signInWithGoogle()" class="fa fa-google"></a>
-      <a (click)="signInWithLinkedIn()" class="fa fa-linkedin"></a>
-    </div>
-    <a class="load" *ngIf="isLoading"><i class="fa fa-spinner fa-spin"></i><a>Loading....</a></a>
-    <div *ngIf="error" class="error">
-      <a>An error occured please try again.</a>
-    </div>
+<div class="row">
+  <div class="col-12 text-center">
+    <button class="btn btn btn-facebook" (click)="signInWithFB()">
+      <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+      <i *ngIf="!isLoading" class="fa fa-facebook"></i>
+      <span>Continue with Facebook</span>
+    </button>
   </div>
 </div>

@@ -1,0 +1,90 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Cast your vote</h3>
+          <p class="text-gold">Use the sliders to set the scores of each candidate</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <br>
+          <div class="card pt-20">
+            <div class="card-header card-header-gold">
+              <h4 class="card-title">Election detail</h4>
+              <p class="card-category">Election:</p>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12 text-center">
+                  <h4>
+                    <strong>Description</strong>
+                  </h4>
+                  <p>{{election.description}}</p>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 text-center">
+                  <h4>
+                    <strong>Candidates</strong>
+                  </h4>
+                  <ol *ngFor="let candidate of election.candidates">
+                    <li>{{candidate}}</li>
+                  </ol>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 text-center">
+                  <h4>
+                    <strong>Important</strong>
+                  </h4>
+                  <ol>
+                    <li>Start:&nbsp;&nbsp;&nbsp;{{election.startingDate}}</li>
+                    <li>Finish:&nbsp;&nbsp;{{election.endingDate}}</li>
+                    <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <br>
+          <div class="card pt-20">
+            <div class="card-header card-header-gold">
+              <h4 class="card-title">Election Candidates</h4>
+              <p class="card-category">Press the plus button to add a candidate to your ballot</p>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <tbody>
+                  <tr *ngFor="let candidate of candidates; let ind = index">
+                    <div class="row">
+                      <div class="col-4 text-left">
+                        {{candidate}}
+                      </div>
+                      <div class="col-8 text-left">
+                        <span>0</span>
+                        <mat-slider class="example-margin" [disabled]="false" [invert]="false" [max]="max" [min]="min" [thumbLabel]="true" [(ngModel)]="values[ind]"
+                          [vertical]="false" tickInterval="10">
+                        </mat-slider>
+                        <span>{{values[ind]}}/100</span>
+                      </div>
+                    </div>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-right">
+          <span class="pr-20">
+            <button class="btn btn-round btn-gold" (click)="cancel()">Cancel</button>
+          </span>
+          <span class="pr-20 text-right">
+            <button class="btn btn-round btn-gold" (click)="vote()">{{msg}}</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

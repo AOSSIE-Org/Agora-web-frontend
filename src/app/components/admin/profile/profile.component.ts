@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../model/user.model';
-import { HttpErrorResponse } from '../../../../../node_modules/@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { PasswordData } from '../../../model/password.model';
 
 declare var $: any;

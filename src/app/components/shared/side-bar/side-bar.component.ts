@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { take, map } from 'rxjs/operators';
 import { UserService } from '../../../services/user.service';
-import { Router } from '../../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 
 declare const $: any;
 

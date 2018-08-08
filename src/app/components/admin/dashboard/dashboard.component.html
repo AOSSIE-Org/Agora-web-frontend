@@ -122,264 +122,248 @@
       <div class="card-body">
         <div class="tab-content">
           <div class="tab-pane active" id="all">
-            <table class="table">
-              <tbody>
-                <tr *ngFor="let election of elections">
-                  <td>
-                    <div class="card text-center">
-                      <div class="card-header card-header-danger">
-                        <h4 class="card-title">Election: {{election.name}}</h4>
+            <div class="row">
+              <div class="col-lg-6 col-lg-6 col-sm-12" *ngFor="let election of elections">
+                <div class="card text-center">
+                  <div class="card-header card-header-danger">
+                    <h4 class="card-title">Election: {{election.name}}</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Description</strong>
+                        </h4>
+                        <p>{{election.description}}</p>
                       </div>
-                      <div class="card-body">
-
-                        <div class="row">
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Description</strong>
-                            </h4>
-                            <p>{{election.description}}</p>
-                          </div>
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Candidates</strong>
-                            </h4>
-                            <ol *ngFor="let candidate of election.candidates">
-                              <li>{{candidate}}</li>
-                            </ol>
-                          </div>
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Important</strong>
-                            </h4>
-                            <ol>
-                              <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
-                              <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
-                              <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
-                            </ol>
-                          </div>
-                        </div>
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Candidates</strong>
+                        </h4>
+                        <ol *ngFor="let candidate of election.candidates">
+                          <li>{{candidate}}</li>
+                        </ol>
                       </div>
-                      <div class="row">
-                        <div class="col">
-                          <div>
-                            <span class="pr-20">
-                              <button (click)="edit(election._id)" mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">settings</i>
-                              </button>
-                            </span>
-                            <span class="pr-20">
-                              <button (click)="view(election._id)" mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">remove_red_eye</i>
-                              </button>
-                            </span>
-                            <span>
-                              <button (click)="delete(election._id)" mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">delete</i>
-                              </button>
-                            </span>
-                          </div>
-                        </div>
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Important</strong>
+                        </h4>
+                        <ol>
+                          <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
+                          <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
+                          <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
+                        </ol>
                       </div>
                     </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div>
+                        <span class="pr-20">
+                          <button (click)="edit(election._id)" mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">settings</i>
+                          </button>
+                        </span>
+                        <span class="pr-20">
+                          <button (click)="view(election._id)" mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">remove_red_eye</i>
+                          </button>
+                        </span>
+                        <span>
+                          <button (click)="delete(election._id)" mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
+                            class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">delete</i>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tab-pane" id="pending">
-            <table class="table">
-              <tbody>
-                <tr *ngFor="let election of pendingElections">
-                  <td>
-                    <div class="card text-center">
-                      <div class="card-header card-header-danger">
-                        <h4 class="card-title">Election: {{election.name}}</h4>
+            <div class="row">
+              <div class="col-lg-6 col-lg-6 col-sm-12" *ngFor="let election of pendingElections">
+                <div class="card text-center">
+                  <div class="card-header card-header-danger">
+                    <h4 class="card-title">Election: {{election.name}}</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Description</strong>
+                        </h4>
+                        <p>{{election.description}}</p>
                       </div>
-                      <div class="card-body">
-
-                        <div class="row">
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Description</strong>
-                            </h4>
-                            <p>{{election.description}}</p>
-                          </div>
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Candidates</strong>
-                            </h4>
-                            <ol *ngFor="let candidate of election.candidates">
-                              <li>{{candidate}}</li>
-                            </ol>
-                          </div>
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Important</strong>
-                            </h4>
-                            <ol>
-                              <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
-                              <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
-                              <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
-                            </ol>
-                          </div>
-                        </div>
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Candidates</strong>
+                        </h4>
+                        <ol *ngFor="let candidate of election.candidates">
+                          <li>{{candidate}}</li>
+                        </ol>
                       </div>
-                      <div class="row">
-                        <div class="col">
-                          <div>
-                            <span class="pr-20">
-                              <button (click)="edit(election._id)" mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">settings</i>
-                              </button>
-                            </span>
-                            <span class="pr-20">
-                              <button (click)="view(election._id)" mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">remove_red_eye</i>
-                              </button>
-                            </span>
-                            <span>
-                              <button (click)="delete(election._id)" mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">delete</i>
-                              </button>
-                            </span>
-                          </div>
-                        </div>
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Important</strong>
+                        </h4>
+                        <ol>
+                          <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
+                          <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
+                          <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
+                        </ol>
                       </div>
                     </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div>
+                        <span class="pr-20">
+                          <button (click)="edit(election._id)" mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">settings</i>
+                          </button>
+                        </span>
+                        <span class="pr-20">
+                          <button (click)="view(election._id)" mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">remove_red_eye</i>
+                          </button>
+                        </span>
+                        <span>
+                          <button (click)="delete(election._id)" mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
+                            class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">delete</i>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tab-pane" id="active">
-            <table class="table">
-              <tbody>
-                <tr *ngFor="let election of activeElections">
-                  <td>
-                    <div class="card text-center">
-                      <div class="card-header card-header-danger">
-                        <h4 class="card-title">Election: {{election.name}}</h4>
+            <div class="row">
+              <div class="col-lg-6 col-lg-6 col-sm-12" *ngFor="let election of activeElections">
+                <div class="card text-center">
+                  <div class="card-header card-header-danger">
+                    <h4 class="card-title">Election: {{election.name}}</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Description</strong>
+                        </h4>
+                        <p>{{election.description}}</p>
                       </div>
-                      <div class="card-body">
-
-                        <div class="row">
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Description</strong>
-                            </h4>
-                            <p>{{election.description}}</p>
-                          </div>
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Candidates</strong>
-                            </h4>
-                            <ol *ngFor="let candidate of election.candidates">
-                              <li>{{candidate}}</li>
-                            </ol>
-                          </div>
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Important</strong>
-                            </h4>
-                            <ol>
-                              <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
-                              <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
-                              <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
-                            </ol>
-                          </div>
-                        </div>
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Candidates</strong>
+                        </h4>
+                        <ol *ngFor="let candidate of election.candidates">
+                          <li>{{candidate}}</li>
+                        </ol>
                       </div>
-                      <div class="row">
-                        <div class="col">
-                          <div>
-                            <span class="pr-20">
-                              <button (click)="edit(election._id)" mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">settings</i>
-                              </button>
-                            </span>
-                            <span class="pr-20">
-                              <button (click)="view(election._id)" mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">remove_red_eye</i>
-                              </button>
-                            </span>
-                            <span>
-                              <button (click)="delete(election._id)" mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">delete</i>
-                              </button>
-                            </span>
-                          </div>
-                        </div>
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Important</strong>
+                        </h4>
+                        <ol>
+                          <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
+                          <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
+                          <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
+                        </ol>
                       </div>
                     </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div>
+                        <span class="pr-20">
+                          <button (click)="edit(election._id)" mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">settings</i>
+                          </button>
+                        </span>
+                        <span class="pr-20">
+                          <button (click)="view(election._id)" mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">remove_red_eye</i>
+                          </button>
+                        </span>
+                        <span>
+                          <button (click)="delete(election._id)" mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
+                            class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">delete</i>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="tab-pane" id="finished">
-            <table class="table">
-              <tbody>
-                <tr *ngFor="let election of finishedElections">
-                  <td>
-                    <div class="card text-center">
-                      <div class="card-header card-header-danger">
-                        <h4 class="card-title">Election: {{election.name}}</h4>
+            <div class="row">
+              <div class="col-lg-6 col-lg-6 col-sm-12" *ngFor="let election of finishedElections">
+                <div class="card text-center">
+                  <div class="card-header card-header-danger">
+                    <h4 class="card-title">Election: {{election.name}}</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Description</strong>
+                        </h4>
+                        <p>{{election.description}}</p>
                       </div>
-                      <div class="card-body">
-
-                        <div class="row">
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Description</strong>
-                            </h4>
-                            <p>{{election.description}}</p>
-                          </div>
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Candidates</strong>
-                            </h4>
-                            <ol *ngFor="let candidate of election.candidates">
-                              <li>{{candidate}}</li>
-                            </ol>
-                          </div>
-                          <div class="col-lg-4 col-md-12 col-sm-12">
-                            <h4>
-                              <strong>Important</strong>
-                            </h4>
-                            <ol>
-                              <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
-                              <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
-                              <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
-                            </ol>
-                          </div>
-                        </div>
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Candidates</strong>
+                        </h4>
+                        <ol *ngFor="let candidate of election.candidates">
+                          <li>{{candidate}}</li>
+                        </ol>
                       </div>
-                      <div class="row">
-                        <div class="col">
-                          <div>
-                            <span class="pr-20">
-                              <button (click)="edit(election._id)" mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">settings</i>
-                              </button>
-                            </span>
-                            <span class="pr-20">
-                              <button (click)="view(election._id)" mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">remove_red_eye</i>
-                              </button>
-                            </span>
-                            <span>
-                              <button (click)="delete(election._id)" mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
-                                <i class="material-icons text-gold">delete</i>
-                              </button>
-                            </span>
-                          </div>
-                        </div>
+                      <div class="col-lg-4 col-md-12 col-sm-12">
+                        <h4>
+                          <strong>Important</strong>
+                        </h4>
+                        <ol>
+                          <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
+                          <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
+                          <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
+                        </ol>
                       </div>
                     </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div>
+                        <span class="pr-20">
+                          <button (click)="edit(election._id)" mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">settings</i>
+                          </button>
+                        </span>
+                        <span class="pr-20">
+                          <button (click)="view(election._id)" mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">remove_red_eye</i>
+                          </button>
+                        </span>
+                        <span>
+                          <button (click)="delete(election._id)" mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
+                            class="btn btn-primary btn-link btn-md btn-just-icon">
+                            <i class="material-icons text-gold">delete</i>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
