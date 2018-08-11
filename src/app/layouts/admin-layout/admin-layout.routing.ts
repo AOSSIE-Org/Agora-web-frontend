@@ -22,6 +22,8 @@ import { PreferencialBallotComponent } from '../../components/admin/election/vot
 import { RankBallotComponent } from '../../components/admin/election/vote/rank-ballot/rank-ballot.component';
 import { ApprovalBallotComponent } from '../../components/admin/election/vote/approval-ballot/approval-ballot.component';
 import { ScoreBallotComponent } from '../../components/admin/election/vote/score-ballot/score-ballot.component';
+import { ForgotPasswordComponent } from '../../components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from '../../components/reset-password/reset-password.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -29,6 +31,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'help', component: HelpComponent },
     { path: 'signin', component: SigninComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'reset-password/:token', component: ResetPasswordComponent },
+    { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'vote/:id/:pass', component: VoteComponent, 
         children: [
         { path: 'preference', component: PreferencialBallotComponent},
@@ -80,6 +84,8 @@ export const routingComponents = [
     PreferencialBallotComponent,
     RankBallotComponent,
     ApprovalBallotComponent,
-    ScoreBallotComponent
+    ScoreBallotComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
 ]
 
