@@ -75,14 +75,14 @@ export class VotersComponent implements OnInit {
       this.isLoading = false;
       this.buttonText = "Submit"
       this.voter = new Voter();
-      this.showNotification('success', "Voters list was successfuly updated");
+      this.showNotification('success', "Voters list was successfully updated");
     },
       (err: HttpErrorResponse) => {
         this.isLoading = false;
         this.buttonText = "Submit"
         if (err.status == 200) {
           this.voter = new Voter();
-          this.showNotification('success', "Voters list was successfuly updated");
+          this.showNotification('success', "Voters list was successfully updated");
         }
         else
           this.showNotification('danger', "Unable to update voters list. Please make sure you are connected to the internet and try again later");
