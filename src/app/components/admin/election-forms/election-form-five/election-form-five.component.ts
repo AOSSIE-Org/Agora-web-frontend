@@ -39,7 +39,7 @@ export class ElectionFormFiveComponent implements OnInit {
         this.electionDataService.purge();
         Swal({
           title: 'Done',
-          text: "Your election was successfuly updated",
+          text: "Your election was successfully updated",
           type: 'success',
           confirmButtonColor: '#FFCD00',
           showCancelButton: true,
@@ -58,7 +58,7 @@ export class ElectionFormFiveComponent implements OnInit {
             this.electionDataService.purge();
             Swal({
               title: 'Done',
-              text: "Your election was successfuly updated",
+              text: "Your election was successfully updated",
               type: 'success',
               confirmButtonColor: '#FFCD00',
               showCancelButton: true,
@@ -78,13 +78,13 @@ export class ElectionFormFiveComponent implements OnInit {
         })
     } else if (this.electionDataService.getStatus() === "create") {
       this.electionService.create(this.electionDataService.buildElectionData()).subscribe((data: any) => {
-        this.showNotification('success', "Your new election has succesfully been created")
+        this.showNotification('success', "Your new election has successfully been created")
         this.electionDataService.purge()
         this.router.navigate(["dashboard"]);
       }
         , (err: HttpErrorResponse) => {
           if (err.status == 200) {
-            this.showNotification('success', "Your new election has succesfully been created")
+            this.showNotification('success', "Your new election has successfully been created")
             this.electionDataService.purge()
             this.router.navigate(["dashboard"]);
           } else {
