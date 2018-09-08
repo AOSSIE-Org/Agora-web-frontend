@@ -1,0 +1,65 @@
+<div class="main-content">
+    <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-4 mt-10 text-left">
+          <span class="pl-20">
+            <a class="btn btn-round pr-10 btn-gold">3/5</a>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-election">
+            <form #ngform3="ngForm" (ngSubmit)="add(currentCandidate)">
+              <div class="logo">
+                <img src="assets/agora.png" class="form-logo">
+              </div>
+              <mat-form-field>
+                <input matInput type="text" [(ngModel)]="currentCandidate" name="candidate_name" placeholder="Candidate name" required>
+              </mat-form-field>
+              <div class="text-center mt-10">
+                <span class="pr-20">
+                  <button class="btn btn-round btn-gold" [disabled]="!ngform3.valid" type="submit">Add Candidate</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <br>
+          <div class="card pt-20">
+            <div class="card-header card-header-gold">
+              <h4 class="card-title">Candidates</h4>
+              <p class="card-category">Fill the form to add more candidates</p>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <tbody>
+                  <tr *ngFor="let candidate of form3.candidates; let ind = index">
+                    <td class="text-black">{{candidate}}</td>
+                    <td class="td-actions text-right">
+                      <button mat-raised-button type="button" (click)="delete(ind)" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-right">
+          <span class="pr-20">
+            <button class="btn btn-round btn-gold" (click)="previous()">Previous</button>
+          </span>
+          <span class="pr-20 text-right">
+            <button class="btn btn-round btn-gold" [disabled]="!hasCandidates()" (click)="next()">Next</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

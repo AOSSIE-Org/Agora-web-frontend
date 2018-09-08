@@ -1,0 +1,37 @@
+<div class="main-content section_padding_50">
+    <div class="container-fluid">
+    <div class="form-clean" *ngIf="!isActivationError">
+      <form>
+        <h2 class="sr-only">Login Form</h2>
+        <div class="logo">
+          <img src="assets/agora.png" class="form-logo">
+        </div>
+        <p class="msg-activate-account">Checking activation link, please wait....</p>
+      </form>
+    </div>
+    <div class="form-clean" *ngIf="isActivationError">
+      <form #activationForm="ngForm" method="post" (ngSubmit)="OnSubmit(userName.value)">
+        <h2 class="sr-only">Login Form</h2>
+        <div class="logo">
+          <img src="assets/agora.png" class="form-logo">
+        </div>
+        <p class="error-activate-account">Account activation error. Please enter user name to receive new link</p>
+
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" #userName ngModel name="user_name" placeholder="User name" required>
+        </mat-form-field>
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" [disabled]="!activationForm.valid || isLoading" type="submit">
+            <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>{{message}}</button>
+        </div>
+        <div *ngIf="error" class="error">
+          An error occurred! Please check the user name entered and try again.
+        </div>
+        <div *ngIf="success" class="success">
+          An activation link has been sent to your email. Follow it to activate your account.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h3 class="gold">Election: {{election.name}}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-gold">
+            <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                <span class="nav-tabs-title">Details</span>
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                  <li class="nav-item">
+                    <a mat-button class="nav-link active" href="#basic" data-toggle="tab">
+                      <i class="material-icons">bubble_chart</i>Basic
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a mat-button class="nav-link" href="#voters" data-toggle="tab">
+                      <i class="material-icons">people</i> Voters
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a mat-button class="nav-link" href="#ballots" data-toggle="tab">
+                      <i class="material-icons">work</i> Ballots
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a mat-button class="nav-link" href="#results" data-toggle="tab">
+                      <i class="material-icons">done_all</i> Results
+                      <div class="ripple-container"></div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- tab main-content -->
+          <div class="card-body">
+            <div class="tab-content">
+              <!-- Tab content basic start -->
+              <div class="tab-pane active" id="basic">
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-1">
+                    <h4 class="green">Name</h4>
+                    <p>{{election.name}}</p>
+                    <h4 class="green">Description</h4>
+                    <p>{{election.description}}</p>
+                    <h4 class="green">Voting Algorithm</h4>
+                    <p>{{election.votingAlgo}}</p>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-1">
+                    <h4 class="green">Dates</h4>
+                    <ul>
+                      <li>
+                        <p>Creation date: {{election.createdTime}}</p>
+                      </li>
+                      <li>
+                        <p>Start date: {{election.start}}</p>
+                      </li>
+                      <li>
+                        <p>End date: {{election.end}}</p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-1">
+                    <h4 class="green">Candidates</h4>
+                    <ul>
+                      <li *ngFor="let candidate of election.candidates">
+                        <p>{{candidate}}</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Tab content voters -->
+              <div class="tab-pane" id="voters">
+                <table class="table">
+                  <tbody>
+                    <tr *ngFor="let voter of election.voters; let ind = index">
+                      <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm text-center">{{ind + 1}}</div>
+                        <div class="col-lg-5 col-md-5 col-sm text-left">{{voter.name}}</div>
+                        <div class="col-lg-5 col-md-5 col-sm text-left">{{voter.email}}</div>
+                        <div class="col-12 text-center">
+                          <button [disabled]="isFinished()" class="btn btn-round btn-gold" (click)="addVoters()">Add voters</button>
+                        </div>
+                      </div>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Tab content Ballots -->
+              <div class="tab-pane" id="ballots">
+                <div class="row" *ngFor="let ballot of election.ballots; let ind = index">
+                  <div class="col-lg-2 col-md-2 col-sm text-center">{{ind + 1}}</div>
+                  <div class="col-lg-5 col-md-5 col-sm text-left">{{ballot.voterEmail}}</div>
+                  <div class="col-lg-5 col-md-5 col-sm text-left">{{ballot.voteBallot}}</div>
+                </div>
+              </div>
+              <!-- Tab content results -->
+              <div class="tab-pane" id="results">
+                <div class="row">
+                  <div class="col-8 text-center">
+                    <h4 class="green">Candidates</h4>
+                    <ul>
+                      <li *ngFor="let candidate of election.candidates">
+                        <p>{{candidate}}</p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-4 text-center">
+                    <h4>Winner(s)</h4>
+                    <ul>
+                      <li *ngFor="let winner of election.winners; let i =index;">
+                        <p>{{winner.candidate.name}}</p>
+                        <span>{{winner.score.numerator}}/{{winner.score.denominator}}</span>
+                        <hr *ngIf="i < election.winners.length-1">
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

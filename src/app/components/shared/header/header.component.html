@@ -1,0 +1,73 @@
+<nav [ngClass]="{'navbar-transparent': !isMobileMenu(), 'navbar-white': isMobileMenu()}" class="navbar navbar-expand-lg   navbar-absolute fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-wrapper">
+            <a *ngIf="isMobileMenu()" class="navbar-brand" routerLink="/home">
+                <img src="../../../../assets/agora.png" /> Agora Vote
+            </a>
+            <a *ngIf="isUserSignedIn" class="navbar-brand" href="">
+            </a>
+        </div>
+        <button mat-raised-button class="navbar-toggler btn-transparent" type="button" (click)="sidebarToggle()">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="navbar-nav">
+                <li *ngIf="!isUserSignedIn" routerLinkActive="active" class="nav-item gold">
+                    <a class="nav-link" routerLink="/home">
+                        <i class="material-icons">home</i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li *ngIf="!isUserSignedIn" routerLinkActive="active" class="nav-item gold">
+                    <a class="nav-link" routerLink="/about">
+                        <i class="material-icons">code</i>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li *ngIf="!isUserSignedIn" routerLinkActive="active" class="nav-item gold">
+                    <a class="nav-link" routerLink="/help">
+                        <i class="material-icons">help</i>
+                        <span>Help</span>
+                    </a>
+                </li>
+                <li *ngIf="!isUserSignedIn" routerLinkActive="active" class="nav-item gold">
+                    <a class="nav-link" routerLink="/signin">
+                        <i class="material-icons">vpn_key</i>
+                        <span>Sign In</span>
+                    </a>
+                </li>
+                <li *ngIf="!isUserSignedIn" routerLinkActive="active" class="nav-item gold">
+                    <a class="nav-link" routerLink="/signup">
+                        <i class="material-icons">account_circle</i>
+                        <span>Sign Up</span>
+                    </a>
+                </li>
+                <li *ngIf="isUserSignedIn" class="nav-item dropdown gold">
+                    <a class="nav-link" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">person</i>
+                        <span>Account</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item gold" routerLink="/profile">
+                            <i class="material-icons">person</i>
+                            <span class="d-lg-block">Profile</span>
+                        </a>
+                        <a class="dropdown-item gold" routerLink="/profile">
+                            <i class="material-icons">vpn_key</i>
+                            <span class="d-md-block"> Change Password</span>
+                        </a>
+                        <a class="dropdown-item gold" (click)="logout()">
+                            <i class="material-icons">exit_to_app</i>
+                            <span class="d-md-block">Logout</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<br>

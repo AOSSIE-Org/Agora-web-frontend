@@ -1,0 +1,75 @@
+<div class="logo">
+    <a routerLink="/home" class="simple-text">
+        <div class="logo-img">
+            <img src="../../../../assets/agora.png" />
+        </div>
+        Agora Vote
+    </a>
+</div>
+<div class="sidebar-wrapper">
+    <ul class="nav">
+
+        <li *ngIf="!isUserSignedIn && isMobileMenu()" routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="/signin">
+                <i class="material-icons">vpn_key</i>
+                <p>Sign In</p>
+            </a>
+        </li>
+        <li *ngIf="!isUserSignedIn && isMobileMenu()" routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="/signup">
+                <i class="material-icons">account_circle</i>
+                <p>Sign Up</p>
+            </a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="/home">
+                <i class="material-icons">home</i>
+                <p>Home</p>
+            </a>
+        </li>
+        <li *ngIf="isUserSignedIn" routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="/dashboard">
+                <i class="material-icons">dashboard</i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+        <li *ngIf="isUserSignedIn && !isMobileMenu()" routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="/profile">
+                <i class="material-icons">person</i>
+                <p>Profile</p>
+            </a>
+        </li>
+        <li *ngIf="isUserSignedIn && isMobileMenu()" class="nav-item dropdown">
+            <a class="nav-link" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons">person</i>
+                <p>Account</p>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" routerLink="/profile">
+                    <i class="material-icons">person</i>
+                    <span class="d-lg-block">Profile</span>
+                </a>
+                <a class="dropdown-item btn-round" routerLink="/profile">
+                    <i class="material-icons">vpn_key</i>
+                    <span class="d-md-block"> Change Password</span>
+                </a>
+                <a class="dropdown-item" (click)="logout()">
+                    <i class="material-icons">exit_to_app</i>
+                    <span class="d-md-block">Logout</span>
+                </a>
+            </div>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="/about">
+                <i class="material-icons">code</i>
+                <p>About</p>
+            </a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" routerLink="/help">
+                <i class="material-icons">help</i>
+                <p>Help</p>
+            </a>
+        </li>
+    </ul>
+</div>

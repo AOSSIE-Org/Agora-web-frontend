@@ -1,0 +1,42 @@
+<div class="form-clean">
+  <form method="post" #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)">
+    <h2 class="sr-only">Signup Form</h2>
+    <div class="logo">
+      <img src="assets/agora.png" class="form-logo">
+    </div>
+    <mat-form-field class="form-group">
+      <input matInput type="text" name="userName" #identifier="ngModel" [(ngModel)]="signup.identifier" placeholder="User name"
+        required>
+    </mat-form-field>
+    <mat-form-field class="form-group">
+      <input matInput type="text" name="firstName" #firstName="ngModel" [(ngModel)]="signup.firstName" placeholder="First name"
+        required>
+    </mat-form-field>
+    <mat-form-field class="form-group">
+      <input matInput type="text" name="lastName" #lastName="ngModel" [(ngModel)]="signup.lastName" placeholder="Last name" required>
+    </mat-form-field>
+    <mat-form-field class="form-group">
+      <input matInput type="email" name="email" #email="ngModel" [(ngModel)]="signup.email" placeholder="Email" required>
+    </mat-form-field>
+    <mat-form-field class="form-group">
+      <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="signup.password" placeholder="Password"
+        required>
+    </mat-form-field>
+    <div class="form-group">
+      <button class="btn btn-primary btn-round btn-block" [disabled]="!userRegistrationForm.valid || isLoading" type="submit">
+        <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>{{message}}</button>
+    </div>
+  </form>
+  <div class="have-account">
+    Already have an account?
+    <a routerLink="/signin" class="signin">Sign In</a>
+  </div>
+  <a class="forgot">OR</a>
+  <app-social-login></app-social-login>
+  <div *ngIf="error" class="error">
+    An error occured please try again.
+  </div>
+  <div *ngIf="success" class="success">
+    An activation link has been sent to your email. Follow it to activate your account.
+  </div>
+</div>

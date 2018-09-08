@@ -1,0 +1,16 @@
+<div class="main-content">
+        <div class="container hero">
+        <div class="row">
+            <div class="{{isUserAuthenticated ? 'col-12' : 'col-lg-8'}}">
+                <h1>Welcome to Agora Vote</h1>
+                <p>Agora vote is a voting platform where users can create elections and invite friends to cast their votes.</p>
+                <p>It supports a wide range of voting algorithms some of which are Majority, Egalitarian, Australian STV just
+                    to name a few</p>
+                <button class="btn btn-gold btn-round" type="button">Learn More</button>
+            </div>
+            <div *ngIf="!isUserAuthenticated" class="col-lg-4">
+                <app-register-form></app-register-form>
+            </div>
+        </div>
+    </div>
+</div>

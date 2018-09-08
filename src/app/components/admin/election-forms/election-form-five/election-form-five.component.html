@@ -1,0 +1,77 @@
+<div class="main-content">
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-4 mt-10 text-left">
+        <span class="pl-20">
+          <a class="btn btn-round pr-10 btn-gold">5/5</a>
+        </span>
+      </div>
+    </div>
+    <div class="form-election">
+      <form #ngform5="ngForm">
+        <div class="logo">
+          <img src="assets/agora.png" class="form-logo">
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 col-md-12 text-center">
+              <p>Get real time results?</p>
+            <mat-checkbox [(ngModel)]="form5.isRealtimeResult" name="realtime_result"></mat-checkbox>
+          </div>
+          <div class="col-lg-6 col-sm-12 col-md-12 text-center">
+            <p>Invite voters?</p>
+            <mat-checkbox [(ngModel)]="form5.isVoterInvite" name="is_invite_voters"></mat-checkbox>
+          </div>
+        </div>
+        <mat-radio-group>
+          <div class="row">
+            <div class="col-12 text-center">
+              <p class="align-right">How secrete are the ballots?</p>
+            </div>
+            <div class="col text-left">
+              <label class="radio-label">Ballots are completely secrete and never shown to anyone
+                <input type="radio" value="hidden" [(ngModel)]="form5.ballotVisibility" ngDefaultControl name="form5.ballotVisibility">
+                <span class="checkmark"></span>
+              </label>
+              <label class="radio-label">Ballots are visible only to me
+                <input type="radio" value="visible" [(ngModel)]="form5.ballotVisibility" ngDefaultControl name="form5.ballotVisibility">
+                <span class="checkmark"></span>
+              </label>
+              <label class="radio-label">Ballots are visible to everyone with access to the election
+                <input type="radio" value="public" [(ngModel)]="form5.ballotVisibility" ngDefaultControl name="form5.ballotVisibility">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+        </mat-radio-group>
+
+        <mat-radio-group>
+          <div class="row">
+            <div class="col-12 text-center">
+              <p class="align-right">Who can see the list of voters?</p>
+            </div>
+            <div class="col text-left">
+              <label class="radio-label">Only me
+                <input type="radio" value="false" [(ngModel)]="form5.voterListVisibility" ngDefaultControl name="form5.voterListVisibility">
+                <span class="checkmark"></span>
+              </label>
+              <label class="radio-label">Everyone with access to the election
+                <input type="radio" value="true" [(ngModel)]="form5.voterListVisibility" ngDefaultControl name="form5.voterListVisibility">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+        </mat-radio-group>
+      </form>
+    </div>
+    <div class="row pb-20">
+      <div class="col text-right">
+        <span class="pr-20">
+          <button class="btn btn-round btn-gold" (click)="previous()">Previous</button>
+        </span>
+        <span class="pr-20 text-right">
+          <button class="btn btn-round btn-gold" (click)="finish()" [disabled]="isLoading">{{buttonStatus}}</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
