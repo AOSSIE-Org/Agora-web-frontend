@@ -1,0 +1,17 @@
+.first-section{
+  padding-top: 30px;
+  text-align: left;
+}
+
+.left-padding{
+  padding-left: 20px;
+}
+
+.top-padding{
+  padding-top: 40px;
+}
+
+.screenshot-resize{
+   height: 70%;
+   width: 90%;
+}
