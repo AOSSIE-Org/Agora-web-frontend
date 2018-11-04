@@ -1,6 +1,7 @@
 .first-section{
   padding-top: 30px;
   text-align: left;
+  color: black;
 }
 
 .left-padding{
@@ -14,4 +15,8 @@
 .screenshot-resize{
    height: 70%;
    width: 90%;
+}
+
+#quicklinks-title{
+  color: #34403A;
 }
