@@ -3,10 +3,261 @@
       <div style="text-align:center">
         <div class="container">
           <h1>
-            Welcome to Agora Vote!
+            Agora Help
           </h1>
+          <h3>
+            the place where all your questions become knowledge...
+          </h3>
         </div>
         <img width="300" alt="Agora logo" src="../assets/agora.png">
+        <h2 id="quicklinks-title">Quicklinks</h2>
+      </div>
+      <!-- quicklinks -->
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <a [routerLink]="['/help/']" fragment="creating-an-election" >
+            <div class="card card-stats">
+              <div class="card-header card-header-warning card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">build</i>
+                </div>
+                <p class="card-category">HOW - TO</p>
+                <h3 class="card-title">How to create an election
+                </h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons text-gold">bubble_chart</i>
+                  <a>Updated <strong>1st November 2018</strong></a>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <a [routerLink]="['/help/']" fragment="voting" >
+            <div class="card card-stats">
+              <div class="card-header card-header-success card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">how_to_vote</i>
+                </div>
+                <p class="card-category">HOW - TO</p>
+                <h3 class="card-title">How to vote in an election
+                </h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons text-gold">bubble_chart</i>
+                  <a>Updated <strong>4th November 2018</strong></a>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+          <!-- TAKE NOTE, CHANGE THE FOLLOWING DIVISION COL-LG-12 TO COL-LG-6 IF YOU WANT TO ADD MORE QUICKLINKS,
+          IF THE NUMBER OF QUICKLINKS IS AN ODD NUMBER, LEAVE THE LAST ONE TAKING UP THE FULL WIDTH FOR DESIGN
+          AESTHETICS -->
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <a href="#viewing-results" class="quicklink-button">
+            <div class="card card-stats">
+              <div class="card-header card-header-danger card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">view_list</i>
+                </div>
+                <p class="card-category">HOW - TO</p>
+                <h3 class="card-title">How to view election results</h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons text-gold">bubble_chart</i>
+                  <a>Updated <strong>4th November 2018</strong></a>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- how to create an election -->
+      <div class="row">
+        <div id="creating-an-election" class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card card-stats">
+            <div class="card-header card-header-warning card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">build</i>
+              </div>
+              <p class="card-category">HOW - TO</p>
+              <h3 class="card-title">How to create an election
+              </h3>
+              <section class="first-section">
+                <section>
+                  <h4><strong>1. Navigate to the dashboard</strong></h4>
+                  <p class="left-padding">Navigate to your dashboard, your dashboard can be found on the menu to the left of your screen.</p>
+                  <p class="left-padding">If you are on a mobile device, the menu can be found by clicking on the icon at the top right-hand corner of the screen</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/dashboard.png">
+                </section>
+                <section class="top-padding">
+                  <h4><strong>2. Click on the create election button</strong></h4>
+                  <p class="left-padding">At the top of your screen, you will see a "CREATE ELECTION" button, click on it.</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/creating.png">
+                </section>
+                <section class="top-padding">
+                  <h4><strong>3. Fill in the Election information</strong></h4>
+                  <p class="left-padding">Key in the Election Name, this will be the title of the Election. Then, key in the description of the Election, this will be visible to all participants.
+                  <br>Press on "NEXT" when you are done.</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/step1.png">
+                </section>
+                <section class="top-padding">
+                  <h4><strong>4. Set the Active Date of the Election</strong></h4>
+                  <p class="left-padding">Choose the Start Date & time of the election and the End Date & time of the election.
+                  <br>Users can only start on your election at the Starting Date & Time and will not be able to input anymore responses after the End Date & time.
+                  <br>Press on "NEXT" when you are done.</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/step2.png">
+                </section>
+                <section class="top-padding">
+                  <h4><strong>5. Invite your participants</strong></h4>
+                  <p class="left-padding">In order for your participants to be able to access your survey, they will need to create an account.
+                  <br>After they have created an account, you can invite them to the survey by keying in their usernames and clicking on "ADD PARTICIPANTS".
+                  <br>You may only add one participant at a time, if you accidentally added the wrong user, you can remove them by clicking on the red trashcan to the extreme right of their name.
+                  <br>Press on "NEXT" when you are done.</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/step3.png">
+                </section>
+                <section class="top-padding">
+                  <h4><strong>6. Choose your voting algorithm</strong></h4>
+                  <p class="left-padding">Agora Vote offers a wide range of voting algorithms, you can find out more about the different algorithms by clicking on the icon to the <br>extreme right, then choose the algorithm of your liking that best suits your needs.
+                  <br>Press on "NEXT" when you are done.</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/step4.png">
+                </section>
+                <section class="top-padding">
+                  <h4><strong>7. Set the privacy settings.</strong></h4>
+                  <p class="left-padding">This is the last step of creating an election, choose your desired settings, if you'll like the results to be public or private,<br>
+                    it's entirely your choice!
+                  <br>Press on "NEXT" when you are done.</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/step5.png">
+                </section>
+                <section class="top-padding">
+                  <p class="left-padding">Once you have created an election, you will be able to find the election in your dashboard. Here, you can edit the election, view information about the election, and remove the election if required.
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/overview.png">
+                </section>
+                <section class="top-padding">
+                  <p class="left-padding">Awesome! You have created your first election! We here at AOSSIE are sure you have enjoyed the seameless experience in creating an election, <br>
+                    if you have any feedback, don't hesitate to <a href="https://gitter.im/GSoC-AOSSIE/">contact us</a>!</p>
+                </section>
+              </section>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons text-gold">bubble_chart</i>
+                <a>Updated <strong>1st November 2018</strong></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- how to vote -->
+      <div class="row">
+        <div id="voting" class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card card-stats">
+            <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">how_to_vote</i>
+              </div>
+              <p class="card-category">HOW - TO</p>
+              <h3 class="card-title">How to vote in an election
+              </h3>
+              <section class="first-section">
+                <section>
+                  <h4><strong>1. Ensure you are invited</strong></h4>
+                  <p class="left-padding">If you are invited to vote in an election, you will receive an invitation in your registered email titled "Vote invitation".
+                  <br>If you did not receive an invitation and believe this is an error, contact the creator of the election to ensure he has invited you.</p>
+                </section>
+                <section class="top-padding">
+                  <h4><strong>2. Navigate to the invitation email</strong></h4>
+                  <p class="left-padding">At bottom of the email, you will be given a link to vote.
+                  This voting link is unique to you, so do not share it!</p>
+                </section>
+                <section class="top-padding">
+                  <h4><strong>3. Vote your choice</strong></h4>
+                  <p class="left-padding">In this example, the election is for a class chairperson, there are 4 candidates, to make our choice, we click on the "+" button.
+                  <br>If you have accidentally pressed the wrong candidate's "+" button, you can just remove them by click on the trashbin icon on the right column.
+                  <br>Check that your ballot is correct and click on "VOTE" to submit your ballot.</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/voting1.png">
+                </section>
+                <section class="top-padding">
+                  <p class="left-padding">Awesome! You have voted in your first election! As easy as 1, 2, 3! We here at AOSSIE are sure you have enjoyed the seameless experience in voting,
+                    if you have any feedback, don't hesitate to <a href="https://gitter.im/GSoC-AOSSIE/">contact us</a>!</p>
+                </section>
+              </section>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons text-gold">bubble_chart</i>
+                <a>Updated <strong>4th November 2018</strong></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- how to view results -->
+      <div class="row">
+        <div id="viewing-results" class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card card-stats">
+            <div class="card-header card-header-danger card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">view_list</i>
+              </div>
+              <p class="card-category">HOW - TO</p>
+              <h3 class="card-title">How to view election results
+              </h3>
+              <section class="first-section">
+                <section>
+                  <h4><strong>1. Navigate to the dashboard</strong></h4>
+                  <p class="left-padding">Navigate to your dashboard, your dashboard can be found on the menu to the left of your screen.</p>
+                  <p class="left-padding">If you are on a mobile device, the menu can be found by clicking on the icon at the top right-hand corner of the screen</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/dashboard.png">
+                </section>
+                <section class="top-padding">
+                  <h4><strong>2. Navigate to the election's results page</strong></h4>
+                  <p class="left-padding">At the bottom of the election's information, you will see an "eye" icon, clicking on this redirects
+                  <br>you to the results page of the elections. Click it.</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/results1.png">
+                </section>
+                <section class="top-padding">
+                  <h4><strong>3. The Basic Details</strong></h4>
+                  <p class="left-padding">Here, you will see the basic details of the elections, like the Name, Description, Voting algorithm,
+                    <br> creation, start and end dates as well as the candidates / choices.</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/results2.png">
+                </section>
+                <section class="top-padding">
+                  <h4><strong>4. The Voters Details</strong></h4>
+                  <p class="left-padding">Here, you can see the voters you've invited to participate in the elections.
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/results3.png">
+                </section>
+                <section class="top-padding">
+                  <h4><strong>5. The Ballots Details</strong></h4>
+                  <p class="left-padding">Here, you can view the ballots by the users you have invited.</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/results4.png">
+                </section>
+                <section class="top-padding">
+                  <h4><strong>6. The Final Results</strong></h4>
+                  <p class="left-padding">Here you will see the final results of the election after the election has ended.</p>
+                  <img class="left-padding screenshot-resize" alt="screenshot of navigation to dashboard" src="../assets/results5.png">
+                </section>
+                <section class="top-padding">
+                  <p class="left-padding">Awesome! You have hosted your first election! We here at AOSSIE are sure you have enjoyed the seameless experience in hosting an election, <br>
+                    if you have any feedback, don't hesitate to <a href="https://gitter.im/GSoC-AOSSIE/">contact us</a>!</p>
+                </section>
+              </section>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons text-gold">bubble_chart</i>
+                <a>Updated <strong>4th November 2018</strong></a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

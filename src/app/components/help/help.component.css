@@ -1,0 +1,22 @@
+.first-section{
+  padding-top: 30px;
+  text-align: left;
+  color: black;
+}
+
+.left-padding{
+  padding-left: 20px;
+}
+
+.top-padding{
+  padding-top: 40px;
+}
+
+.screenshot-resize{
+   height: 70%;
+   width: 90%;
+}
+
+#quicklinks-title{
+  color: #34403A;
+}
