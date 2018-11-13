@@ -25,8 +25,7 @@ import { VotingService } from './services/voting.service';
 let config = new AuthServiceConfig([
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    // provider: new FacebookLoginProvider("209457566270746")
-    provider: new FacebookLoginProvider("1297780270363495")
+    provider: new FacebookLoginProvider("209457566270746")
   },
 ]);
 
