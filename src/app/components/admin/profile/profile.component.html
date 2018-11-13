@@ -53,15 +53,17 @@
                         <h4 class="card-title">Full name: {{user.fullName()}}</h4>
                         <h6 class="card-category text-gray">Username: {{user.username}}</h6>
                         <h6 class="card-category text-gray">email: {{user.email}}</h6>
-                        <p class="card-description text-black">
-                            Change Password
-                        </p>
-                        <form #ngFormPassword="ngForm" (ngSubmit)="changePassword()">
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="New Password" type="password" name="password" [(ngModel)]="newPassword.password">
-                            </mat-form-field>
-                            <button mat-raised-button type="submit" [disabled]="!ngFormPassword.valid" class="btn btn-gold pull-right">Change</button>
-                        </form>
+                        <section *ngIf="agoraSocialUserService.getIsSocialUser() == 'true'">
+                          <p class="card-description text-black">
+                              Change Password
+                          </p>
+                          <form #ngFormPassword="ngForm" (ngSubmit)="changePassword()">
+                              <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="New Password" type="password" name="password" [(ngModel)]="newPassword.password">
+                              </mat-form-field>
+                              <button mat-raised-button type="submit" [disabled]="!ngFormPassword.valid" class="btn btn-gold pull-right">Change</button>
+                          </form>
+                        </section>
                     </div>
                 </div>
             </div>
