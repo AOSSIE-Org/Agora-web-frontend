@@ -8,6 +8,8 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
+import { AgoraSocialUserService } from './services/agora-social-user.service';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +25,8 @@ import { VotingService } from './services/voting.service';
 let config = new AuthServiceConfig([
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("209457566270746")
+    // provider: new FacebookLoginProvider("209457566270746")
+    provider: new FacebookLoginProvider("1297780270363495")
   },
 ]);
 
@@ -58,6 +61,7 @@ export function provideConfig() {
     JwtService,
     ElectionService,
     ElectionDataService,
+    AgoraSocialUserService,
     VotingService,
     AuthGuard,
     {

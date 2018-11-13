@@ -53,7 +53,7 @@
                         <h4 class="card-title">Full name: {{user.fullName()}}</h4>
                         <h6 class="card-category text-gray">Username: {{user.username}}</h6>
                         <h6 class="card-category text-gray">email: {{user.email}}</h6>
-                        <section *ngIf="agoraSocialUserService.getIsSocialUser() == 'true'">
+                        <section *ngIf="agoraSocialUserService.getIsSocialUser() != 'true'">
                           <p class="card-description text-black">
                               Change Password
                           </p>
