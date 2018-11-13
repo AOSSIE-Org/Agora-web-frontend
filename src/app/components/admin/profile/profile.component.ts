@@ -3,6 +3,8 @@ import { UserService } from '../../../services/user.service';
 import { User } from '../../../model/user.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PasswordData } from '../../../model/password.model';
+import { AgoraSocialUserService } from '../../../services/agora-social-user.service';
+
 
 declare var $: any;
 
@@ -20,6 +22,14 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  isSocialUser() {
+    if (agoraSocialUserService.getIsSocialUser() == 'true') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   updateProfile() {
@@ -72,4 +82,3 @@ export class ProfileComponent implements OnInit {
   }
 
 }
-
