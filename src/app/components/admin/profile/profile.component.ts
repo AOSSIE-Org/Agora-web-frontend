@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   user: User;
   newPassword: PasswordData = new PasswordData();
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private agoraSocialUserService: AgoraSocialUserService) {
     this.user = this.userService.getCurrentUser();
   }
 
@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
   }
 
   isSocialUser() {
-    if (agoraSocialUserService.getIsSocialUser() == 'true') {
+    if (this.agoraSocialUserService.getIsSocialUser() == 'true') {
       return true;
     } else {
       return false;
