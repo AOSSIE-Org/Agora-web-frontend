@@ -34,8 +34,8 @@ export class SocialLoginComponent implements OnInit {
     console.log(socialUser);
     this.userService.socialLogin(socialUser.provider.toLowerCase(), token).subscribe((data: any) => {
       this.userService.getUser().subscribe((data: any) => {
-        this.router.navigate(['/dashboard']);
         agoraSocialUserService.saveIsSocialUser("true");
+        this.router.navigate(['/dashboard']);
       },
         (err: HttpErrorResponse) => {
           this.isLoading = false;
