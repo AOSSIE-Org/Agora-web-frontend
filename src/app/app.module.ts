@@ -8,6 +8,8 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
+import { AgoraSocialUserService } from './services/agora-social-user.service';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -58,6 +60,7 @@ export function provideConfig() {
     JwtService,
     ElectionService,
     ElectionDataService,
+    AgoraSocialUserService,
     VotingService,
     AuthGuard,
     {

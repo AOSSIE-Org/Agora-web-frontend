@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService, SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider } from "angularx-social-login";
 import { UserService } from '../../../services/user.service';
+import { AgoraSocialUserService } from '../../../services/agora-social-user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -17,7 +18,7 @@ export class SocialLoginComponent implements OnInit {
   private user: SocialUser;
   isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) { }
+  constructor(private authService: AuthService, private userService: UserService, private router: Router, private agoraSocialUserService: AgoraSocialUserService) { }
 
   ngOnInit() { }
 
@@ -33,6 +34,7 @@ export class SocialLoginComponent implements OnInit {
     console.log(socialUser);
     this.userService.socialLogin(socialUser.provider.toLowerCase(), token).subscribe((data: any) => {
       this.userService.getUser().subscribe((data: any) => {
+        agoraSocialUserService.saveIsSocialUser("true");
         this.router.navigate(['/dashboard']);
       },
         (err: HttpErrorResponse) => {

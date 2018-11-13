@@ -3,6 +3,8 @@ import { UserService } from '../../../services/user.service';
 import { User } from '../../../model/user.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PasswordData } from '../../../model/password.model';
+import { AgoraSocialUserService } from '../../../services/agora-social-user.service';
+
 
 declare var $: any;
 
@@ -15,11 +17,19 @@ export class ProfileComponent implements OnInit {
   user: User;
   newPassword: PasswordData = new PasswordData();
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private agoraSocialUserService: AgoraSocialUserService) {
     this.user = this.userService.getCurrentUser();
   }
 
   ngOnInit() {
+  }
+
+  isSocialUser() {
+    if (this.agoraSocialUserService.getIsSocialUser() == 'true') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   updateProfile() {
@@ -72,4 +82,3 @@ export class ProfileComponent implements OnInit {
   }
 
 }
-
