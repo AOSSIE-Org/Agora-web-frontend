@@ -17,7 +17,7 @@
   </form>
   <a routerLink="/forgot-password" class="forgot">Forgot your password?</a>
   <a class="forgot">OR</a>
-  <app-social-login></app-social-login>
+  <app-social-login [disabled]="isLoading"></app-social-login>
   <div *ngIf="error" class="error">
     An error occured please try again.
   </div>
