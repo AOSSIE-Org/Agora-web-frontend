@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService, SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider } from "angularx-social-login";
 import { UserService } from '../../../services/user.service';
@@ -14,8 +14,8 @@ declare var $: any;
   styleUrls: ['./social-login.component.css']
 })
 export class SocialLoginComponent implements OnInit {
-  
   @Input() disabled : boolean;
+  @Output() isCurrentlyLoading : EventEmitter<boolean> = new EventEmitter<boolean>();
   private user: SocialUser;
   isLoading: boolean = false;
   constructor(private authService: AuthService, private userService: UserService, private router: Router, private agoraSocialUserService: AgoraSocialUserService) { }
@@ -25,6 +25,7 @@ export class SocialLoginComponent implements OnInit {
   signInWithFB(): void {
     if (!this.isLoading) {
       this.isLoading = true;
+      this.isCurrentlyLoading.emit(true);
       this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(this.authProcessSuccess, this.authProcessError);
     }
   }
@@ -40,12 +41,14 @@ export class SocialLoginComponent implements OnInit {
       },
         (err: HttpErrorResponse) => {
           this.isLoading = false;
+          this.isCurrentlyLoading.emit(false);
           this.showNotification("danger", "Facebook login failed. Please try again later")
           this.userService.purgeAuth();
         });
     },
       (err: HttpErrorResponse) => {
         this.isLoading = false;
+        this.isCurrentlyLoading.emit(false);
         this.showNotification("danger", "Facebook login failed. Please try again later")
         this.userService.purgeAuth();
       })
@@ -53,6 +56,7 @@ export class SocialLoginComponent implements OnInit {
 
   authProcessError = (reason: any) => {
     this.isLoading = false;
+    this.isCurrentlyLoading.emit(false);
     this.showNotification("danger", "Facebook login failed. Please try again later")
     this.userService.purgeAuth();
   }
