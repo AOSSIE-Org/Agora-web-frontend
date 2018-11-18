@@ -14,6 +14,7 @@ export class LoginFormComponent implements OnInit {
   error: boolean = false;
   message: string = "Log In";
   isLoading: boolean = false;
+  socialLoading: boolean = false;
   credentials: Credentials;
   constructor(private userService: UserService, private router: Router) { }
 

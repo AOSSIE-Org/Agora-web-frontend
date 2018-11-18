@@ -23,7 +23,7 @@
         required>
     </mat-form-field>
     <div class="form-group">
-      <button class="btn btn-primary btn-round btn-block" [disabled]="!userRegistrationForm.valid || isLoading" type="submit">
+      <button class="btn btn-primary btn-round btn-block" [disabled]="!userRegistrationForm.valid || isLoading || socialLoading" type="submit">
         <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>{{message}}</button>
     </div>
   </form>
@@ -32,7 +32,7 @@
     <a routerLink="/signin" class="signin">Sign In</a>
   </div>
   <a class="forgot">OR</a>
-  <app-social-login [disabled]="isLoading" (isCurrentlyLoading)="isLoading=$event"></app-social-login>
+  <app-social-login [disabled]="isLoading || socialLoading" (isCurrentlyLoading)="socialLoading=$event"></app-social-login>
   <div *ngIf="error" class="error">
     An error occured please try again.
   </div>
