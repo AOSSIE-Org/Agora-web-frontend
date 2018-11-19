@@ -16,6 +16,7 @@ export class RegisterFormComponent implements OnInit {
   success: boolean = false;
   signup: SignUp;
   isLoading: boolean = false;
+  socialLoading: boolean = false;
   message: string = "Sign Up";
   constructor(private userService: UserService, ) { }
 
