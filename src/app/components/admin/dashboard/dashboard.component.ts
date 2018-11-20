@@ -5,7 +5,8 @@ import { ElectionService } from '../../../services/election.service';
 import { Election } from '../../../model/election.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import * as Moment from 'moment';
 
 declare var $: any;
 
@@ -28,18 +29,18 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.electionService.getElections().subscribe(data => {
       this.elections = data;
-      this.elections.forEach(e => {
-        e.start = new Date(e.start).toLocaleString()
-        e.end = new Date(e.end).toLocaleString();
-      })
       this.doStats(this.elections);
     });
   }
 
+  getDisplayDate(date: string) : string {
+    return Moment.utc(date, "YYYY-MM-DDTHH:mm:ssZ", false).local(true).toDate().toLocaleString()
+  }
+
   getStatus(election: Election): string {
     let now = new Date().getTime();
-    let start = new Date(new Date(election.start).toLocaleString()).getTime();
-    let end = new Date(new Date(election.end).toLocaleString()).getTime();
+    let start = Moment.utc(election.start, "YYYY-MM-DDTHH:mm:ssZ", false).local(true).toDate().getTime()
+    let end = Moment.utc(election.end, "YYYY-MM-DDTHH:mm:ssZ", true).local(true).toDate().getTime()
     if (now < start)
       return "Pending";
     else if (now > start && now < end)
@@ -78,14 +79,14 @@ export class DashboardComponent implements OnInit {
           this.electionService.delete(id).subscribe((data: any) => {
             this.elections = this.elections.filter(value => !(value._id === id))
             this.doStats(this.elections);
-            this.showNotification('success', 'Election was succefully deleted')
+            this.showNotification('success', 'Election was successfully deleted')
           }, (err: HttpErrorResponse) => {
             if (err.status == 200) {
               this.elections = this.elections.filter(value => !(value._id === id))
               this.doStats(this.elections);
-              this.showNotification('success', 'Election was succefully deleted')
+              this.showNotification('success', 'Election was successfully deleted')
             } else {
-              this.showNotification('danger', 'Uable to delete election. Please try again')
+              this.showNotification('danger', 'Unable to delete election. Please try again')
             }
           })
         }

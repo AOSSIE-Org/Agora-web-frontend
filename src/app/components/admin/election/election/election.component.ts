@@ -4,6 +4,7 @@ import { ElectionService } from '../../../../services/election.service';
 import { Election } from '../../../../model/election.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Winner } from '../../../../model/winner.model';
+import * as Moment from 'moment';
 
 @Component({
   selector: 'app-election',
@@ -19,9 +20,6 @@ export class ElectionComponent implements OnInit {
       this.electionService.getElection(params["id"]).subscribe((data: Election) => {
         console.log(data)
         this.election = data;
-        this.election.start = new Date(this.election.start).toLocaleString()
-        this.election.end = new Date(this.election.end).toLocaleString();
-        this.election.createdTime = new Date(this.election.createdTime).toLocaleString();
       },
         (err: HttpErrorResponse) => {
           this.router.navigate(['/dashboard']);
@@ -47,10 +45,14 @@ export class ElectionComponent implements OnInit {
       return false
   }
 
+  getDisplayDate(date: string) : string {
+    return Moment.utc(date, "YYYY-MM-DDTHH:mm:ssZ", false).local(true).toDate().toLocaleString()
+  }
+
   getStatus(election: Election): string {
     let now = new Date().getTime();
-    let start = new Date(new Date(election.start).toLocaleString()).getTime();
-    let end = new Date(new Date(election.end).toLocaleString()).getTime();
+    let start = Moment.utc(election.start, "YYYY-MM-DDTHH:mm:ssZ", false).local(true).toDate().getTime()
+    let end = Moment.utc(election.end, "YYYY-MM-DDTHH:mm:ssZ", true).local(true).toDate().getTime()
     if (now < start)
       return "Pending";
     else if (now > start && now < end)
