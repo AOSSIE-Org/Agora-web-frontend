@@ -25,3 +25,37 @@
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
     filter: alpha(opacity=20);
   }
+
+::ng-deep .primary-tooltip{
+  background-color: white;
+}
+
+.padding-left{
+  padding-left: 25px;
+}
+
+.ballot-visibility-type{
+  text-align: left;
+  padding-top: 15px;
+}
+
+.ballot-visibility-description{
+  text-align: left;
+  padding-top: 5px;
+}
+
+.orange-color{
+  color: orange;
+}
+
+.black-color{
+  color: black;
+}
+
+.gray-color{
+  color: gray;
+}
+
+#ballotsDisplay{
+  display: block;
+}

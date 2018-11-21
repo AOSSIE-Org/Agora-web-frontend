@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2'
 import { VotingService } from '../../../../../services/voting.service';
 import { ElectionService } from '../../../../../services/election.service';
+import { ElectionData } from '../../../../../model/electionData.model';
 import { BallotData } from '../../../../../model/ballotData.model';
 import { HttpErrorResponse } from '../../../../../../../node_modules/@angular/common/http';
 import { Router } from '../../../../../../../node_modules/@angular/router';
@@ -16,17 +17,38 @@ declare var $: any;
 })
 export class PreferencialBallotComponent implements OnInit {
 
-  msg = "Vote"
+  elections: Election[] = new Array();
+  ballots: Array[];
+  msg = "Vote";
   isLoading = false;
-  candidates: String[] = new Array()
+  startingTime: String[];
+  endingTime: String[];
+  localTimezoneStartingTime: String[];
+  localTimezoneEndingTime: String[];
+  candidates: String[] = new Array();
   selected: String[] = new Array();
   constructor(private votingService: VotingService, private electionService: ElectionService, private router: Router) {
     if (this.votingService.getOrigin() && this.votingService.getOrigin() === "valid") {
-      this.candidates = votingService.getData().candidates
+      this.candidates = votingService.getData().candidates;
+      this.startingTime = votingService.getData().startingDate;
+      this.localTimezoneStartingTime = (new Date(this.startingTime)).toLocaleString();
+      this.endingTime = votingService.getData().endingDate;
+      this.localTimezoneEndingTime = (new Date(this.endingTime)).toLocaleString();
+      this.ballot = votingService.getData().ballots;
+      this.election = votingService.getData();
     }
   }
 
   ngOnInit() {
+  }
+
+  revealBallots() {
+    var pastBallots = document.getElementById("ballotsDisplay");
+    if (pastBallots.style.display === "block") {
+        pastBallots.style.display = "none";
+    } else {
+        pastBallots.style.display = "block";
+    }
   }
 
   delete(index: number) {
