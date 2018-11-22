@@ -18,8 +18,8 @@
         </div>
         <div id="ballotsDisplay" class="card card-stats" *ngIf="election.ballotVisibility == 'public'">
           <section>
-            <div class="tab-pane" id="ballots">
-              <div class="row" *ngFor="let ballot of election.ballots; let ind = index">
+            <div class="tab-pane black-color minimum-width" id="ballots">
+              <div class="row padding-top" *ngFor="let ballot of election.ballots; let ind = index">
                 <div class="col-lg-2 col-md-2 col-sm text-center">Ballot {{ind + 1}}</div>
                 <div class="col-lg-5 col-md-5 col-sm text-left">{{ballot.voteBallot}}</div>
               </div>

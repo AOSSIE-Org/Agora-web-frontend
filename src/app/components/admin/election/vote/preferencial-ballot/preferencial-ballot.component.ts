@@ -21,10 +21,10 @@ export class PreferencialBallotComponent implements OnInit {
   ballots: Array[];
   msg = "Vote";
   isLoading = false;
-  startingTime: String[];
-  endingTime: String[];
-  localTimezoneStartingTime: String[];
-  localTimezoneEndingTime: String[];
+  startingTime: string;
+  endingTime: string;
+  localTimezoneStartingTime: string;
+  localTimezoneEndingTime: string;
   candidates: String[] = new Array();
   selected: String[] = new Array();
   constructor(private votingService: VotingService, private electionService: ElectionService, private router: Router) {

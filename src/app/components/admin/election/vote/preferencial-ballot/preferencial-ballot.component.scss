@@ -34,6 +34,10 @@
   padding-left: 25px;
 }
 
+.padding-top{
+  padding-top: 10px;
+}
+
 .ballot-visibility-type{
   text-align: left;
   padding-top: 15px;
@@ -56,6 +60,10 @@
   color: gray;
 }
 
+.minimum-width{
+  min-height: 100px;
+}
+
 #ballotsDisplay{
-  display: block;
+  display: none;
 }
