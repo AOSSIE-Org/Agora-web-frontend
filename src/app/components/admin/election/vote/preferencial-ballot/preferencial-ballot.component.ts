@@ -19,6 +19,7 @@ export class PreferencialBallotComponent implements OnInit {
 
   elections: Election[] = new Array();
   ballots: Array[];
+  revealMsg = "Show Ballots"
   msg = "Vote";
   isLoading = false;
   startingTime: string;
@@ -46,8 +47,10 @@ export class PreferencialBallotComponent implements OnInit {
     var pastBallots = document.getElementById("ballotsDisplay");
     if (pastBallots.style.display === "block") {
         pastBallots.style.display = "none";
+        this.revealMsg = "Show Ballots"
     } else {
         pastBallots.style.display = "block";
+        this.revealMsg = "Hide Ballots"
     }
   }
 

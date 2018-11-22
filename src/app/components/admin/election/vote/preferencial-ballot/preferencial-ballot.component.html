@@ -10,7 +10,7 @@
                 <p *ngIf="election.ballotVisibility == 'hidden'" class="ballot-visibility-description gray-color">This means that no one is able to view the ballots, including the creator of the election!</p>
                 <p *ngIf="election.ballotVisibility == 'visible'" class="ballot-visibility-description gray-color">This means that only the creator of the election is able to view the ballots!</p>
                 <span *ngIf="election.ballotVisibility =='public'" class="pr-20 ballot-visibility-description">
-                  <button class="btn btn-round btn-gold" (click)="revealBallots()">Ballots</button>
+                  <button class="btn btn-round btn-gold" (click)="revealBallots()">{{revealMsg}}</button>
                 </span>
               </div>
             </div>
