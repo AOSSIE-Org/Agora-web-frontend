@@ -149,8 +149,8 @@
                           <strong>Important</strong>
                         </h4>
                         <ol>
-                          <li>Start:&nbsp;&nbsp;&nbsp;{{getDisplayDate(election.start)}}</li>
-                          <li>Finish:&nbsp;&nbsp;{{getDisplayDate(election.end)}}</li>
+                          <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
+                          <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
                           <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
                         </ol>
                       </div>
@@ -160,17 +160,17 @@
                     <div class="col">
                       <div>
                         <span class="pr-20">
-                          <button (click)="edit(election._id)" mat-raised-button type="button" matTooltip="Edit" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
+                          <button (click)="edit(election._id)" mat-raised-button type="button" matTooltip="Edit" matTooltipClass='primary-tooltip' [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
                             <i class="material-icons text-gold">settings</i>
                           </button>
                         </span>
                         <span class="pr-20">
-                          <button (click)="view(election._id)" mat-raised-button type="button" matTooltip="View" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
+                          <button (click)="view(election._id)" mat-raised-button type="button" matTooltip="View" matTooltipClass='primary-tooltip' [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-md btn-just-icon">
                             <i class="material-icons text-gold">remove_red_eye</i>
                           </button>
                         </span>
                         <span>
-                          <button (click)="delete(election._id)" mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
+                          <button (click)="delete(election._id)" mat-raised-button type="button" matTooltip="Delete" matTooltipClass='primary-tooltip' [matTooltipPosition]="'above'"
                             class="btn btn-primary btn-link btn-md btn-just-icon">
                             <i class="material-icons text-gold">delete</i>
                           </button>
@@ -210,8 +210,8 @@
                           <strong>Important</strong>
                         </h4>
                         <ol>
-                          <li>Start:&nbsp;&nbsp;&nbsp;{{getDisplayDate(election.start)}}</li>
-                          <li>Finish:&nbsp;&nbsp;{{getDisplayDate(election.end)}}</li>
+                          <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
+                          <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
                           <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
                         </ol>
                       </div>
@@ -271,8 +271,8 @@
                           <strong>Important</strong>
                         </h4>
                         <ol>
-                          <li>Start:&nbsp;&nbsp;&nbsp;{{getDisplayDate(election.start)}}</li>
-                          <li>Finish:&nbsp;&nbsp;{{getDisplayDate(election.end)}}</li>
+                          <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
+                          <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
                           <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
                         </ol>
                       </div>
@@ -332,8 +332,8 @@
                           <strong>Important</strong>
                         </h4>
                         <ol>
-                          <li>Start:&nbsp;&nbsp;&nbsp;{{getDisplayDate(election.start)}}</li>
-                          <li>Finish:&nbsp;&nbsp;{{getDisplayDate(election.end)}}</li>
+                          <li>Start:&nbsp;&nbsp;&nbsp;{{election.start}}</li>
+                          <li>Finish:&nbsp;&nbsp;{{election.end}}</li>
                           <li>Status:&nbsp;&nbsp;{{getStatus(election)}}</li>
                         </ol>
                       </div>

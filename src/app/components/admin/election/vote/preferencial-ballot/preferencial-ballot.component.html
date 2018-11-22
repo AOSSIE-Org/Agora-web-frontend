@@ -2,9 +2,49 @@
     <div class="container-fluid">
       <div class="container">
         <div class="row">
-          <div class="col-12 text-center">
-            <h3>Cast your vote</h3>
-            <p class="text-gold">You can select more than one candidate in this election</p>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card card-stats">
+              <div class="card-header card-header-warning card-header-icon">
+                <h4 class="ballot-visibility-type black-color"><strong>Ballot Visibility: </strong> <span class="orange-color">{{election.ballotVisibility}}</span></h4>
+                <p *ngIf="election.ballotVisibility == 'public'" class="ballot-visibility-description gray-color">This means that everyone is able to view the ballots, including voters!</p>
+                <p *ngIf="election.ballotVisibility == 'hidden'" class="ballot-visibility-description gray-color">This means that no one is able to view the ballots, including the creator of the election!</p>
+                <p *ngIf="election.ballotVisibility == 'visible'" class="ballot-visibility-description gray-color">This means that only the creator of the election is able to view the ballots!</p>
+                <span *ngIf="election.ballotVisibility =='public'" class="pr-20 ballot-visibility-description">
+                  <button class="btn btn-round btn-gold" (click)="revealBallots()">{{revealMsg}}</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="ballotsDisplay" class="card card-stats" *ngIf="election.ballotVisibility == 'public'">
+          <section>
+            <div class="tab-pane black-color minimum-width" id="ballots">
+              <div class="row padding-top" *ngFor="let ballot of election.ballots; let ind = index">
+                <div class="col-lg-2 col-md-2 col-sm text-center">Ballot {{ind + 1}}</div>
+                <div class="col-lg-5 col-md-5 col-sm text-left">{{ballot.voteBallot}}</div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card card-stats">
+              <div class="card-header card-header-warning card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">ballot</i>
+                </div>
+                <p class="card-category"><strong>{{election.description}}</strong></p>
+                <h3 class="card-title">{{election.name}}
+                </h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons text-gold">bubble_chart</i>
+                  <a>Start: <strong>{{localTimezoneStartingTime}}</strong></a>
+                  <a class="padding-left">Ends: <strong>{{localTimezoneEndingTime}}</strong></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -21,7 +61,7 @@
                     <tr *ngFor="let candidate of candidates; let ind = index">
                       <td class="text-black">{{candidate}}</td>
                       <td class="td-actions text-right">
-                        <button mat-raised-button type="button" (click)="add(ind)" matTooltip="Add to ballot" [matTooltipPosition]="'above'" class="btn btn-gold btn-link btn-sm btn-just-icon">
+                        <button mat-raised-button type="button" (click)="add(ind)" matTooltip="Add to ballot" [matTooltipPosition]="'above'" matTooltipClass ='primary-tooltip' class="btn btn-gold btn-link btn-sm btn-just-icon">
                           <i class="material-icons">add_circle</i>
                         </button>
                       </td>
