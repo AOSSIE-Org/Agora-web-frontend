@@ -2,13 +2,13 @@
 @import url('https://fonts.googleapis.com/css?family=Cabin:400,500,700|Montserrat:400,500,700');
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: 'Cabin', sans-serif;
-    background-color: #fff;
+  font-family: 'Cabin', sans-serif;
+  background-color: #fff;
 }
 
 h1,
@@ -17,179 +17,179 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Cabin', sans-serif;
-    font-weight: 400;
-    color: #000;
-    line-height: 1.2;
+  font-family: 'Cabin', sans-serif;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.2;
 }
 
 .section_padding_100 {
-    padding-top: 100px;
-    padding-bottom: 100px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .section_padding_100_50 {
-    padding-top: 100px;
-    padding-bottom: 50px;
+  padding-top: 100px;
+  padding-bottom: 50px;
 }
 
 .section_padding_100_70 {
-    padding-top: 100px;
-    padding-bottom: 70px;
+  padding-top: 100px;
+  padding-bottom: 70px;
 }
 
 .section_padding_50 {
-    padding-top: 50px;
-    padding-bottom: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .section_padding_50_20 {
-    padding-top: 50px;
-    padding-bottom: 20px;
+  padding-top: 50px;
+  padding-bottom: 20px;
 }
 
 .section_padding_150 {
-    padding-top: 150px;
-    padding-bottom: 150px;
+  padding-top: 150px;
+  padding-bottom: 150px;
 }
 
 .section_padding_200 {
-    padding-top: 200px;
-    padding-bottom: 200px;
+  padding-top: 200px;
+  padding-bottom: 200px;
 }
 
 .section_padding_0_100 {
-    padding-top: 0;
-    padding-bottom: 100px;
+  padding-top: 0;
+  padding-bottom: 100px;
 }
 
 .section_padding_70 {
-    padding-top: 70px;
-    padding-bottom: 70px;
+  padding-top: 70px;
+  padding-bottom: 70px;
 }
 
 .section_padding_0_50 {
-    padding-top: 0;
-    padding-bottom: 50px;
+  padding-top: 0;
+  padding-bottom: 50px;
 }
 
 img {
-    max-width: 100%;
-    max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .mt-15 {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .mt-30 {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .mt-40 {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 .mt-50 {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .mt-100 {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 
 .mt-150 {
-    margin-top: 150px;
+  margin-top: 150px;
 }
 
 .mr-15 {
-    margin-right: 15px;
+  margin-right: 15px;
 }
 
 .mr-30 {
-    margin-right: 30px;
+  margin-right: 30px;
 }
 
 .mr-50 {
-    margin-right: 50px;
+  margin-right: 50px;
 }
 
 .mr-100 {
-    margin-right: 100px;
+  margin-right: 100px;
 }
 
 .mb-15 {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .mb-30 {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .mb-50 {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .mb-100 {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 .ml-15 {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 .ml-30 {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 .ml-50 {
-    margin-left: 50px;
+  margin-left: 50px;
 }
 
 .ml-100 {
-    margin-left: 100px;
+  margin-left: 100px;
 }
 
 .pl-20 {
-    padding-left: 20px
+  padding-left: 20px
 }
 
 .pl-10 {
-    padding-left: 10px
+  padding-left: 10px
 }
 
 .pl-50 {
-    padding-left: 50px
+  padding-left: 50px
 }
 
 .pr-20 {
-    padding-right: 20px
+  padding-right: 20px
 }
 
 .pr-10 {
-    padding-right: 10px
+  padding-right: 10px
 }
 
 .pr-50 {
-    padding-right: 50px
+  padding-right: 50px
 }
 
 .pb-10 {
-    padding-bottom: 10px
+  padding-bottom: 10px
 }
 
 .pb-20 {
-    padding-bottom: 20px
+  padding-bottom: 20px
 }
 
 .pb-50 {
-    padding-bottom: 50px
+  padding-bottom: 50px
 }
 
 ul,
 ol {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -197,290 +197,310 @@ a,
 a:hover,
 a:focus,
 a:active {
-    text-decoration: none !important;
-    outline:none !important;
-    -webkit-transition-duration: 500ms;
-    -o-transition-duration: 500ms;
-    transition-duration: 500ms;
+  text-decoration: none !important;
+  outline: none !important;
+  -webkit-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 p {
-    color: #222;
-    font-size: 16px;
-    font-weight: 300;
-    margin-top: 0;
+  color: #222;
+  font-size: 16px;
+  font-weight: 300;
+  margin-top: 0;
 }
 
-.heading-text > p {
-    font-size: 16px;
+.heading-text>p {
+  font-size: 16px;
 }
 
-.section-heading > h2 {
-    font-weight: 300;
-    font-size: 48px;
-    margin: 0;
+.section-heading>h2 {
+  font-weight: 300;
+  font-size: 48px;
+  margin: 0;
 }
 
 
 .section-heading {
-    margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 .line-shape-white,
 .line-shape {
-    width: 80px;
-    height: 2px;
-    background-color: #ffcd00;
-    margin-top: 15px;
+  width: 80px;
+  height: 2px;
+  background-color: #ffcd00;
+  margin-top: 15px;
 }
 
 .line-shape {
-    margin-left: calc(50% - 40px);
+  margin-left: calc(50% - 40px);
 }
 
 .table {
-    display: table;
-    height: 100%;
-    left: 0;
-    position: relative;
-    top: 0;
-    width: 100%;
-    z-index: 2;
+  display: table;
+  height: 100%;
+  left: 0;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 2;
 }
 
 .table-cell {
-    display: table-cell;
-    vertical-align: middle;
+  display: table-cell;
+  vertical-align: middle;
 }
+
 .bg-green {
-    background:linear-gradient(135deg, #49ee96, #00843D);
-    background-color:#00843D;
-    color: #ffff}
+  background: linear-gradient(135deg, #49ee96, #00843D);
+  background-color: #00843D;
+  color: #ffff
+}
 
 .gold {
-    color: #FFCD00;
+  color: #FFCD00;
 }
 
 .green {
-    color: #00843D;
+  color: #00843D;
 }
 
 .text-black {
-    color: #000 !important;
+  color: #000 !important;
 }
 
-.nav-item.gold >a:focus, .nav-item.gold >a:hover {
-    color: #fff !important;
+.nav-item.gold>a:focus,
+.nav-item.gold>a:hover {
+  color: #fff !important;
 }
 
 .dropdown-menu a.dropdown-item.gold:hover {
-    background: #FFCD00 !important;
+  background: #FFCD00 !important;
 }
 
-.navbar-toggler{
-    background: inherit !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
+.navbar-toggler {
+  background: inherit !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
 }
+
 /*
  * Credential forms 
  */
 
- .form-clean, .form-election {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-  
-  .form-clean{
-    max-width:320px;
-    width:90%;
-    margin:0 auto;
-    background-color:#ffffff;
-    padding:20px;
-    border-radius:4px;
-    color:#505e6c;
-    box-shadow:1px 1px 5px rgba(0,0,0,0.1);
-  }
-  .form-election {
-    max-width:460px;
-    width:90%;
-    margin:0 auto;
-    background-color:#ffffff;
-    padding:20px;
-    border-radius:4px;
-    color:#505e6c;
-    box-shadow:1px 1px 5px rgba(0,0,0,0.1);
-  }
-  .form-clean .logo, .form-election .logo{
-    text-align:center;
-    padding:0 0 20px;
-  }
-
-  .form-clean .logo img, .form-election .logo img {
-      height: 100px;
-      width: 100px;
-  }
-  
-  .form-clean form .form-control, .form-election form .form-control {
-    background:#f7f9fc;
-    border:none;
-    border-bottom:1px solid #dfe7f1;
-    border-radius:0;
-    box-shadow:none;
-    outline:none;
-    color:inherit;
-    text-indent:8px;
-    height:42px;
-  }
-  
-  .form-clean form .btn-primary, .form-clean form .btn-primary:hover, .form-clean form .btn-primary:active {
-    background:#FFCD00 !important;
-    border-color: #FFCD00 !important;
-    color: #00843D !important;
-    padding:10px;
-    box-shadow:none;
-    margin-top:26px;
-    text-shadow:none;
-    outline:none !important;
-  }
-
-  .form-clean form .btn-primary .fa{
-    margin-left: -80px;
-    margin-right: 70px;
-    margin-top: 2px;
-    color: #f7f9fc;
-    font-size: 20px; /* Set a font-size */
-  }
-
-  .btn-facebook {
-    background-color: #3B5998 !important;
+.form-clean,
+.form-election {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.btn-facebook>.fa{
-    margin-left: -10px;
-    margin-right: 20px;
-    margin-top: 2px;
-    color: #f7f9fc;
+.form-clean {
+  max-width: 320px;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 4px;
+  color: #505e6c;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
-  
-  .form-clean form .btn-primary:active {
-    transform:translateY(1px);
-  }
 
-  .form-clean form .btn-primary:disabled, .form-clean form .btn-primary[disabled] {
-    cursor: not-allowed;
-  }
-  
-  .form-clean .forgot, .form-clean .have-account, .form-clean .social-container{
-    display:block;
-    text-align:center;
-    font-size:12px;
-    color:#222;
-    text-decoration:none;
-  }
+.form-election {
+  max-width: 460px;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 4px;
+  color: #505e6c;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
 
-  .form-clean .forgot:hover, .form-clean .forgot:active {
-    opacity:1;
-    color:#FFCD00;
-    text-decoration:none;
-  }
+.form-clean .logo,
+.form-election .logo {
+  text-align: center;
+  padding: 0 0 20px;
+}
 
-  .form-clean .forgot, .form-clean .have-account > a{
-    opacity:1;
-    color:#00843D;
-    text-decoration:none;
-  }
+.form-clean .logo img,
+.form-election .logo img {
+  height: 100px;
+  width: 100px;
+}
 
-  .form-clean .have-account > a:hover {
-    color:#FFCD00;
-  }
+.form-clean form .form-control,
+.form-election form .form-control {
+  background: #f7f9fc;
+  border: none;
+  border-bottom: 1px solid #dfe7f1;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+  text-indent: 8px;
+  height: 42px;
+}
 
-  .form-clean .error{
-    opacity:1;
-    color:red;
-    text-align: center;
-    text-decoration:none;
-  }
+.form-clean form .btn-primary,
+.form-clean form .btn-primary:hover,
+.form-clean form .btn-primary:active {
+  background: #FFCD00 !important;
+  border-color: #FFCD00 !important;
+  color: #00843D !important;
+  padding: 10px;
+  box-shadow: none;
+  margin-top: 26px;
+  text-shadow: none;
+  outline: none !important;
+}
 
-  .form-clean .success, .form-clean .error-activate-account, .form-clean .msg-activate-account {
-    opacity:1;
-    text-align: center;
-    text-decoration:none;
-  }
+.form-clean form .btn-primary .fa {
+  margin-left: -80px;
+  margin-right: 70px;
+  margin-top: 2px;
+  color: #f7f9fc;
+  font-size: 20px;
+  /* Set a font-size */
+}
 
-  .form-clean .success {
-    color:green;
-  }
+.btn-facebook {
+  background-color: #3B5998 !important;
+}
 
-  .form-clean .error-activate-account {
-    color:red;
-  }
+.btn-facebook>.fa {
+  margin-left: -10px;
+  margin-right: 20px;
+  margin-top: 2px;
+  color: #f7f9fc;
+}
 
-  /* Green header */
-  .header-green {
-    background:linear-gradient(135deg, #49ee96, #00843D);
-    background-color:#00843D;
-    color: #ffff
-  }
+.form-clean form .btn-primary:active {
+  transform: translateY(1px);
+}
 
-  /* User section styles go here */
+.form-clean form .btn-primary:disabled,
+.form-clean form .btn-primary[disabled] {
+  cursor: not-allowed;
+}
 
-   /* Custom radio button to enable data binding */
- .radio-label {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    color: black;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  .radio-label input {
-    position: absolute;
-    opacity: 0;
-  }
-  
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border-radius: 50%;
-  }
-  
-  .radio-label:hover input ~ .checkmark {
-    background-color: #ccc;
-  }
-  
-  .radio-label input:checked ~ .checkmark {
-    background-color: #FFCD00;
-  }
-  
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  .radio-label input:checked ~ .checkmark:after {
-    display: block;
-  }
-  
-  .radio-label .checkmark:after {
-    top: 9px;
-    left: 9px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: white;
-  } 
+.form-clean .forgot,
+.form-clean .have-account,
+.form-clean .social-container {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #222;
+  text-decoration: none;
+}
+
+.form-clean .forgot:hover,
+.form-clean .forgot:active {
+  opacity: 1;
+  color: #FFCD00;
+  text-decoration: none;
+}
+
+.form-clean .forgot,
+.form-clean .have-account>a {
+  opacity: 1;
+  color: #00843D;
+  text-decoration: none;
+}
+
+.form-clean .have-account>a:hover {
+  color: #FFCD00;
+}
+
+.form-clean .error {
+  opacity: 1;
+  color: red;
+  text-align: center;
+  text-decoration: none;
+}
+
+.form-clean .success,
+.form-clean .error-activate-account,
+.form-clean .msg-activate-account {
+  opacity: 1;
+  text-align: center;
+  text-decoration: none;
+}
+
+.form-clean .success {
+  color: green;
+}
+
+.form-clean .error-activate-account {
+  color: red;
+}
+
+/* Green header */
+.header-green {
+  background: linear-gradient(135deg, #49ee96, #00843D);
+  background-color: #00843D;
+  color: #ffff
+}
+
+/* User section styles go here */
+
+/* Custom radio button to enable data binding */
+.radio-label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  color: black;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.radio-label input {
+  position: absolute;
+  opacity: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.radio-label:hover input~.checkmark {
+  background-color: #ccc;
+}
+
+.radio-label input:checked~.checkmark {
+  background-color: #FFCD00;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio-label input:checked~.checkmark:after {
+  display: block;
+}
+
+.radio-label .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}

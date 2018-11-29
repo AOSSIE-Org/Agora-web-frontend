@@ -1,0 +1,14 @@
+.about-page {
+  color: #000;
+
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.about-page p {
+  font-size: 1.25em;
+}
+
+.about-page a {
+  font-weight: 400;
+}
