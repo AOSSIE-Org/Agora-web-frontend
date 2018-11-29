@@ -16,11 +16,11 @@ export class ElectionData implements Deserializable {
     isRealTime: boolean;
     votingAlgo: string;
     noVacancies: number = 0;
-    ballots: Ballot[] = new Array();
+    ballot: Ballot[] = new Array();
 
     deserialize(input: any): this {
         Object.assign(this, input);
-        this.ballots = input.ballot.map((ballot: Ballot) => new Ballot().deserialize(ballot));
+        this.ballot = input.ballot.map((ballot: Ballot) => new Ballot().deserialize(ballot));
         return this;
     }
 }
