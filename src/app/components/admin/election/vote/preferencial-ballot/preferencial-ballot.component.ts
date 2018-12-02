@@ -15,8 +15,7 @@ declare var $: any;
   styleUrls: ["./preferencial-ballot.component.scss"],
 })
 export class PreferencialBallotComponent implements OnInit {
-  elections: Election[] = new Array();
-  ballots: Array[];
+  election: ElectionData = new ElectionData()
   revealMsg = "Show Ballots";
   msg = "Vote";
   isLoading = false;
@@ -42,8 +41,7 @@ export class PreferencialBallotComponent implements OnInit {
       ).toLocaleString();
       this.endingTime = votingService.getData().endingDate;
       this.localTimezoneEndingTime = new Date(this.endingTime).toLocaleString();
-      this.ballots = votingService.getData().ballots;
-      this.elections = votingService.getData();
+      this.election = votingService.getData();
     }
   }
 
@@ -146,7 +144,7 @@ export class PreferencialBallotComponent implements OnInit {
   cancel() {
     this.showNotification(
       "danger",
-      "You did not submit your vote. Remeber your voting links expires when the election ends",
+      "You did not submit your vote. Remember your voting links expires when the election ends",
     );
     this.router.navigate(["/home"]);
   }
