@@ -504,3 +504,24 @@ p {
   border-radius: 50%;
   background: white;
 }
+
+@media all and (max-width : 600px){
+  .btn-facebook span{
+    font-size: 0.65rem;
+  }
+  .text-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media all and (max-width : 1300px) and (min-width : 950px){
+  .btn-facebook span{
+    font-size: 0.60rem;
+  }
+  .text-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
