@@ -515,13 +515,3 @@ p {
     justify-content: center;
   }
 }
-@media all and (max-width : 1300px) and (min-width : 950px){
-  .btn-facebook span{
-    font-size: 0.60rem;
-  }
-  .text-center{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
