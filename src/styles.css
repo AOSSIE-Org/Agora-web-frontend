@@ -509,9 +509,4 @@ p {
   .btn-facebook span{
     font-size: 0.65rem;
   }
-  .text-center{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 }
