@@ -88,6 +88,10 @@
                         <div class="col-lg-2 col-md-2 col-sm text-center">{{ind + 1}}</div>
                         <div class="col-lg-5 col-md-5 col-sm text-left">{{voter.name}}</div>
                         <div class="col-lg-5 col-md-5 col-sm text-left">{{voter.email}}</div>
+                      </div>
+                    </tr>
+                    <tr>
+                      <div class="row">
                         <div class="col-12 text-center">
                           <button [disabled]="isFinished()" class="btn btn-round btn-gold" (click)="addVoters()">Add voters</button>
                         </div>
