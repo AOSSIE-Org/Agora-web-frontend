@@ -98,6 +98,9 @@ export class DashboardComponent implements OnInit {
 
   doStats(data: Election[]) {
     let now = new Date();
+    this.activeElections = new Array();
+    this.pendingElections = new Array();
+    this.finishedElections = new Array();
     data.filter(data => {
       let status = this.getStatus(data)
       if (status === "Active")
