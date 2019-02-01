@@ -4,9 +4,7 @@
 
 _Frontend for Agora Web that uses [Agora](https://gitlab.com/aossie/Agora/): An Electronic Voting Library implemented in Scala. This application uses [Agora Web API](https://gitlab.com/aossie/Agora-Web) as backend application_
 
-
 This project is created using the [Angular 6](https://angular.io/) web framework.
-
 
 To run the development environment for this frontend, you need [Git](https://git-scm.com/) and [Node.js](https://nodejs.org/en/) installed.
 
@@ -22,11 +20,9 @@ To run the development environment for this frontend, you need [Git](https://git
     - [Troubleshooting your local environment](#troubleshooting-your-local-environment)
     - [Further Reading / Useful Links](#further-reading--useful-links)
 
-
 ## Installation
 
 Make sure you have the [Angular CLI](https://github.com/angular/angular-cli#installation) installed globally. We use [NPM](https://www.npmjs.com/get-npm) to manage the dependencies, so we strongly recommend you to use it. you can install it from [Here](https://www.npmjs.com/get-npm), then run `npm install` to resolve all dependencies (might take a minute).
-
 
 ## Running the application
 To use Facebook login you will need to change the following in app.module.ts
@@ -53,8 +49,7 @@ Always `git pull` and get the latest from master. [Google](https://www.google.co
 
 ## Further Reading / Useful Links
 
-
 * [Node.js](https://nodejs.org/en/) - Provides the package manager used in this project
-* [Agular CLI](https://cli.angular.io/) - Command line tool required to work with application
+* [Angular CLI](https://cli.angular.io/) - Command line tool required to work with application
 * [Angular 6](https://angular.io/) - The web framework used to build this project
 * [Bootstrap](https://getbootstrap.com/) - HTML and CSS frontend framework
