@@ -1,6 +1,6 @@
-import { Deserializable } from "./deserializable.model";
+import { Deserializable } from './deserializable.model';
 
-export class PasswordData implements Deserializable{
+export class PasswordData implements Deserializable {
     password: string;
 
     deserialize(input: any): this {

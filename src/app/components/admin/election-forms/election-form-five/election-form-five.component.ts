@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
+
 import { ElectionDataService } from '../../../../services/election-data.service';
 import { ElectionFormFive } from '../../../../model/election/election-form-five.model';
 import { ElectionService } from '../../../../services/election.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import Swal from 'sweetalert2'
 
 declare var $: any;
 
@@ -16,15 +17,21 @@ declare var $: any;
 export class ElectionFormFiveComponent implements OnInit {
   form5 = new ElectionFormFive();
   isLoading = false;
-  buttonStatus = "Finish";
-  constructor(private router: Router, private route: ActivatedRoute, private electionDataService: ElectionDataService, private electionService: ElectionService) {
-    let origin = this.electionDataService.getOrigin();
-    if (origin && "valid" === origin) {
-      console.log(this.form5)
+  buttonStatus = 'Finish';
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private electionDataService: ElectionDataService,
+    private electionService: ElectionService
+  ) {
+    const origin = this.electionDataService.getOrigin();
+    if (origin && 'valid' === origin) {
+      console.log(this.form5);
       this.form5 = this.electionDataService.getForm5();
       console.log(this.form5);
-    } else
-      this.router.navigate(["dashboard"]);
+    } else {
+      this.router.navigate(['dashboard']);
+    }
   }
 
   ngOnInit() {
@@ -32,14 +39,14 @@ export class ElectionFormFiveComponent implements OnInit {
 
   finish() {
     this.isLoading = true;
-    this.buttonStatus = "Loading";
+    this.buttonStatus = 'Loading';
     this.electionDataService.setForm5(this.form5);
-    if (this.electionDataService.getStatus() === "edit" && this.electionDataService.getId()) {
+    if (this.electionDataService.getStatus() === 'edit' && this.electionDataService.getId()) {
       this.electionService.update(this.electionDataService.getId(), this.electionDataService.buildElectionData()).subscribe((data: any) => {
         this.electionDataService.purge();
         Swal({
           title: 'Done',
-          text: "Your election was successfully updated",
+          text: 'Your election was successfully updated',
           type: 'success',
           confirmButtonColor: '#FFCD00',
           showCancelButton: true,
@@ -47,66 +54,66 @@ export class ElectionFormFiveComponent implements OnInit {
           cancelButtonText: 'Dashboard'
         }).then((result) => {
           if (result.value) {
-            this.router.navigate(["election/" + this.electionDataService.getId() + "/voters"])
+            this.router.navigate(['election/' + this.electionDataService.getId() + '/voters']);
           } else {
-            this.router.navigate(["dashboard"])
+            this.router.navigate(['dashboard']);
           }
-        })
+        });
       },
         (err: HttpErrorResponse) => {
-          if (err.status == 200) {
+          if (err.status === 200) {
             this.electionDataService.purge();
             Swal({
               title: 'Done',
-              text: "Your election was successfully updated",
+              text: 'Your election was successfully updated',
               type: 'success',
               confirmButtonColor: '#FFCD00',
               showCancelButton: true,
               confirmButtonText: 'Add Voters',
               cancelButtonText: 'Dashboard'
             }).then((result) => {
-              this.electionDataService.purge()
+              this.electionDataService.purge();
               if (result.value) {
-                this.router.navigate(["election/" + this.electionDataService.getId() + "/voters"])
+                this.router.navigate(['election/' + this.electionDataService.getId() + '/voters']);
               } else {
-                this.router.navigate(["dashboard"])
+                this.router.navigate(['dashboard']);
               }
-            })
+            });
           } else {
-            this.showNotification('danger', "Unable to update election! Please try again")
+            this.showNotification('danger', 'Unable to update election! Please try again');
           }
-        })
-    } else if (this.electionDataService.getStatus() === "create") {
+        });
+    } else if (this.electionDataService.getStatus() === 'create') {
       this.electionService.create(this.electionDataService.buildElectionData()).subscribe((data: any) => {
-        this.showNotification('success', "Your new election has successfully been created")
-        this.electionDataService.purge()
-        this.router.navigate(["dashboard"]);
+        this.showNotification('success', 'Your new election has successfully been created');
+        this.electionDataService.purge();
+        this.router.navigate(['dashboard']);
       }
         , (err: HttpErrorResponse) => {
-          if (err.status == 200) {
-            this.showNotification('success', "Your new election has successfully been created")
-            this.electionDataService.purge()
-            this.router.navigate(["dashboard"]);
+          if (err.status === 200) {
+            this.showNotification('success', 'Your new election has successfully been created');
+            this.electionDataService.purge();
+            this.router.navigate(['dashboard']);
           } else {
             this.isLoading = false;
-            this.buttonStatus = "Finish";
-            this.showNotification('danger', "Unable to create election! Please try again")
+            this.buttonStatus = 'Finish';
+            this.showNotification('danger', 'Unable to create election! Please try again');
           }
-        })
+        });
     } else {
-      this.showNotification('danger', "Something went wrong")
-      this.electionDataService.purge()
-      this.router.navigate(["dashboard"]);
+      this.showNotification('danger', 'Something went wrong');
+      this.electionDataService.purge();
+      this.router.navigate(['dashboard']);
     }
   }
 
   isValid() {
-    //Todo validate form
+    // Todo validate form
   }
 
   showNotification(notifType: string, message: string) {
     $.notify({
-      icon: notifType === 'success' ? "done" : "notifications",
+      icon: notifType === 'success' ? 'done' : 'notifications',
       message: message
 
     }, {
@@ -130,10 +137,10 @@ export class ElectionFormFiveComponent implements OnInit {
   }
 
   previous() {
-    this.router.navigate(["../form4"], { relativeTo: this.route, skipLocationChange: true });
+    this.router.navigate(['../form4'], { relativeTo: this.route, skipLocationChange: true });
   }
 
   valid() {
-    this.form5.ballotVisibility
+    this.form5.ballotVisibility;
   }
 }

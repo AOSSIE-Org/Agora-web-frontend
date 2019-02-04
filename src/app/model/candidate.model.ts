@@ -1,4 +1,4 @@
-import { Deserializable } from "./deserializable.model";
+import { Deserializable } from './deserializable.model';
 
 export class Candidate implements Deserializable {
     name: string;

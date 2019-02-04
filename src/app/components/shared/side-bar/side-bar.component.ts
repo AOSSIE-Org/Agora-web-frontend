@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { take, map } from 'rxjs/operators';
-import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
+
+import { UserService } from '../../../services/user.service';
 
 declare const $: any;
 
@@ -26,11 +27,11 @@ export class SideBarComponent implements OnInit {
       return false;
     }
     return true;
-  };
+  }
 
   logout() {
     this.userService.logout().subscribe((data: any) => {
-      this.router.navigate(["home"])
-    })
+      this.router.navigate(['home']);
+    });
   }
 }

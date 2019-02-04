@@ -9,7 +9,9 @@ export class VotingService {
   private voterID: string;
   private voterCode: string;
   private originSource: string;
-  private electionData: ElectionData = new ElectionData()
+  private electionData: ElectionData = new ElectionData();
+
+  constructor() { }
 
   setOrigin(origin: string) {
     this.originSource = origin;
@@ -20,33 +22,32 @@ export class VotingService {
   }
 
   setVoterID(id: string) {
-    this.voterID = id
+    this.voterID = id;
   }
 
   getVoterID() {
-    return this.voterID
+    return this.voterID;
   }
 
   setVoterCode(code: string) {
-    this.voterCode = code
+    this.voterCode = code;
   }
 
   getVoterCode() {
-    return this.voterCode
+    return this.voterCode;
   }
 
   setData(data: ElectionData) {
-    this.electionData = data
+    this.electionData = data;
   }
 
   getData() {
-    return this.electionData
+    return this.electionData;
   }
 
   purge() {
-    this.setOrigin("")
-    this.electionData = null
+    this.setOrigin('');
+    this.electionData = null;
   }
 
-  constructor() { }
 }

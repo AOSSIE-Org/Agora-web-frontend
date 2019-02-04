@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+
 import { UserService } from '../../../services/user.service';
 
 declare const $: any;
@@ -18,7 +19,12 @@ export class HeaderComponent implements OnInit {
     private sidebarVisible: boolean;
     isUserSignedIn: boolean;
 
-    constructor(location: Location, private element: ElementRef, private router: Router, private userService: UserService) {
+    constructor(
+        location: Location,
+        private element: ElementRef,
+        private router: Router,
+        private userService: UserService
+    ) {
         this.userService.isAuthenticated.subscribe(auth => this.isUserSignedIn = auth);
         this.location = location;
         this.sidebarVisible = false;
@@ -29,7 +35,7 @@ export class HeaderComponent implements OnInit {
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
         this.router.events.subscribe((event) => {
             this.sidebarClose();
-            var $layer: any = document.getElementsByClassName('close-layer')[0];
+            const $layer: any = document.getElementsByClassName('close-layer')[0];
             if ($layer) {
                 $layer.remove();
                 this.mobile_menu_visible = 0;
@@ -47,17 +53,19 @@ export class HeaderComponent implements OnInit {
         body.classList.add('nav-open');
 
         this.sidebarVisible = true;
-    };
+    }
+
     sidebarClose() {
         const body = document.getElementsByTagName('body')[0];
         this.toggleButton.classList.remove('toggled');
         this.sidebarVisible = false;
         body.classList.remove('nav-open');
-    };
+    }
+
     sidebarToggle() {
         // const toggleButton = this.toggleButton;
         // const body = document.getElementsByTagName('body')[0];
-        var $toggle = document.getElementsByClassName('navbar-toggler')[0];
+        const $toggle = document.getElementsByClassName('navbar-toggler')[0];
 
         if (this.sidebarVisible === false) {
             this.sidebarOpen();
@@ -66,12 +74,15 @@ export class HeaderComponent implements OnInit {
         }
         const body = document.getElementsByTagName('body')[0];
 
-        if (this.mobile_menu_visible == 1) {
+        const $layer = document.createElement('div');
+        if (this.mobile_menu_visible === 1) {
             // $('html').removeClass('nav-open');
             body.classList.remove('nav-open');
+
             if ($layer) {
                 $layer.remove();
             }
+
             setTimeout(function () {
                 $toggle.classList.remove('toggled');
             }, 400);
@@ -82,7 +93,6 @@ export class HeaderComponent implements OnInit {
                 $toggle.classList.add('toggled');
             }, 430);
 
-            var $layer = document.createElement('div');
             $layer.setAttribute('class', 'close-layer');
 
 
@@ -96,7 +106,7 @@ export class HeaderComponent implements OnInit {
                 $layer.classList.add('visible');
             }, 100);
 
-            $layer.onclick = function () { //asign a function
+            $layer.onclick = function () { // asign a function
                 body.classList.remove('nav-open');
                 this.mobile_menu_visible = 0;
                 $layer.classList.remove('visible');
@@ -110,16 +120,16 @@ export class HeaderComponent implements OnInit {
             this.mobile_menu_visible = 1;
 
         }
-    };
+    }
 
     getTitle() {
-        var titlee = this.location.prepareExternalUrl(this.location.path());
+        let titlee = this.location.prepareExternalUrl(this.location.path());
         if (titlee.charAt(0) === '#') {
             titlee = titlee.slice(2);
         }
         titlee = titlee.split('/').pop();
 
-        for (var item = 0; item < this.listTitles.length; item++) {
+        for (let item = 0; item < this.listTitles.length; item++) {
             if (this.listTitles[item].path === titlee) {
                 return this.listTitles[item].title;
             }
@@ -132,11 +142,11 @@ export class HeaderComponent implements OnInit {
             return false;
         }
         return true;
-    };
+    }
 
     logout() {
         this.userService.logout().subscribe((data: any) => {
-          this.router.navigate(["home"])
-        })
+          this.router.navigate(['home']);
+        });
       }
 }

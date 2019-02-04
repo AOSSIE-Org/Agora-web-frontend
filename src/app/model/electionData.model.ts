@@ -1,8 +1,8 @@
-import { Deserializable } from "./deserializable.model";
-import { Ballot, BallotType } from './ballot.model';
+import { Deserializable } from './deserializable.model';
+import { Ballot } from './ballot.model';
 
 
-//Model used to collect data when creating and editing elections
+// Model used to collect data when creating and editing elections
 export class ElectionData implements Deserializable {
 
     name: string;
@@ -15,7 +15,7 @@ export class ElectionData implements Deserializable {
     isInvite: boolean;
     isRealTime: boolean;
     votingAlgo: string;
-    noVacancies: number = 0;
+    noVacancies = 0;
     ballot: Ballot[] = new Array();
 
     deserialize(input: any): this {

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Subject, ReplaySubject, BehaviorSubject } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
+
 import { ElectionFormOne } from '../model/election/election-form-one.model';
 import { ElectionFormTwo } from '../model/election/election-form-two.model';
 import { ElectionFormThree } from '../model/election/election-form-three.model';
 import { ElectionFormFour } from '../model/election/election-form-four.model';
 import { ElectionFormFive } from '../model/election/election-form-five.model';
-import { Subject, ReplaySubject, BehaviorSubject } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
 import { ElectionData } from '../model/electionData.model';
 import { Ballot } from '../model/ballot.model';
 import { Election } from '../model/election.model';
@@ -15,7 +16,7 @@ import { Election } from '../model/election.model';
 })
 export class ElectionDataService {
 
-  private isValidElectionData = new ReplaySubject<boolean>(1)
+  private isValidElectionData = new ReplaySubject<boolean>(1);
   private originSource: string;
   private statusSource: string;
 
@@ -101,21 +102,21 @@ export class ElectionDataService {
   }
 
   buildElectionData() {
-    let f1 = this.getForm1();
-    let f2 = this.getForm2();
-    let f3 = this.getForm3();
-    let f4 = this.getForm4();
-    let f5 = this.getForm5();
+    const f1 = this.getForm1();
+    const f2 = this.getForm2();
+    const f3 = this.getForm3();
+    const f4 = this.getForm4();
+    const f5 = this.getForm5();
 
-    let election = new ElectionData();
+    const election = new ElectionData();
     election.name = f1.name;
     election.description = f1.description;
-    election.startingDate = this.getDate(new Date(f2.startDate.toISOString()))
-    election.endingDate = this.getDate(new Date(f2.endDate.toISOString()))
+    election.startingDate = this.getDate(new Date(f2.startDate.toISOString()));
+    election.endingDate = this.getDate(new Date(f2.endDate.toISOString()));
     election.candidates = f3.candidates;
     election.votingAlgo = f4.votingAlgo;
     election.ballotVisibility = f5.ballotVisibility;
-    election.voterListVisibility = f5.voterListVisibility === "true" ? true : false;
+    election.voterListVisibility = f5.voterListVisibility === 'true' ? true : false;
     election.isInvite = f5.isVoterInvite;
     election.isRealTime = f5.isRealtimeResult;
     return election;
@@ -124,32 +125,32 @@ export class ElectionDataService {
 
   buildElectionFormsData(election: Election) {
     // construct form1
-    let form1 = new ElectionFormOne();
+    const form1 = new ElectionFormOne();
     form1.name = election.name;
     form1.description = election.description;
 
     // construct form2
-    let form2 = new ElectionFormTwo();
+    const form2 = new ElectionFormTwo();
     form2.endDate = new Date(election.end);
     form2.startDate = new Date(election.start);
 
     // construct form3
-    let form3 = new ElectionFormThree();
+    const form3 = new ElectionFormThree();
     form3.candidates = election.candidates;
 
     // construct form4
-    let form4 = new ElectionFormFour();
+    const form4 = new ElectionFormFour();
     form4.votingAlgo = election.votingAlgo;
 
     // construct form5
-    let form5 = new ElectionFormFive();
+    const form5 = new ElectionFormFive();
     form5.ballotVisibility = election.ballotVisibility;
-    form5.voterListVisibility = (election.voterListVisibility == true ? "true" : "false");
+    form5.voterListVisibility = (election.voterListVisibility === true ? 'true' : 'false');
     form5.isVoterInvite = election.isInvite;
     form5.isRealtimeResult = election.realtimeResult;
 
     // set the values
-    this.setId(election._id)
+    this.setId(election._id);
     this.setForm1(form1);
     this.setForm2(form2);
     this.setForm3(form3);
@@ -161,19 +162,19 @@ export class ElectionDataService {
   constructor() { }
 
   getDate(d: Date) {
-    //Fist convert the date time to GMT 0
-    let date = new Date(d.valueOf() + d.getTimezoneOffset() * 60000)
-    let year = date.getFullYear(),
+    // Fist convert the date time to GMT 0
+    const date = new Date(d.valueOf() + d.getTimezoneOffset() * 60000);
+    const year = date.getFullYear(),
       month = (date.getMonth() + 1).toString(),
-      formatedMonth = (month.length === 1) ? ("0" + month) : month,
+      formatedMonth = (month.length === 1) ? ('0' + month) : month,
       day = date.getDate().toString(),
-      formatedDay = (day.length === 1) ? ("0" + day) : day,
+      formatedDay = (day.length === 1) ? ('0' + day) : day,
       hour = date.getHours().toString(),
-      formatedHour = (hour.length === 1) ? ("0" + hour) : hour,
+      formatedHour = (hour.length === 1) ? ('0' + hour) : hour,
       minute = date.getMinutes().toString(),
-      formatedMinute = (minute.length === 1) ? ("0" + minute) : minute,
+      formatedMinute = (minute.length === 1) ? ('0' + minute) : minute,
       second = date.getSeconds().toString(),
-      formatedSecond = (second.length === 1) ? ("0" + second) : second;
-    return year + "-" + formatedMonth + "-" + formatedDay + "T" + formatedHour + ':' + formatedMinute + ':' + formatedSecond+"Z";
+      formatedSecond = (second.length === 1) ? ('0' + second) : second;
+    return year + '-' + formatedMonth + '-' + formatedDay + 'T' + formatedHour + ':' + formatedMinute + ':' + formatedSecond + 'Z';
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { JwtService } from '../../services/jwt.service';
 import { Router } from '@angular/router';
+
+import { JwtService } from '../../services/jwt.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,8 +14,9 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.jwt.getToken())
-      this.router.navigate(['/dashboard'])
+    if (this.jwt.getToken()) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
 }

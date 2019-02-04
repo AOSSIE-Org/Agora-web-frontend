@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../model/user.model';
-import { HttpErrorResponse } from '@angular/common/http';
 import { PasswordData } from '../../../model/password.model';
 import { AgoraSocialUserService } from '../../../services/agora-social-user.service';
-
 
 declare var $: any;
 
@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
   }
 
   isSocialUser() {
-    if (this.agoraSocialUserService.getIsSocialUser() == 'true') {
+    if (this.agoraSocialUserService.getIsSocialUser() === 'true') {
       return true;
     } else {
       return false;
@@ -34,31 +34,33 @@ export class ProfileComponent implements OnInit {
 
   updateProfile() {
     this.userService.updateUser(this.user).subscribe((data: any) => {
-      this.showNotification("success", "Your profile was successfully updated")
+      this.showNotification('success', 'Your profile was successfully updated');
     },
       (err: HttpErrorResponse) => {
-        if (err.status == 200)
-          this.showNotification("success", "Your profile was successfully updated")
-        else
-          this.showNotification("danger", "Unable to update profile. Please try again")
-      })
+        if (err.status === 200) {
+          this.showNotification('success', 'Your profile was successfully updated');
+        } else {
+          this.showNotification('danger', 'Unable to update profile. Please try again');
+        }
+      });
   }
 
   changePassword() {
     this.userService.changePassword(this.newPassword).subscribe((data: any) => {
-      this.showNotification("success", "Your password was successfully updated")
+      this.showNotification('success', 'Your password was successfully updated');
     },
       (err: HttpErrorResponse) => {
-        if (err.status == 200)
-          this.showNotification("success", "Your password was successfully updated")
-        else
-          this.showNotification("danger", "Unable to update password. Please try again")
-      })
+        if (err.status === 200) {
+          this.showNotification('success', 'Your password was successfully updated');
+        } else {
+          this.showNotification('danger', 'Unable to update password. Please try again');
+        }
+      });
   }
 
   showNotification(notifType: string, message: string) {
     $.notify({
-      icon: notifType === 'success' ? "done" : "notifications",
+      icon: notifType === 'success' ? 'done' : 'notifications',
       message: message
 
     }, {

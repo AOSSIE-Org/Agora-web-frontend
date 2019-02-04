@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AuthService, SocialUser } from "angularx-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider } from "angularx-social-login";
-import { UserService } from '../../../services/user.service';
-import { AgoraSocialUserService } from '../../../services/agora-social-user.service';
+import { AuthService, SocialUser } from 'angularx-social-login';
+import { FacebookLoginProvider } from 'angularx-social-login';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+
+import { UserService } from '../../../services/user.service';
+import { AgoraSocialUserService } from '../../../services/agora-social-user.service';
 
 declare var $: any;
 
@@ -14,11 +15,17 @@ declare var $: any;
   styleUrls: ['./social-login.component.css']
 })
 export class SocialLoginComponent implements OnInit {
-  @Input() disabled : boolean;
-  @Output() isCurrentlyLoading : EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() disabled: boolean;
+  @Output() isCurrentlyLoading: EventEmitter<boolean> = new EventEmitter<boolean>();
   private user: SocialUser;
-  isLoading: boolean = false;
-  constructor(private authService: AuthService, private userService: UserService, private router: Router, private agoraSocialUserService: AgoraSocialUserService) { }
+  isLoading = false;
+
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private router: Router,
+    private agoraSocialUserService: AgoraSocialUserService
+  ) { }
 
   ngOnInit() { }
 
@@ -31,38 +38,38 @@ export class SocialLoginComponent implements OnInit {
   }
 
   authProcessSuccess = (socialUser: SocialUser) => {
-    let token = socialUser.authToken;
+    const token = socialUser.authToken;
     console.log(socialUser);
     this.userService.socialLogin(socialUser.provider.toLowerCase(), token).subscribe((data: any) => {
       this.userService.getUser().subscribe((data: any) => {
-        this.agoraSocialUserService.saveIsSocialUser("true");
+        this.agoraSocialUserService.saveIsSocialUser('true');
         this.router.navigate(['/dashboard']);
       },
-        (err: HttpErrorResponse) => {
-          this.isLoading = false;
-          this.isCurrentlyLoading.emit(false);
-          this.showNotification("danger", "Facebook login failed. Please try again later")
-          this.userService.purgeAuth();
-        });
+      (err: HttpErrorResponse) => {
+        this.isLoading = false;
+        this.isCurrentlyLoading.emit(false);
+        this.showNotification('danger', 'Facebook login failed. Please try again later');
+        this.userService.purgeAuth();
+      });
     },
       (err: HttpErrorResponse) => {
         this.isLoading = false;
         this.isCurrentlyLoading.emit(false);
-        this.showNotification("danger", "Facebook login failed. Please try again later")
+        this.showNotification('danger', 'Facebook login failed. Please try again later');
         this.userService.purgeAuth();
-      })
+      });
   }
 
   authProcessError = (reason: any) => {
     this.isLoading = false;
     this.isCurrentlyLoading.emit(false);
-    this.showNotification("danger", "Facebook login failed. Please try again later")
+    this.showNotification('danger', 'Facebook login failed. Please try again later');
     this.userService.purgeAuth();
   }
 
   showNotification(notifType, message) {
     $.notify({
-      icon: notifType === 'success' ? "done" : "notifications",
+      icon: notifType === 'success' ? 'done' : 'notifications',
       message: message
 
     }, {
