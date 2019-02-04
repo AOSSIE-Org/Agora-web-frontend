@@ -1,6 +1,6 @@
 export class ElectionFormThree {
     candidates: Array<string>;
-    constructor(){
+    constructor() {
         this.candidates = new Array<string>();
     }
 

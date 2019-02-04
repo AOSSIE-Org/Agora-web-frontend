@@ -1,9 +1,9 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
-
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import {
   MatButtonModule,
   MatInputModule,
@@ -12,9 +12,9 @@ import {
   MatCheckboxModule,
   MatSliderModule
 } from '@angular/material';
+
 import { AdminLayoutRoutes, routingComponents } from './admin-layout.routing';
 import { SharedModule } from '../../components/shared/shared.module';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { DragulaModule } from '../../../../node_modules/ng2-dragula';
 
 @NgModule({
@@ -29,7 +29,7 @@ import { DragulaModule } from '../../../../node_modules/ng2-dragula';
     MatTooltipModule,
     MatCheckboxModule,
     MatSliderModule,
-    OwlDateTimeModule, 
+    OwlDateTimeModule,
     OwlNativeDateTimeModule,
     SweetAlert2Module,
     DragulaModule

@@ -1,9 +1,9 @@
-import { UserService } from '../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../model/user.model';
-import { SignUp } from '../../../model/signUp.model';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+
+import { UserService } from '../../../services/user.service';
+import { SignUp } from '../../../model/signUp.model';
 
 @Component({
   selector: 'app-register-form',
@@ -12,12 +12,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class RegisterFormComponent implements OnInit {
 
-  error: boolean = false;
-  success: boolean = false;
+  error = false;
+  success = false;
   signup: SignUp;
-  isLoading: boolean = false;
-  socialLoading: boolean = false;
-  message: string = "Sign Up";
+  isLoading = false;
+  socialLoading = false;
+  message = 'Sign Up';
   constructor(private userService: UserService, ) { }
 
   ngOnInit() {
@@ -25,19 +25,20 @@ export class RegisterFormComponent implements OnInit {
   }
 
   resetForm(form?: NgForm) {
-    if (form != null)
+    if (form != null) {
       form.reset();
+    }
     this.signup = new SignUp();
-    this.signup.identifier = "";
-    this.signup.firstName = "";
-    this.signup.lastName = "";
-    this.signup.email = "";
-    this.signup.password = "";
+    this.signup.identifier = '';
+    this.signup.firstName = '';
+    this.signup.lastName = '';
+    this.signup.email = '';
+    this.signup.password = '';
 
   }
 
   OnSubmit(form: NgForm) {
-    this.message = "Loading....";
+    this.message = 'Loading....';
     this.isLoading = true;
     this.success = false;
     this.error = false;
@@ -45,13 +46,13 @@ export class RegisterFormComponent implements OnInit {
       .subscribe((data: any) => {
         this.resetForm(form);
         this.success = true;
-        this.message = "Sign Up";
+        this.message = 'Sign Up';
         this.isLoading = false;
       },
-        (err: HttpErrorResponse) => {
-          this.error = true;
-          this.message = "Sign Up";
-          this.isLoading = false;
-        });
+      (err: HttpErrorResponse) => {
+        this.error = true;
+        this.message = 'Sign Up';
+        this.isLoading = false;
+      });
   }
 }

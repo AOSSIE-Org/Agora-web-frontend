@@ -1,4 +1,4 @@
-import { Deserializable } from "./deserializable.model";
+import { Deserializable } from './deserializable.model';
 
 export class BallotData implements Deserializable {
     ballotInput: string;
@@ -7,5 +7,4 @@ export class BallotData implements Deserializable {
         Object.assign(this, input);
         return this;
     }
- 
 }

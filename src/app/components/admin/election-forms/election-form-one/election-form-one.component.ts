@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { ElectionFormOne } from '../../../../model/election/election-form-one.model';
 import { ElectionDataService } from '../../../../services/election-data.service';
 
@@ -12,11 +13,12 @@ export class ElectionFormOneComponent implements OnInit {
 
   form1 = new ElectionFormOne();
   constructor(private router: Router, private route: ActivatedRoute, private electionDataService: ElectionDataService) {
-    let origin = this.electionDataService.getOrigin();
-    if (origin && "valid" === origin) {
+    const origin = this.electionDataService.getOrigin();
+    if (origin && 'valid' === origin) {
       this.form1 = this.electionDataService.getForm1();
-    } else   
-        this.router.navigate(["dashboard"]);
+    } else {
+        this.router.navigate(['dashboard']);
+    }
   }
 
   ngOnInit() {
@@ -24,6 +26,6 @@ export class ElectionFormOneComponent implements OnInit {
 
   next() {
     this.electionDataService.setForm1(this.form1);
-    this.router.navigate(["../form2"], { relativeTo: this.route, skipLocationChange: true });
+    this.router.navigate(['../form2'], { relativeTo: this.route, skipLocationChange: true });
   }
 }

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 
-export class AgoraSocialUserService{
+export class AgoraSocialUserService {
 
   getIsSocialUser(): String {
     return window.localStorage['isSocialUser'];

@@ -1,6 +1,6 @@
-import { Deserializable } from "./deserializable.model";
+import { Deserializable } from './deserializable.model';
 
-export class Voter implements Deserializable{
+export class Voter implements Deserializable {
     name: string;
     email: string;
 

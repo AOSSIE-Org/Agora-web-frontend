@@ -1,9 +1,9 @@
 export class ElectionFormFive {
-    isRealtimeResult: boolean = false;
-    isVoterInvite: boolean = false;
+    isRealtimeResult = false;
+    isVoterInvite = false;
     voterListVisibility: string;
     ballotVisibility: string;
-    
-    constructor(){}
+
+    constructor() {}
 
 }

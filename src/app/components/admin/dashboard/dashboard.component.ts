@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../services/user.service';
-import { User } from '../../../model/user.model';
-import { ElectionService } from '../../../services/election.service';
-import { Election } from '../../../model/election.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as Moment from 'moment';
+
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../model/user.model';
+import { ElectionService } from '../../../services/election.service';
+import { Election } from '../../../model/election.model';
 
 declare var $: any;
 
@@ -33,25 +34,26 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getDisplayDate(date: string) : string {
-    return Moment.utc(date, "YYYY-MM-DDTHH:mm:ssZ", false).local(true).toDate().toLocaleString()
+  getDisplayDate(date: string): string {
+    return Moment.utc(date, 'YYYY-MM-DDTHH:mm:ssZ', false).local(true).toDate().toLocaleString();
   }
 
   getStatus(election: Election): string {
-    let now = new Date().getTime();
-    let start = Moment.utc(election.start, "YYYY-MM-DDTHH:mm:ssZ", false).local(true).toDate().getTime()
-    let end = Moment.utc(election.end, "YYYY-MM-DDTHH:mm:ssZ", true).local(true).toDate().getTime()
-    if (now < start)
-      return "Pending";
-    else if (now > start && now < end)
-      return "Active";
-    else return "Finish";
+    const now = new Date().getTime();
+    const start = Moment.utc(election.start, 'YYYY-MM-DDTHH:mm:ssZ', false).local(true).toDate().getTime();
+    const end = Moment.utc(election.end, 'YYYY-MM-DDTHH:mm:ssZ', true).local(true).toDate().getTime();
+    if (now < start) {
+      return 'Pending';
+    } else if (now > start && now < end) {
+      return 'Active';
+         } else { return 'Finish'; }
   }
 
   isEmpty(obj) {
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key))
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
         return false;
+      }
     }
     return true;
   }
@@ -61,14 +63,15 @@ export class DashboardComponent implements OnInit {
     let isActiveElection = false;
 
     this.activeElections.forEach(value => {
-      if (value._id === id)
+      if (value._id === id) {
         isActiveElection = true;
-    })
+      }
+    });
 
     if (!isActiveElection) {
       Swal({
         title: 'Delete',
-        text: "Are you sure you want to delete this election?",
+        text: 'Are you sure you want to delete this election?',
         type: 'warning',
         confirmButtonColor: '#FFCD00',
         showCancelButton: true,
@@ -77,22 +80,22 @@ export class DashboardComponent implements OnInit {
       }).then((result) => {
         if (result.value) {
           this.electionService.delete(id).subscribe((data: any) => {
-            this.elections = this.elections.filter(value => !(value._id === id))
+            this.elections = this.elections.filter(value => !(value._id === id));
             this.doStats(this.elections);
-            this.showNotification('success', 'Election was successfully deleted')
+            this.showNotification('success', 'Election was successfully deleted');
           }, (err: HttpErrorResponse) => {
-            if (err.status == 200) {
-              this.elections = this.elections.filter(value => !(value._id === id))
+            if (err.status === 200) {
+              this.elections = this.elections.filter(value => !(value._id === id));
               this.doStats(this.elections);
-              this.showNotification('success', 'Election was successfully deleted')
+              this.showNotification('success', 'Election was successfully deleted');
             } else {
-              this.showNotification('danger', 'Unable to delete election. Please try again')
+              this.showNotification('danger', 'Unable to delete election. Please try again');
             }
-          })
+          });
         }
-      })
+      });
     } else {
-      this.showNotification('danger', "Active elections can't be deleted")
+      this.showNotification('danger', 'Active elections can\'t be deleted');
     }
   }
 
@@ -100,14 +103,16 @@ export class DashboardComponent implements OnInit {
     this.activeElections = new Array();
     this.pendingElections = new Array();
     this.finishedElections = new Array();
+
     data.filter(data => {
-      let status = this.getStatus(data)
-      if (status === "Active")
-        this.activeElections.push(data)
-      else if (status === "Pending")
-        this.pendingElections.push(data)
-      else
-        this.finishedElections.push(data)
+      const status = this.getStatus(data);
+      if (status === 'Active') {
+        this.activeElections.push(data);
+      } else if (status === 'Pending') {
+        this.pendingElections.push(data);
+      } else {
+        this.finishedElections.push(data);
+      }
     });
   }
 
@@ -116,19 +121,21 @@ export class DashboardComponent implements OnInit {
     let isFinishedElection = false;
 
     this.activeElections.forEach(value => {
-      if (value._id === id)
+      if (value._id === id) {
         isActiveElection = true;
-    })
+      }
+    });
 
     this.finishedElections.forEach(value => {
-      if (value._id === id)
+      if (value._id === id) {
         isFinishedElection = true;
-    })
+      }
+    });
 
     if (isActiveElection) {
       Swal({
         title: 'Forbidden',
-        text: "Active elections can'\t be modified. You can however add voters",
+        text: 'Active elections can\'\t be modified. You can however add voters',
         type: 'error',
         confirmButtonColor: '#FFCD00',
         showCancelButton: true,
@@ -136,13 +143,13 @@ export class DashboardComponent implements OnInit {
         cancelButtonText: 'Cancel'
       }).then((result) => {
         if (result.value) {
-          this.router.navigate(["election/" + id + "/voters"])
+          this.router.navigate(['election/' + id + '/voters']);
         }
-      })
+      });
     } else if (isFinishedElection) {
       Swal({
         title: 'Forbidden',
-        text: "Finished elections can't be modified. You can however view its results",
+        text: 'Finished elections can\'t be modified. You can however view its results',
         type: 'error',
         confirmButtonColor: '#FFCD00',
         showCancelButton: true,
@@ -150,20 +157,21 @@ export class DashboardComponent implements OnInit {
         cancelButtonText: 'Cancel'
       }).then((result) => {
         if (result.value) {
-          this.router.navigate(["election/" + id])
+          this.router.navigate(['election/' + id]);
         }
-      })
-    } else
-      this.router.navigate(["election/edit/" + id]);
+      });
+    } else {
+      this.router.navigate(['election/edit/' + id]);
+           }
   }
 
   view(id: string) {
-    this.router.navigate(["election/" + id]);
+    this.router.navigate(['election/' + id]);
   }
 
   showNotification(notifType, message) {
     $.notify({
-      icon: notifType === 'success' ? "done" : "notifications",
+      icon: notifType === 'success' ? 'done' : 'notifications',
       message: message
 
     }, {

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 import { HomeComponent } from '../../components/home/home.component';
 import { AboutComponent } from '../../components/about/about.component';
 import { HelpComponent } from '../../components/help/help.component';
@@ -33,7 +34,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'reset-password/:token', component: ResetPasswordComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'vote/:id/:pass', component: VoteComponent, 
+    { path: 'vote/:id/:pass', component: VoteComponent,
         children: [
         { path: 'preference', component: PreferencialBallotComponent},
         { path: 'rank', component: RankBallotComponent},
@@ -87,5 +88,5 @@ export const routingComponents = [
     ScoreBallotComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent
-]
+];
 

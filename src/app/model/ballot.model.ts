@@ -1,4 +1,4 @@
-import { Deserializable } from "./deserializable.model";
+import { Deserializable } from './deserializable.model';
 
 export class Ballot implements Deserializable {
 
@@ -12,8 +12,8 @@ export class Ballot implements Deserializable {
 }
 
 export enum BallotType {
-    RankBallot = "RankBallot",
-    ApprovalBallot = "ApprovalBallot",
-    ScoreBallot = "ScoreBallot",
-    PreferenceBallot = "PreferenceBallot"
+    RankBallot = 'RankBallot',
+    ApprovalBallot = 'ApprovalBallot',
+    ScoreBallot = 'ScoreBallot',
+    PreferenceBallot = 'PreferenceBallot'
 }

@@ -1,7 +1,7 @@
-import { Deserializable } from "./deserializable.model";
+import { Deserializable } from './deserializable.model';
 
-export class Score implements Deserializable{
-    numerator: number; 
+export class Score implements Deserializable {
+    numerator: number;
     denominator: number;
 
     deserialize(input: any): this {

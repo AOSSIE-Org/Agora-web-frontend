@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 import { VotingService } from '../../../../../services/voting.service';
-import Swal from 'sweetalert2'
 import { ElectionService } from '../../../../../services/election.service';
 import { BallotData } from '../../../../../model/ballotData.model';
-import { HttpErrorResponse } from '../../../../../../../node_modules/@angular/common/http';
-import { Router } from '../../../../../../../node_modules/@angular/router';
 import { ElectionData } from '../../../../../model/electionData.model';
 
 declare var $: any;
@@ -15,7 +16,7 @@ declare var $: any;
   styleUrls: ['./score-ballot.component.scss']
 })
 export class ScoreBallotComponent implements OnInit {
-  msg = "Vote"
+  msg = 'Vote';
   isLoading = false;
   candidates: string[] = new Array();
   selected: string[] = new Array();
@@ -25,8 +26,8 @@ export class ScoreBallotComponent implements OnInit {
   step = 10;
   election = new ElectionData();
   constructor(private votingService: VotingService, private electionService: ElectionService, private router: Router) {
-    if (this.votingService.getOrigin() && this.votingService.getOrigin() === "valid") {
-      console.log(votingService.getData())
+    if (this.votingService.getOrigin() && this.votingService.getOrigin() === 'valid') {
+      console.log(votingService.getData());
       this.election = votingService.getData();
       this.candidates = votingService.getData().candidates;
       this.candidates.forEach(data => this.values.push(0));
@@ -34,26 +35,26 @@ export class ScoreBallotComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.election.startingDate = new Date(new Date(this.election.startingDate).toISOString()).toLocaleString()
+    this.election.startingDate = new Date(new Date(this.election.startingDate).toISOString()).toLocaleString();
     this.election.endingDate = new Date(new Date(this.election.endingDate).toISOString()).toLocaleString();
-    console.log(this.election)
+    console.log(this.election);
   }
 
   getStatus(election: ElectionData): string {
-    let now = new Date().getTime();
-    let start = new Date(new Date(election.startingDate).toLocaleString()).getTime();
-    let end = new Date(new Date(election.endingDate).toLocaleString()).getTime();
-    if (now < start)
-      return "Pending";
-    else if (now > start && now < end)
-      return "Active";
-    else return "Finish";
+    const now = new Date().getTime();
+    const start = new Date(new Date(election.startingDate).toLocaleString()).getTime();
+    const end = new Date(new Date(election.endingDate).toLocaleString()).getTime();
+    if (now < start) {
+      return 'Pending';
+    } else if (now > start && now < end) {
+      return 'Active';
+    } else { return 'Finish'; }
   }
 
   add(index: number) {
-    let value = this.candidates[index]
-    this.candidates.splice(index, 1)
-    this.selected.push(value)
+    const value = this.candidates[index];
+    this.candidates.splice(index, 1);
+    this.selected.push(value);
   }
 
   isEmpty() {
@@ -61,59 +62,59 @@ export class ScoreBallotComponent implements OnInit {
   }
 
   vote() {
-    this.msg = "Voting"
-    let stringBallot: string = ""
+    this.msg = 'Voting';
+    let stringBallot = '';
     this.election.candidates.forEach((candidate: string, index: number) => {
-        stringBallot = stringBallot.concat("("+candidate+":"+this.values[index]+"/100"+")")
-    })
-    let ballot = new BallotData()
-    ballot.ballotInput = stringBallot
-    ballot.passCode = this.votingService.getVoterCode()
+        stringBallot = stringBallot.concat('(' + candidate + ':' + this.values[index] + '/100' + ')');
+    });
+    const ballot = new BallotData();
+    ballot.ballotInput = stringBallot;
+    ballot.passCode = this.votingService.getVoterCode();
 
     this.electionService.vote(this.votingService.getVoterID(), ballot).subscribe((data: any) => {
       this.isLoading = false;
-      this.msg = "Vote"
+      this.msg = 'Vote';
       Swal({
         title: 'OK',
-        text: "Your vote was successfully counted",
+        text: 'Your vote was successfully counted',
         type: 'success',
         confirmButtonColor: '#FFCD00',
         showCancelButton: false,
         confirmButtonText: 'Home',
       }).then((result) => {
-        this.router.navigate(["/home"])
-      })
+        this.router.navigate(['/home']);
+      });
     },
       (err: HttpErrorResponse) => {
-        this.isLoading = false
-        this.msg = "Vote"
-        if (err.status == 200) {
+        this.isLoading = false;
+        this.msg = 'Vote';
+        if (err.status === 200) {
           Swal({
             title: 'OK',
-            text: "Your vote was successfully counted",
+            text: 'Your vote was successfully counted',
             type: 'success',
             confirmButtonColor: '#FFCD00',
             showCancelButton: false,
             confirmButtonText: 'Home',
           }).then((result) => {
-            this.router.navigate(["/home"])
-          })
+            this.router.navigate(['/home']);
+          });
+        } else {
+          this.showNotification('danger', 'Failed to submit your vote. Please try again');
         }
-        else
-          this.showNotification("danger", "Failed to submit your vote. Please try again")
-      })
+      });
   }
 
   cancel() {
-    this.showNotification("danger", "You did not submit your vote. Remeber your voting links expires when the election ends")
-    this.router.navigate(["/home"])
+    this.showNotification('danger', 'You did not submit your vote. Remeber your voting links expires when the election ends');
+    this.router.navigate(['/home']);
   }
 
 
 
   showNotification(notifType, message) {
     $.notify({
-      icon: notifType === 'success' ? "done" : "notifications",
+      icon: notifType === 'success' ? 'done' : 'notifications',
       message: message
 
     }, {
