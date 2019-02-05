@@ -17,6 +17,7 @@ declare var $: any;
 })
 export class ScoreBallotComponent implements OnInit {
   msg = 'Vote';
+  revealMsg = 'Show Ballots';
   isLoading = false;
   candidates: string[] = new Array();
   selected: string[] = new Array();
@@ -40,6 +41,17 @@ export class ScoreBallotComponent implements OnInit {
     console.log(this.election);
   }
 
+  revealBallots() {
+    const pastBallots = document.getElementById('ballotsDisplay');
+    if (pastBallots.style.display === 'block') {
+      pastBallots.style.display = 'none';
+      this.revealMsg = 'Show Ballots';
+    } else {
+      pastBallots.style.display = 'block';
+      this.revealMsg = 'Hide Ballots';
+    }
+  }
+  
   getStatus(election: ElectionData): string {
     const now = new Date().getTime();
     const start = new Date(new Date(election.startingDate).toLocaleString()).getTime();

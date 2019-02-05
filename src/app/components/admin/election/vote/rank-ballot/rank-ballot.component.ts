@@ -17,6 +17,7 @@ declare var $: any;
 })
 export class RankBallotComponent implements OnInit {
   msg = 'Vote';
+  revealMsg = 'Show Ballots';
   isLoading = false;
   candidates: string[] = new Array();
   selected: string[] = new Array();
@@ -38,6 +39,17 @@ export class RankBallotComponent implements OnInit {
     this.election.startingDate = new Date(new Date(this.election.startingDate).toISOString()).toLocaleString();
     this.election.endingDate = new Date(new Date(this.election.endingDate).toISOString()).toLocaleString();
     console.log(this.election);
+  }
+
+  revealBallots() {
+    const pastBallots = document.getElementById('ballotsDisplay');
+    if (pastBallots.style.display === 'block') {
+      pastBallots.style.display = 'none';
+      this.revealMsg = 'Show Ballots';
+    } else {
+      pastBallots.style.display = 'block';
+      this.revealMsg = 'Hide Ballots';
+    }
   }
 
   getStatus(election: ElectionData): string {
