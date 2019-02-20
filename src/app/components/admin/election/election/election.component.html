@@ -102,8 +102,13 @@
               </div>
               <!-- Tab content Ballots -->
               <div class="tab-pane" id="ballots">
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm text-center"><h4 class="green">Sl. No.</h4></div>
+                  <div class="col-lg-5 col-md-5 col-sm text-left"><h4 class="green">Voter Email</h4></div>
+                  <div class="col-lg-5 col-md-5 col-sm text-left"><h4 class="green">Voter Ballot</h4></div>
+                </div>
                 <div class="row" *ngFor="let ballot of election.ballots; let ind = index">
-                  <div class="col-lg-2 col-md-2 col-sm text-center">{{ind + 1}}</div>
+                  <div class="col-lg-2 col-md-2 col-sm text-center">{{ind + 1}}.</div>
                   <div class="col-lg-5 col-md-5 col-sm text-left">{{ballot.voterEmail}}</div>
                   <div class="col-lg-5 col-md-5 col-sm text-left">{{ballot.voteBallot}}</div>
                 </div>
@@ -120,7 +125,7 @@
                     </ul>
                   </div>
                   <div class="col-4 text-center">
-                    <h4>Winner(s)</h4>
+                    <h4 class="green">Winner(s)</h4>
                     <ul>
                       <li *ngFor="let winner of election.winners; let i =index;">
                         <p>{{winner.candidate.name}}</p>
