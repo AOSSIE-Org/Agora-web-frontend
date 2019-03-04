@@ -25,7 +25,7 @@
                   <tr *ngFor="let algo of algos; let i = index">
                     <td>
                       <label class="radio-label">{{algo.description}}
-                        <input type="radio" value="{{algo.value}}" [(ngModel)]="form4.votingAlgo" ngDefaultControl name="form4.votingAlgo">
+                        <input type="radio" value="{{algo.value}}" [(ngModel)]="form4.votingAlgo" ngDefaultControl name="form4.votingAlgo" required>
                         <span class="checkmark"></span>
                       </label>
                     </td>
