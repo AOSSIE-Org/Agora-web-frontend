@@ -93,7 +93,8 @@
                     <tr>
                       <div class="row">
                         <div class="col-12 text-center">
-                          <button [disabled]="isFinished()" class="btn btn-round btn-gold" (click)="addVoters()">Add voters</button>
+                          <button [disabled]="isFinished()" class="btn btn-round btn-gold" (click)="addVoters()">Add
+                            voters</button>
                         </div>
                       </div>
                     </tr>
@@ -102,22 +103,37 @@
               </div>
               <!-- Tab content Ballots -->
               <div *ngIf="showBallots() && election.ballots.length > 0" class="tab-pane" id="ballots">
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm text-center">
+                    <h4 class="green">Sl. No.</h4>
+                  </div>
+                  <div class="col-lg-5 col-md-5 col-sm text-left">
+                    <h4 class="green">Voter Email</h4>
+                  </div>
+                  <div class="col-lg-5 col-md-5 col-sm text-left">
+                    <h4 class="green">Voter Ballot</h4>
+                  </div>
+                </div>
                 <div class="row" *ngFor="let ballot of election.ballots; let ind = index">
-                  <div class="col-lg-2 col-md-2 col-sm text-center">{{ind + 1}}</div>
+                  <div class="col-lg-2 col-md-2 col-sm text-center">{{ind + 1}}.</div>
                   <div class="col-lg-5 col-md-5 col-sm text-left">{{ballot.voterEmail}}</div>
                   <div class="col-lg-5 col-md-5 col-sm text-left">{{ballot.voteBallot}}</div>
                 </div>
               </div>
               <div *ngIf="showBallots() && election.ballots.length < 1" class="tab-pane" id="ballots">
                 <div class="row">
-                  <div class="col-12 text-center"><p>This election currently has no ballot. No one has voted yet.</p></div>
+                  <div class="col-12 text-center">
+                    <p>This election currently has no ballot. No one has voted yet.</p>
+                  </div>
                 </div>
               </div>
               <div *ngIf="!showBallots()" class="tab-pane" id="ballots">
-                  <div class="row">
-                    <div class="col-12 text-center"><p>Ballots are hidden for this election</p></div>
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <p>Ballots are hidden for this election</p>
                   </div>
                 </div>
+              </div>
               <!-- Tab content results -->
               <div class="tab-pane" id="results">
                 <div class="row">
@@ -130,7 +146,7 @@
                     </ul>
                   </div>
                   <div class="col-4 text-center">
-                    <h4>Winner(s)</h4>
+                    <h4 class="green">Winner(s)</h4>
                     <ul>
                       <li *ngFor="let winner of election.winners; let i =index;">
                         <p>{{winner.candidate.name}}</p>
