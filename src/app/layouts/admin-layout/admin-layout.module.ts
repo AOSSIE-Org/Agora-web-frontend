@@ -10,7 +10,8 @@ import {
   MatRippleModule,
   MatTooltipModule,
   MatCheckboxModule,
-  MatSliderModule
+  MatSliderModule,
+  MatSelectModule
 } from '@angular/material';
 
 import { AdminLayoutRoutes, routingComponents } from './admin-layout.routing';
@@ -25,6 +26,7 @@ import { DragulaModule } from '../../../../node_modules/ng2-dragula';
     FormsModule,
     MatButtonModule,
     MatRippleModule,
+    MatSelectModule,
     MatInputModule,
     MatTooltipModule,
     MatCheckboxModule,

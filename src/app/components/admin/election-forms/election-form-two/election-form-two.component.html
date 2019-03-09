@@ -13,13 +13,42 @@
           <img src="assets/agora.png" class="form-logo">
         </div>
         <mat-form-field>
-          <input [(ngModel)]="form2.startDate" matInput  type="text" [min]="getToday()" [max]="getMaxStart()" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" name="start_date"
-            placeholder="Start Date" required>
-          <owl-date-time #dt1></owl-date-time>
+            <input [(ngModel)]="form2.startDate" (dateTimeInput)="calculateEndDate()" matInput type="text" [min]="getToday()" [max]="getMaxStart()"
+              [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" name="start_date" placeholder="Start Date" required>
+            <owl-date-time #dt1></owl-date-time>
+          </mat-form-field>
+
+          <div class="durationPicker">
+
+
+
+          
+
+        <mat-form-field>
+            <input type="number" matInput [(ngModel)]="duration" min="1" name="duration" (input)="calculateEndDate()" placeholder="Duration">
         </mat-form-field>
         <mat-form-field>
-          <input [(ngModel)]="form2.endDate" matInput type="text" [min]="getMinEnd()" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" name="end_date" placeholder="End Date"
-            required>
+          
+          <mat-select placeholder="Duration Unit" (selectionChange)="calculateEndDate()" [(ngModel)]="durationUnit" name="duration-unit">
+            <mat-option value="days">
+              Days
+            </mat-option>
+            <mat-option value="weeks">
+              Weeks
+            </mat-option>
+            <mat-option value="months">
+              Months
+            </mat-option>
+            <mat-option value="years">
+              Years
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+        
+        <mat-form-field>
+          <input [(ngModel)]="form2.endDate" matInput type="text" [min]="getMinEnd()" [owlDateTime]="dt2"
+            [owlDateTimeTrigger]="dt2" name="end_date" placeholder="End Date (Click below to edit time)" required>
           <owl-date-time [startAt]="getEndStart()" #dt2></owl-date-time>
         </mat-form-field>
       </form>

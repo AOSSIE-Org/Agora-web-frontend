@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
+import { unitOfTime, DurationInputArg1 } from 'moment';
 
 import { ElectionFormTwo } from '../../../../model/election/election-form-two.model';
 import { ElectionDataService } from '../../../../services/election-data.service';
@@ -11,15 +13,26 @@ import { ElectionDataService } from '../../../../services/election-data.service'
 })
 export class ElectionFormTwoComponent implements OnInit {
 
+  duration: Number = 1;
+  durationUnit: String = 'days';
+
+  
+
   form2 = new ElectionFormTwo();
   constructor(private router: Router, private route: ActivatedRoute, private electionDataService: ElectionDataService) {
     const origin = this.electionDataService.getOrigin();
+
     if (origin && 'valid' === origin) {
+      
       if (this.electionDataService.getStatus() === 'create') {
+        
         this.form2 = this.electionDataService.getForm2();
-        this.form2.endDate = new Date(2100, 1, 1);
+        this.form2.startDate = moment(new Date()).add(1, 'days').startOf('day').toDate();
+        this.calculateEndDate();
       } else {
+
         this.form2 = this.electionDataService.getForm2();
+      
       }
       console.log(this.form2);
     } else {
@@ -29,6 +42,14 @@ export class ElectionFormTwoComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  calculateEndDate() {
+
+    let durationMoment: DurationInputArg1 = <DurationInputArg1>this.duration;
+
+    this.form2.endDate = moment( this.form2.startDate ).add( durationMoment, <unitOfTime.DurationConstructor>this.durationUnit).toDate();
+
+  };
 
   getMaxStart() {
     if (this.form2.endDate) {
