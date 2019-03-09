@@ -1,13 +1,12 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { FacebookLoginProvider } from 'angularx-social-login';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DragulaModule } from 'ng2-dragula';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
-
 import { AuthGuard } from './auth/auth.guard';
 import { ElectionService } from './services/election.service';
 import { JwtService } from './services/jwt.service';
@@ -44,6 +43,7 @@ export function provideConfig() {
     HttpClientModule,
     AppRoutingModule,
     SocialLoginModule,
+    ReactiveFormsModule,
     SharedModule,
     SweetAlert2Module.forRoot({
       buttonsStyling: false,
