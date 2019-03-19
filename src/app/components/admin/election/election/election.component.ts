@@ -40,6 +40,12 @@ export class ElectionComponent implements OnInit {
     }
   }
 
+  showBallots() {
+    if (this.election.ballotVisibility == "public" || this.election.ballotVisibility == "visible")
+      return true;
+    else return false;
+  }
+
   isFinished() {
     if ('Finish' === this.getStatus(this.election)) {
       return true;

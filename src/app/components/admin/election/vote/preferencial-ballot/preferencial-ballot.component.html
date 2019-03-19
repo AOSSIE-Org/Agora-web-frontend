@@ -1,110 +1,124 @@
 <div class="main-content">
-    <div class="container-fluid">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="card card-stats">
-              <div class="card-header card-header-warning card-header-icon">
-                <h4 class="ballot-visibility-type black-color"><strong>Ballot Visibility: </strong> <span class="orange-color">{{election.ballotVisibility}}</span></h4>
-                <p *ngIf="election.ballotVisibility == 'public'" class="ballot-visibility-description gray-color">This means that everyone is able to view the ballots, including voters!</p>
-                <p *ngIf="election.ballotVisibility == 'hidden'" class="ballot-visibility-description gray-color">This means that no one is able to view the ballots, including the creator of the election!</p>
-                <p *ngIf="election.ballotVisibility == 'visible'" class="ballot-visibility-description gray-color">This means that only the creator of the election is able to view the ballots!</p>
-                <span *ngIf="election.ballotVisibility =='public'" class="pr-20 ballot-visibility-description">
-                  <button class="btn btn-round btn-gold" (click)="revealBallots()">{{revealMsg}}</button>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="ballotsDisplay" class="card card-stats" *ngIf="election.ballotVisibility == 'public'">
-          <section>
-            <div class="tab-pane black-color minimum-width" id="ballots">
-              <div class="row padding-top" *ngFor="let ballot of election.ballots; let ind = index">
-                <div class="col-lg-2 col-md-2 col-sm text-center">Ballot {{ind + 1}}</div>
-                <div class="col-lg-5 col-md-5 col-sm text-left">{{ballot.voteBallot}}</div>
-              </div>
-            </div>
-          </section>
-        </div>
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="card card-stats">
-              <div class="card-header card-header-warning card-header-icon">
-                <div class="card-icon">
-                  <i class="material-icons">ballot</i>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card card-stats pt-10 pb-10">
+            <div class="card-header card-header-warning card-header-icon text-left">
+              <h4 class="ballot-visibility-type text-black"><strong>Ballot Visibility: </strong> <span class="text-gold">{{election.ballotVisibility}}</span></h4>
+              <p *ngIf="election.ballotVisibility == 'public'">This
+                means that everyone is able to view the ballots, including voters!</p>
+              <p *ngIf="election.ballotVisibility == 'hidden'">This
+                means that no one is able to view the ballots, including the creator of the election!</p>
+              <p *ngIf="election.ballotVisibility == 'visible'">This
+                means that only the creator of the election is able to view the ballots!</p>
+              <span *ngIf="election.ballotVisibility =='public'">
+                <div class="row">
+                  <div class="col text-right">
+                    <button class="btn btn-round btn-gold" (click)="revealBallots()">{{revealMsg}}</button>
+                  </div>
                 </div>
-                <p class="card-category"><strong>{{election.description}}</strong></p>
-                <h3 class="card-title">{{election.name}}
-                </h3>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="ballotsDisplay" class="card" *ngIf="election.ballotVisibility == 'public'">
+        <div *ngIf="election.ballot?.length > 0" class="card-body">
+          <div class="row pb-10 pt-10" *ngFor="let ballot of election.ballot; let ind = index">
+            <div class="col-lg-2 col-md-2 col-sm-2 text-left">{{ind + 1}}</div>
+            <div class="col-lg-10 col-md-10 col-sm-10 text-right">{{ballot.voteBallot}}</div>
+          </div>
+        </div>
+        <div *ngIf="election.ballot?.length < 1" class="card-body">
+          <div class="row pb-10 pt-10">
+            <div class="col text-center">
+              <p>Be the first to vote. The are currently no ballots for this election</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card card-stats">
+            <div class="card-header card-header-warning card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">ballot</i>
               </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons text-gold">bubble_chart</i>
-                  <a>Start: <strong>{{localTimezoneStartingTime}}</strong></a>
-                  <a class="padding-left">Ends: <strong>{{localTimezoneEndingTime}}</strong></a>
-                </div>
+              <p class="card-category"><strong>{{election.description}}</strong></p>
+              <h3 class="card-title">{{election.name}}
+              </h3>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons text-gold">bubble_chart</i>
+                <a>Start: <strong>{{localTimezoneStartingTime}}</strong></a>
+                <a class="padding-left">Ends: <strong>{{localTimezoneEndingTime}}</strong></a>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <br>
-            <div class="card pt-20">
-              <div class="card-header card-header-gold">
-                <h4 class="card-title">Election Candidates</h4>
-                <p class="card-category">Press the plus button to add a candidate to your ballot</p>
-              </div>
-              <div class="card-body">
-                <table class="table">
-                  <tbody>
-                    <tr *ngFor="let candidate of candidates; let ind = index">
-                      <td class="text-black">{{candidate}}</td>
-                      <td class="td-actions text-right">
-                        <button mat-raised-button type="button" (click)="add(ind)" matTooltip="Add to ballot" [matTooltipPosition]="'above'" matTooltipClass ='primary-tooltip' class="btn btn-gold btn-link btn-sm btn-just-icon">
-                          <i class="material-icons">add_circle</i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <br>
+          <div class="card pt-20">
+            <div class="card-header card-header-gold">
+              <h4 class="card-title">Election Candidates</h4>
+              <p class="card-category">Press the plus button to add a candidate to your ballot</p>
             </div>
-          </div>
-          <div class="col-lg-6">
-            <br>
-            <div class="card pt-20">
-              <div class="card-header card-header-gold">
-                <h4 class="card-title">Your ballot</h4>
-                <p class="card-category">Move candidates up or down to change position</p>
-              </div>
-              <div class="card-body">
-                <table class="table">
-                  <tbody class="container" dragula="SELECTED" [(dragulaModel)]="selected">
-                    <tr *ngFor="let candidate of selected; let ind = index">
-                      <td class="text-black">{{candidate}}</td>
-                      <td class="td-actions text-right">
-                        <button mat-raised-button type="button" (click)="delete(ind)" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
-                          <i class="material-icons">delete</i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="card-body">
+              <table class="table">
+                <tbody>
+                  <tr *ngFor="let candidate of candidates; let ind = index">
+                    <td class="text-black">{{candidate}}</td>
+                    <td class="td-actions text-right">
+                      <button mat-raised-button type="button" (click)="add(ind)" matTooltip="Add to ballot"
+                        [matTooltipPosition]="'above'" matTooltipClass='primary-tooltip' class="btn btn-gold btn-link btn-sm btn-just-icon">
+                        <i class="material-icons">add_circle</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col text-right">
-            <span class="pr-20">
-              <button class="btn btn-round btn-gold" (click)="cancel()">Cancel</button>
-            </span>
-            <span class="pr-20 text-right">
-              <button class="btn btn-round btn-gold" [disabled]="isEmpty()" (click)="vote()">{{msg}}</button>
-            </span>
+        <div class="col-lg-6">
+          <br>
+          <div class="card pt-20">
+            <div class="card-header card-header-gold">
+              <h4 class="card-title">Your ballot</h4>
+              <p class="card-category">Move candidates up or down to change position</p>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <tbody class="container" dragula="SELECTED" [(dragulaModel)]="selected">
+                  <tr *ngFor="let candidate of selected; let ind = index">
+                    <td class="text-black">{{candidate}}</td>
+                    <td class="td-actions text-right">
+                      <button mat-raised-button type="button" (click)="delete(ind)" matTooltip="Remove"
+                        [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-right">
+          <span class="pr-20">
+            <button class="btn btn-round btn-gold" (click)="cancel()">Cancel</button>
+          </span>
+          <span class="pr-20 text-right">
+            <button class="btn btn-round btn-gold" [disabled]="isEmpty()" (click)="vote()">{{msg}}</button>
+          </span>
         </div>
       </div>
     </div>
   </div>
+</div>

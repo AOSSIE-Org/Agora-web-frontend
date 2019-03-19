@@ -37,9 +37,7 @@ export class PreferencialBallotComponent implements OnInit {
     ) {
       this.candidates = votingService.getData().candidates;
       this.startingTime = votingService.getData().startingDate;
-      this.localTimezoneStartingTime = new Date(
-        this.startingTime,
-      ).toLocaleString();
+      this.localTimezoneStartingTime = new Date(this.startingTime).toLocaleString();
       this.endingTime = votingService.getData().endingDate;
       this.localTimezoneEndingTime = new Date(this.endingTime).toLocaleString();
       this.election = votingService.getData();

@@ -2,6 +2,43 @@
   <div class="container-fluid">
     <div class="container">
       <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card card-stats pt-10 pb-10">
+            <div class="card-header card-header-warning card-header-icon text-left">
+              <h4 class="ballot-visibility-type text-black"><strong>Ballot Visibility: </strong> <span class="text-gold">{{election.ballotVisibility}}</span></h4>
+              <p *ngIf="election.ballotVisibility == 'public'">This
+                means that everyone is able to view the ballots, including voters!</p>
+              <p *ngIf="election.ballotVisibility == 'hidden'">This
+                means that no one is able to view the ballots, including the creator of the election!</p>
+              <p *ngIf="election.ballotVisibility == 'visible'">This
+                means that only the creator of the election is able to view the ballots!</p>
+              <span *ngIf="election.ballotVisibility =='public'">
+                <div class="row">
+                  <div class="col text-right">
+                    <button class="btn btn-round btn-gold" (click)="revealBallots()">{{revealMsg}}</button>
+                  </div>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="ballotsDisplay" class="card" *ngIf="election.ballotVisibility == 'public'">
+        <div *ngIf="election.ballot?.length > 0" class="card-body">
+          <div class="row pb-10 pt-10" *ngFor="let ballot of election.ballot; let ind = index">
+              <div class="col-lg-2 col-md-2 col-sm-2 text-left">{{ind + 1}}</div>
+              <div class="col-lg-10 col-md-10 col-sm-10 text-right">{{ballot.voteBallot}}</div>
+          </div>
+        </div>
+        <div *ngIf="election.ballot?.length < 1" class="card-body">
+          <div class="row pb-10 pt-10">
+            <div class="col text-center">
+              <p>Be the first to vote. The are currently no ballots for this election</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-12 text-center">
           <h3>Cast your vote</h3>
           <p class="text-gold">Use the sliders to set the rank of each candidate</p>
@@ -62,8 +99,8 @@
                       </div>
                       <div class="col-8 text-left">
                         <span>0</span>
-                        <mat-slider class="example-margin" [disabled]="false" [invert]="false" [max]="max" [min]="min" [thumbLabel]="true" [(ngModel)]="values[ind]"
-                          [vertical]="false" tickInterval="10">
+                        <mat-slider class="example-margin" [disabled]="false" [invert]="false" [max]="max" [min]="min"
+                          [thumbLabel]="true" [(ngModel)]="values[ind]" [vertical]="false" tickInterval="10">
                         </mat-slider>
                         <span>{{values[ind]}}/100</span>
                       </div>
