@@ -1,5 +1,5 @@
 <div class="main-content">
-    <div class="container-fluid">
+  <div class="container-fluid">
     <div class="container">
       <div class="row">
         <div class="col mt-10 pb-3 text-center">
@@ -16,7 +16,8 @@
                 <img src="assets/agora.png" class="form-logo">
               </div>
               <mat-form-field>
-                <input matInput type="text" [(ngModel)]="currentCandidate" name="candidate_name" placeholder="Candidate name" required>
+                <input matInput type="text" [(ngModel)]="currentCandidate" name="candidate_name" placeholder="Candidate name"
+                  required>
               </mat-form-field>
               <div class="text-center mt-10">
                 <span class="pr-20">
@@ -36,10 +37,14 @@
             <div class="card-body">
               <table class="table">
                 <tbody>
-                  <tr *ngFor="let candidate of form3.candidates; let ind = index">
+                  <tr *ngIf="form3.candidates.length == 0">
+                    No Candidates Added
+                  </tr>
+                  <tr #else *ngFor="let candidate of form3.candidates; let ind = index">
                     <td class="text-black">{{candidate}}</td>
                     <td class="td-actions text-right">
-                      <button mat-raised-button type="button" (click)="delete(ind)" matTooltip="Remove" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                      <button mat-raised-button type="button" (click)="delete(ind)" matTooltip="Remove"
+                        [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
                         <i class="material-icons">delete</i>
                       </button>
                     </td>
