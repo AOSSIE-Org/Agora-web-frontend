@@ -38,6 +38,11 @@ export class ElectionFormFiveComponent implements OnInit {
   }
 
   finish() {
+    if(!this.form5.ballotVisibility || !this.form5.voterListVisibility){
+      this.showNotification('danger', `Unable to create election! Following questions were unanswered ${(!this.form5.ballotVisibility)?"<br> - 'How secrete are the ballots?'":''}${(!this.form5.voterListVisibility)?"<br> - Who can see the list of voters?'":''}`);
+      return;
+    }
+
     this.isLoading = true;
     this.buttonStatus = 'Loading';
     this.electionDataService.setForm5(this.form5);
