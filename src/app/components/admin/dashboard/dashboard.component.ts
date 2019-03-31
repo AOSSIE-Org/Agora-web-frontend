@@ -34,10 +34,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getDisplayDate(date: string): string {
-    return Moment.utc(date, 'YYYY-MM-DDTHH:mm:ssZ', false).local(true).toDate().toLocaleString();
-  }
-
   getStatus(election: Election): string {
     const now = new Date().getTime();
     const start = Moment.utc(election.start, 'YYYY-MM-DDTHH:mm:ssZ', false).local(true).toDate().getTime();

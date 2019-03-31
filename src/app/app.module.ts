@@ -34,7 +34,7 @@ export function provideConfig() {
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
   ],
   imports: [
     BrowserAnimationsModule,

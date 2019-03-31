@@ -59,13 +59,13 @@
                     <h4 class="green">Dates</h4>
                     <ul>
                       <li>
-                        <p>Creation date: {{getDisplayDate(election.createdTime)}}</p>
+                        <p>Creation date: {{election.createdTime | getDate}}</p>
                       </li>
                       <li>
-                        <p>Start date: {{getDisplayDate(election.start)}}</p>
+                        <p>Start date: {{election.start | getDate}}</p>
                       </li>
                       <li>
-                        <p>End date: {{getDisplayDate(election.end)}}</p>
+                        <p>End date: {{election.end | getDate}}</p>
                       </li>
                     </ul>
                   </div>
