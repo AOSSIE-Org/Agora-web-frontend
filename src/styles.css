@@ -294,6 +294,8 @@ p {
 
 .dropdown-menu a.dropdown-item.gold:hover {
   background: #FFCD00 !important;
+  color: white;
+  cursor: pointer;
 }
 
 .navbar-toggler {
