@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
       return 'Pending';
     } else if (now > start && now < end) {
       return 'Active';
-         } else { return 'Finish'; }
+         } else { return 'Finished'; }
   }
 
   isEmpty(obj) {
