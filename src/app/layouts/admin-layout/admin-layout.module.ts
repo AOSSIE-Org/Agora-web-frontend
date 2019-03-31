@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { GetDatePipe } from '../../pipes/get-date.pipe';
 import {
   MatButtonModule,
   MatInputModule,
@@ -38,7 +39,9 @@ import { DragulaModule } from '../../../../node_modules/ng2-dragula';
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   declarations: [
-    routingComponents
+    routingComponents,
+    GetDatePipe
+
   ]
 })
 
