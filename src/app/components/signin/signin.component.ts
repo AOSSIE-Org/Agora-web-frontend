@@ -5,8 +5,7 @@ import { JwtService } from '../../services/jwt.service';
 
 @Component({
   selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  templateUrl: './newsignin.html',
 })
 export class SigninComponent implements OnInit {
 
