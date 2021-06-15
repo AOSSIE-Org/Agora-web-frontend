@@ -53,7 +53,6 @@ export class UserService {
 
   // Unauthenticated user actions
   registerUser(user: SignUp) {
-    console.log(user);
     const body = JSON.stringify(user);
     const reqHeaders = { headers: new HttpHeaders(this.getheadersNoAuth()) };
     return this.http.post(this.rootUrl + '/auth/signup', body, reqHeaders);
@@ -65,7 +64,6 @@ export class UserService {
     return this.http.post(this.rootUrl + '/auth/login', body, reqHeaders)
       .pipe(map(
         data => {
-          console.log(data);
           const user = new User().deserialize(data);
           // Save JWT sent from server in localstorage
           this.jwtService.saveToken(user.token.token);
@@ -86,7 +84,6 @@ export class UserService {
     return this.http.get(this.rootUrl + '/auth/authenticate/' + provider, reqHeaders)
       .pipe(map(
         data => {
-          console.log(data);
           const jwtToken = new JwtToken().deserialize(data);
           // Save JWT sent from server in localstorage
           this.jwtService.saveToken(jwtToken.token);
@@ -119,7 +116,6 @@ export class UserService {
     return this.http.get(this.rootUrl + '/account/activate/' + token, reqHeaders)
       .pipe(map(
         data => {
-          console.log(data);
           const user = new User().deserialize(data);
           // Save JWT sent from server in localstorage
           this.jwtService.saveToken(user.token.token);
@@ -154,7 +150,6 @@ export class UserService {
             const user = new User().deserialize(data);
             // Set current user data into observable
             this.currentUserSubject.next(user);
-            console.log(user);
             return user;
           }));
     }
@@ -168,7 +163,6 @@ export class UserService {
         data => {
           // Set current user data into observable
           this.currentUserSubject.next(user);
-          console.log(user);
           return user;
         }));
   }

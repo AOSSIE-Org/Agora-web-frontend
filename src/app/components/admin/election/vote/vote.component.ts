@@ -41,7 +41,6 @@ export class VoteComponent implements OnInit {
     this.isShow = false;
     for (const algo of VOTING_ALGORITHMS) {
       if (algo.value === data.votingAlgo) {
-        console.log('Entered the first if');
         if (algo.ballotType as BallotType === BallotType.PreferenceBallot) {
           this.router.navigate(['./preference'], { relativeTo: this.route, skipLocationChange: true });
         } else if (algo.ballotType as BallotType === BallotType.RankBallot as BallotType) {

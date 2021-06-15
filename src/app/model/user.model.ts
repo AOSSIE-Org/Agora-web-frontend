@@ -11,7 +11,7 @@ export class User implements Deserializable {
 
     deserialize(input: any): this {
         Object.assign(this, input);
-        this.token = new JwtToken().deserialize(input.token);
+        this.token = new JwtToken().deserialize(input.authToken);
         return this;
     }
 

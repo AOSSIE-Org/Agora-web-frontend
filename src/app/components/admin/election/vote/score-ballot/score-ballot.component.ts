@@ -28,7 +28,6 @@ export class ScoreBallotComponent implements OnInit {
   election = new ElectionData();
   constructor(private votingService: VotingService, private electionService: ElectionService, private router: Router) {
     if (this.votingService.getOrigin() && this.votingService.getOrigin() === 'valid') {
-      console.log(votingService.getData());
       this.election = votingService.getData();
       this.candidates = votingService.getData().candidates;
       this.candidates.forEach(data => this.values.push(0));
@@ -38,7 +37,6 @@ export class ScoreBallotComponent implements OnInit {
   ngOnInit() {
     this.election.startingDate = new Date(new Date(this.election.startingDate).toISOString()).toLocaleString();
     this.election.endingDate = new Date(new Date(this.election.endingDate).toISOString()).toLocaleString();
-    console.log(this.election);
   }
 
   revealBallots() {

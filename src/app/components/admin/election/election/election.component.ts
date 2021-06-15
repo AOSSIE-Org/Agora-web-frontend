@@ -19,7 +19,6 @@ export class ElectionComponent implements OnInit {
   constructor(private router: Router, private electionService: ElectionService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.electionService.getElection(params['id']).subscribe((data: Election) => {
-        console.log(data);
         this.election = data;
       },
         (err: HttpErrorResponse) => {

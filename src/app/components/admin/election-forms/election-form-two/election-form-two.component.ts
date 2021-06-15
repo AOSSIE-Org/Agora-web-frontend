@@ -34,7 +34,6 @@ export class ElectionFormTwoComponent implements OnInit {
         this.form2 = this.electionDataService.getForm2();
       
       }
-      console.log(this.form2);
     } else {
       this.router.navigate(['dashboard']);
     }
