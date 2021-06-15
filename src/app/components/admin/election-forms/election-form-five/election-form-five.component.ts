@@ -26,9 +26,7 @@ export class ElectionFormFiveComponent implements OnInit {
   ) {
     const origin = this.electionDataService.getOrigin();
     if (origin && 'valid' === origin) {
-      console.log(this.form5);
       this.form5 = this.electionDataService.getForm5();
-      console.log(this.form5);
     } else {
       this.router.navigate(['dashboard']);
     }

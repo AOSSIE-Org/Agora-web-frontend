@@ -55,7 +55,6 @@ export class DashboardComponent implements OnInit {
   }
 
   delete(id: string) {
-    console.log(id);
     let isActiveElection = false;
 
     this.activeElections.forEach(value => {

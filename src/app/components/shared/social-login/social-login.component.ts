@@ -39,7 +39,6 @@ export class SocialLoginComponent implements OnInit {
 
   authProcessSuccess = (socialUser: SocialUser) => {
     const token = socialUser.authToken;
-    console.log(socialUser);
     this.userService.socialLogin(socialUser.provider.toLowerCase(), token).subscribe((data: any) => {
       this.userService.getUser().subscribe((data: any) => {
         this.agoraSocialUserService.saveIsSocialUser('true');
